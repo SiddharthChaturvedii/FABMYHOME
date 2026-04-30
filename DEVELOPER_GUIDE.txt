@@ -1,0 +1,69 @@
+FABMYHOME - Developer Guide
+===========================
+
+Welcome to the FABMYHOME frontend repository! This document is designed to get you up to speed quickly on how the project is structured, how the UI is built, and how you can attach a real backend to this Next.js application.
+
+---
+
+1. ARCHITECTURE & STRUCTURE
+
+This project is built using Next.js 15 (App Router), React, TypeScript, Tailwind CSS, Zustand (for state), and Framer Motion (for animations).
+
+Key Directories:
+- /app : Contains the main routing (`page.tsx`, `layout.tsx`) and global styles (`globals.css`).
+- /components : The heart of the UI. Broken down by feature:
+    -> /hero : The initial cinematic loading sequence and hero banner.
+    -> /quiz : The multi-step "Style Quiz" interactive component.
+    -> /complete-look : The smart suggestion engine showing related products.
+    -> /visual-search : The drag-and-drop image analyzer.
+    -> /bundle : The dynamic pricing and bundle calculator.
+    -> /rooms, /trust, /ai-correction : Supporting visual modules.
+- /store : Zustand state management.
+    -> `uiStore.ts`: Controls global UI states like whether the hero animation has finished.
+    -> `quizStore.ts`: Controls the state of the multi-step Style Quiz.
+- /data : Contains static fallback data (`siteContent.ts`, `quizOptions.ts`).
+- /public : All static images, textures, and graphical assets used in the UI.
+
+---
+
+2. ANIMATION PHILOSOPHY
+
+We use Framer Motion extensively. Almost all animations on scroll use `whileInView` with `spring` physics rather than standard linear easing.
+Example of standard animation settings used:
+`transition={{ type: "spring", stiffness: 100, damping: 20 }}`
+This ensures animations look premium, smooth, and do not lag heavily on scroll.
+
+---
+
+3. ADDING A BACKEND / DATABASE
+
+Right now, FABMYHOME operates purely on the client-side using Zustand stores and static mock data. If you are preparing to attach a real backend (e.g., Node.js/Express, Python/Django, or directly to Firebase/Supabase), here is exactly what you need to do:
+
+A) User Authentication
+- NextAuth.js (Auth.js) is recommended for Next.js.
+- Create `/app/api/auth/[...nextauth]/route.ts`.
+- Wrap the main application in `<SessionProvider>` in `layout.tsx`.
+- Modify the Navbar to read session state to replace the "Free Consultation" button with "My Profile".
+
+B) Database Integration (Products & Quiz)
+- Currently, `quizOptions.ts` and `siteContent.ts` are hardcoded.
+- You should create API routes (e.g., `/api/products` and `/api/quiz`) to fetch this data from your database (PostgreSQL/MongoDB).
+- In components like `<CompleteTheLook />`, replace the static `products` array with a React Query (`useQuery`) or Next.js `fetch` call to retrieve actual SKU data, prices, and suggestions based on the user's active selections.
+
+C) AI Features (Visual Search & Smart Correction)
+- The `<VisualSearch />` currently uses a `setTimeout` to simulate AI analysis.
+- To make this real: 
+  1. Capture the dropped image file.
+  2. Send a `POST` request with FormData to an API route (e.g., `/api/analyze-image`).
+  3. Your backend should interface with an actual Vision AI (like OpenAI Vision or Google Cloud Vision) to extract keywords.
+  4. Query your database for products matching those keywords and return them to the client to render instead of the "View Similar Items" mock button.
+
+D) Shopping Cart & Checkout
+- The `<BundleRewards />` component currently simulates dynamic pricing.
+- You will need to implement a true Cart Store (using Zustand).
+- Integrate Stripe or Razorpay via Next.js Server Actions or API routes when the user clicks "Checkout".
+
+---
+
+SUMMARY
+The UI is fully responsive, interactive, and polished. Your primary backend tasks will be swapping out the `setTimeout` mocks for actual `fetch` calls, routing the static `data/` files to database queries, and integrating a payment/auth gateway.
