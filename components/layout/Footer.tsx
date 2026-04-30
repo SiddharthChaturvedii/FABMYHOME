@@ -13,7 +13,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-1">
             <h2 className="font-display text-4xl font-bold mb-8 tracking-wider">FABMYHOME</h2>
             <p className="font-sans text-[var(--color-alabaster)]/60 text-lg leading-relaxed max-w-xs font-light italic">
-              India's first AI-assisted interior styling platform. 
+              India&apos;s first AI-assisted interior styling platform. 
               We believe every room has a story to tell.
             </p>
           </div>

@@ -130,7 +130,7 @@ export default function StyleQuiz() {
               Your Style Profile
             </h3>
             <p className="font-sans text-xl text-[var(--color-graphite)]/80 mb-10 leading-relaxed">
-              We've analyzed your selections. You lean towards a <span className="text-[var(--color-terracotta)] font-semibold">{selections.color}</span> palette with <span className="text-[var(--color-terracotta)] font-semibold">{selections.texture}</span> textures for your {selections.room}.
+              We&apos;ve analyzed your selections. You lean towards a <span className="text-[var(--color-terracotta)] font-semibold">{selections.color}</span> palette with <span className="text-[var(--color-terracotta)] font-semibold">{selections.texture}</span> textures for your {selections.room}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button className="bg-[var(--color-midnight)] text-white font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-[var(--color-midnight)]/30 transition-all duration-300">

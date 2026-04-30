@@ -13,6 +13,7 @@ export default function Navbar() {
   const { introStage } = useUIStore();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);

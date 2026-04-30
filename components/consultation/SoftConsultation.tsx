@@ -71,7 +71,7 @@ export default function SoftConsultation() {
           viewport={{ once: true, margin: "0px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-10"
         >
-          {consultationOptions.map((option, i) => {
+          {consultationOptions.map((option) => {
             const Icon = option.icon;
             return (
               <motion.div 

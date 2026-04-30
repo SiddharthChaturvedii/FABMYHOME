@@ -13,7 +13,7 @@ export default function HeroScene() {
     if (!ctx) return;
 
     let animationId: number;
-    let particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
+    const particles: { x: number; y: number; vx: number; vy: number; size: number; opacity: number }[] = [];
     let mouseX = 0;
     let mouseY = 0;
 

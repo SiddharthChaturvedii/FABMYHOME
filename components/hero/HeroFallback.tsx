@@ -1,22 +1,21 @@
 "use client";
 
-import { useMemo } from "react";
-import { siteContent } from "@/data/siteContent";
+import { useEffect, useState } from "react";
 
 export default function HeroFallback() {
-  const { headline, subheadline } = siteContent.hero;
+  const [particles, setParticles] = useState<{ key: number, width: number, top: number, left: number, duration: number }[]>([]);
 
-  const particles = useMemo(
-    () =>
-      Array.from({ length: 20 }, (_, i) => ({
-        key: i,
-        width: Math.random() * 4 + 2,
-        top: Math.random() * 100,
-        left: Math.random() * 100,
-        duration: Math.random() * 10 + 10,
-      })),
-    []
-  );
+  useEffect(() => {
+    const generated = Array.from({ length: 20 }, (_, i) => ({
+      key: i,
+      width: Math.random() * 4 + 2,
+      top: Math.random() * 100,
+      left: Math.random() * 100,
+      duration: Math.random() * 10 + 10,
+    }));
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setParticles(generated);
+  }, []);
 
   return (
     <div className="absolute inset-0 w-full h-full bg-[var(--color-midnight)] flex flex-col items-center justify-center pt-20 overflow-hidden">
