@@ -1,48 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { siteContent } from "@/data/siteContent";
-import { useUIStore } from "@/store/uiStore";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroImageSequence from "./HeroImageSequence";
-
-const ScrambleText = ({ text }: { text: string }) => {
-  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  const [displayText, setDisplayText] = useState("");
-
-  useEffect(() => {
-    let iteration = 0;
-    let isActive = true;
-
-    const interval = setInterval(() => {
-      if (!isActive) return;
-
-      setDisplayText(
-        text
-          .split("")
-          .map((letter, index) => {
-            if (index < iteration) return text[index];
-            return letters[Math.floor(Math.random() * 26)];
-          })
-          .join("")
-      );
-
-      if (iteration >= text.length) clearInterval(interval);
-      iteration += 1 / 3;
-    }, 30);
-    return () => {
-      isActive = false;
-      clearInterval(interval);
-    };
-  }, [text]);
-
-  return <span>{displayText}</span>;
-};
+import { siteContent } from "@/data/siteContent";
+import Navbar from "../layout/Navbar";
+import HeroVideo from "./HeroVideo";
+import HeroFallback from "./HeroFallback";
+import LoadingCurtain from "./LoadingCurtain";
+import { useUIStore } from "@/store/uiStore";
 
 export default function HeroSection() {
-  const { introStage, setIntroStage } = useUIStore();
   const [mounted, setMounted] = useState(false);
-
+  const { introStage, setIntroStage } = useUIStore();
   const [isLandscape, setIsLandscape] = useState(true);
 
   useEffect(() => {
@@ -57,127 +26,107 @@ export default function HeroSection() {
     return () => window.removeEventListener('resize', checkOrientation);
   }, []);
 
-  useEffect(() => {
-    if (!mounted) return;
-
-    if (introStage === 2) {
-      const timer = setTimeout(() => setIntroStage(3), 2500); 
-      return () => clearTimeout(timer);
-    }
-    if (introStage === 3) {
-      const timer = setTimeout(() => setIntroStage(4), 2000); 
-      return () => clearTimeout(timer);
-    }
-  }, [introStage, setIntroStage, mounted]);
-
-  if (!mounted) return <div className="w-full h-screen bg-[var(--color-midnight)]" />;
+  const headline = siteContent.hero.headline;
+  const subheadline = siteContent.hero.subheadline;
 
   return (
-    <section className="relative w-full h-screen overflow-hidden bg-[var(--color-midnight)]">
-      <HeroImageSequence />
+    <section className="relative h-screen w-full flex flex-col overflow-hidden">
+      {/* 1. Loading Curtain (Highest Priority) */}
+      <LoadingCurtain />
+      
+      {/* 2. Global Navigation */}
+      <Navbar />
 
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 pointer-events-none">
+      {/* 3. Main Hero Visual Layer */}
+      <div className="absolute inset-0 z-0">
         <AnimatePresence mode="wait">
-          {introStage === 2 && (
-            <motion.div
-              key="brand-name"
+          {mounted ? (
+            <motion.div 
+              key="hero-media"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              exit={{ opacity: 0, scale: 1.1 }}
-              transition={{ duration: 0.8 }}
-              className="text-center"
+              exit={{ opacity: 0 }}
+              className="absolute inset-0"
             >
-              <h1 className="font-display text-6xl md:text-8xl lg:text-[140px] text-white font-bold tracking-tighter drop-shadow-[0_0_30px_rgba(255,255,255,0.3)]">
-                <ScrambleText text="FABMYHOME" />
-              </h1>
+              <HeroVideo />
             </motion.div>
-          )}
-
-          {introStage === 3 && (
-            <motion.div
-              key="tagline"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="text-center flex flex-col items-center"
+          ) : (
+            <motion.div 
+              key="hero-fallback"
+              className="absolute inset-0 bg-black"
             >
-              <h2 className="font-display text-4xl md:text-7xl text-white mb-6 tracking-tight drop-shadow-md">
-                {siteContent.hero.headline}
-              </h2>
-              <div className="h-[2px] w-24 bg-[var(--color-terracotta)] mb-8" />
-              <p className="font-sans text-white/80 text-lg md:text-2xl font-light tracking-[0.3em] uppercase italic drop-shadow-md">
-                {siteContent.hero.subheadline}
-              </p>
-            </motion.div>
-          )}
-
-          {introStage === 4 && (
-            <motion.div
-              key="hero-content"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.5 }}
-              className="max-w-5xl w-full text-left flex flex-col items-start pointer-events-auto"
-            >
-              <motion.h1 
-                initial={{ y: 30, opacity: 0, filter: isLandscape ? "blur(10px)" : "none" }}
-                animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
-                transition={{ 
-                  delay: isLandscape ? 11 : 0.2, 
-                  duration: 1.2, 
-                  ease: [0.16, 1, 0.3, 1] 
-                }}
-                className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[0.95] tracking-tighter drop-shadow-2xl mb-8"
-              >
-                {siteContent.hero.headline}
-              </motion.h1>
-              
-              <motion.p 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ 
-                  delay: isLandscape ? 11.4 : 0.4, 
-                  duration: 1 
-                }}
-                className="font-sans text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 max-w-2xl drop-shadow-md"
-              >
-                {siteContent.hero.subheadline}
-              </motion.p>
-
-              <motion.div 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ 
-                  delay: isLandscape ? 11.8 : 0.6, 
-                  duration: 1 
-                }}
-                className="flex flex-col sm:flex-row items-center justify-start gap-6 w-full"
-              >
-                {siteContent.hero.ctas.map((cta, index) => {
-                  let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-full ";
-                  
-                  if (cta.variant === "terracotta") {
-                    classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl shadow-black/50";
-                  } else if (cta.variant === "teal-outline") {
-                    classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
-                  } else {
-                    classes += "text-white/80 hover:text-white hover:bg-white/10";
-                  }
-
-                  return (
-                    <button 
-                      key={index} 
-                      className={classes}
-                    >
-                      {cta.label}
-                    </button>
-                  );
-                })}
-              </motion.div>
+              <HeroFallback />
             </motion.div>
           )}
         </AnimatePresence>
+      </div>
+
+      {/* 4. Text & Interaction Layer */}
+      <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24">
+        <div className="max-w-5xl w-full">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={introStage >= 1 ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="flex flex-col items-start text-left"
+          >
+            <motion.h1 
+              initial={{ y: 30, opacity: 0, filter: isLandscape ? "blur(10px)" : "none" }}
+              animate={introStage >= 1 ? { y: 0, opacity: 1, filter: "blur(0px)" } : {}}
+              transition={{ 
+                delay: isLandscape ? 11 : 0.2, 
+                duration: 1.2, 
+                ease: [0.16, 1, 0.3, 1] 
+              }}
+              className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[0.95] tracking-tighter drop-shadow-2xl mb-8"
+            >
+              {headline}
+            </motion.h1>
+            
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }}
+              animate={introStage >= 1 ? { y: 0, opacity: 1 } : {}}
+              transition={{ 
+                delay: isLandscape ? 11.4 : 0.4, 
+                duration: 1 
+              }}
+              className="font-sans text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 max-w-2xl drop-shadow-md"
+            >
+              {subheadline}
+            </motion.p>
+
+            <motion.div 
+              initial={{ y: 20, opacity: 0 }}
+              animate={introStage >= 1 ? { y: 0, opacity: 1 } : {}}
+              transition={{ 
+                delay: isLandscape ? 11.8 : 0.6, 
+                duration: 1 
+              }}
+              className="flex flex-col sm:flex-row items-center justify-start gap-6 w-full"
+            >
+              {siteContent.hero.ctas.map((cta, index) => {
+                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-full ";
+                
+                if (cta.variant === "terracotta") {
+                  classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl shadow-black/50";
+                } else if (cta.variant === "teal-outline") {
+                  classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
+                } else {
+                  classes += "text-white/80 hover:text-white hover:bg-white/10";
+                }
+
+                return (
+                  <button 
+                    key={index} 
+                    className={classes}
+                  >
+                    {cta.label}
+                  </button>
+                );
+              })}
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
