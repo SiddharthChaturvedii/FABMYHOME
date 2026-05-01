@@ -18,25 +18,27 @@ export default function HeroVideo() {
   }, []);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-[var(--color-midnight)]">
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
       <video
         ref={videoRef}
         key={isLandscape ? "laptop" : "mobile"}
-        autoPlay // Required by browsers to allow playback
-        muted    // Required by browsers to allow playback
+        autoPlay
+        muted
         loop
         playsInline
         className={`w-full h-full object-cover transition-opacity duration-1000 ${
-          introStage >= 1 ? "opacity-80" : "opacity-0"
+          introStage >= 1 ? "opacity-100" : "opacity-0"
         }`}
-        style={{ filter: "brightness(0.9) contrast(1.1)" }}
+        style={{ willChange: "opacity" }}
       >
         <source 
           src={isLandscape ? "/hero-laptop.mp4" : "/hero-mobile.mp4"} 
           type="video/mp4" 
         />
       </video>
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--color-midnight)]/40" />
+      
+      {/* Subtle overlay only at the very bottom for CTA contrast */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
     </div>
   );
 }
