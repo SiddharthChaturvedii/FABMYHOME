@@ -24,7 +24,6 @@ export default function HeroVideo() {
         key={isLandscape ? "laptop" : "mobile"}
         autoPlay
         muted
-        loop
         playsInline
         className={`w-full h-full object-cover transition-opacity duration-1000 ${
           introStage >= 1 ? "opacity-100" : "opacity-0"
