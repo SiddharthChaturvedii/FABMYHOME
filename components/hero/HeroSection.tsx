@@ -43,9 +43,18 @@ export default function HeroSection() {
   const { introStage, setIntroStage } = useUIStore();
   const [mounted, setMounted] = useState(false);
 
+  const [isLandscape, setIsLandscape] = useState(true);
+
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
+    
+    const checkOrientation = () => {
+      setIsLandscape(window.innerWidth > window.innerHeight);
+    };
+    checkOrientation();
+    window.addEventListener('resize', checkOrientation);
+    return () => window.removeEventListener('resize', checkOrientation);
   }, []);
 
   useEffect(() => {
@@ -112,9 +121,13 @@ export default function HeroSection() {
               className="max-w-5xl text-center flex flex-col items-center pointer-events-auto"
             >
               <motion.h1 
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.2, duration: 1 }}
+                initial={{ y: 30, opacity: 0, filter: isLandscape ? "blur(10px)" : "none" }}
+                animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
+                transition={{ 
+                  delay: isLandscape ? 0.8 : 0.2, 
+                  duration: 1.2, 
+                  ease: [0.16, 1, 0.3, 1] 
+                }}
                 className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[1] tracking-tighter drop-shadow-2xl mb-8"
               >
                 {siteContent.hero.headline}
@@ -123,7 +136,10 @@ export default function HeroSection() {
               <motion.p 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4, duration: 1 }}
+                transition={{ 
+                  delay: isLandscape ? 1.4 : 0.4, 
+                  duration: 1 
+                }}
                 className="font-sans text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 max-w-3xl mx-auto drop-shadow-md"
               >
                 {siteContent.hero.subheadline}
@@ -132,7 +148,10 @@ export default function HeroSection() {
               <motion.div 
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 1 }}
+                transition={{ 
+                  delay: isLandscape ? 1.8 : 0.6, 
+                  duration: 1 
+                }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-6"
               >
                 {siteContent.hero.ctas.map((cta, index) => {
