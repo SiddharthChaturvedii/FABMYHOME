@@ -125,12 +125,12 @@ export default function Navbar() {
           ].map(({ icon: Icon, label }) => (
             <motion.button
               key={label}
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/10 transition-colors relative group"
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/5 transition-colors relative group"
             >
               <Icon className="h-[18px] w-[18px] stroke-[1.5]" />
-              <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-bold">
+              <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-bold bg-black/40 px-2 py-1 rounded-md backdrop-blur-sm">
                 {label}
               </span>
             </motion.button>
