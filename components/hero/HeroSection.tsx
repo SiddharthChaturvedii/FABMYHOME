@@ -11,13 +11,11 @@ import { useUIStore } from "@/store/uiStore";
 
 export default function HeroSection() {
   const [mounted, setMounted] = useState(false);
-  const { introStage, setIntroStage } = useUIStore();
+  const { introStage } = useUIStore();
   const [isLandscape, setIsLandscape] = useState(true);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
-    
     const checkOrientation = () => {
       setIsLandscape(window.innerWidth > window.innerHeight);
     };
@@ -26,16 +24,15 @@ export default function HeroSection() {
     return () => window.removeEventListener('resize', checkOrientation);
   }, []);
 
-  const headline = siteContent.hero.headline;
-  const subheadline = siteContent.hero.subheadline;
-
   return (
-    <section className="relative h-screen w-full flex flex-col overflow-hidden">
-      {/* 1. Loading Curtain (Highest Priority) */}
+    <section className="relative h-screen w-full flex flex-col overflow-hidden bg-black">
+      {/* 1. Loading Curtain */}
       <LoadingCurtain />
       
-      {/* 2. Global Navigation */}
-      <Navbar />
+      {/* 2. Top-Level Navigation (Highest Z-Index) */}
+      <div className="absolute top-0 left-0 w-full z-[100]">
+        <Navbar />
+      </div>
 
       {/* 3. Main Hero Visual Layer */}
       <div className="absolute inset-0 z-0">
@@ -51,10 +48,7 @@ export default function HeroSection() {
               <HeroVideo />
             </motion.div>
           ) : (
-            <motion.div 
-              key="hero-fallback"
-              className="absolute inset-0 bg-black"
-            >
+            <motion.div key="hero-fallback" className="absolute inset-0 bg-black">
               <HeroFallback />
             </motion.div>
           )}
@@ -80,7 +74,7 @@ export default function HeroSection() {
               }}
               className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[0.95] tracking-tighter drop-shadow-2xl mb-8"
             >
-              {headline}
+              {siteContent.hero.headline}
             </motion.h1>
             
             <motion.p 
@@ -92,7 +86,7 @@ export default function HeroSection() {
               }}
               className="font-sans text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 max-w-2xl drop-shadow-md"
             >
-              {subheadline}
+              {siteContent.hero.subheadline}
             </motion.p>
 
             <motion.div 
@@ -106,23 +100,11 @@ export default function HeroSection() {
             >
               {siteContent.hero.ctas.map((cta, index) => {
                 let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-full ";
-                
-                if (cta.variant === "terracotta") {
-                  classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl shadow-black/50";
-                } else if (cta.variant === "teal-outline") {
-                  classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
-                } else {
-                  classes += "text-white/80 hover:text-white hover:bg-white/10";
-                }
+                if (cta.variant === "terracotta") classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl";
+                else if (cta.variant === "teal-outline") classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
+                else classes += "text-white/80 hover:text-white hover:bg-white/10";
 
-                return (
-                  <button 
-                    key={index} 
-                    className={classes}
-                  >
-                    {cta.label}
-                  </button>
-                );
+                return <button key={index} className={classes}>{cta.label}</button>;
               })}
             </motion.div>
           </motion.div>
