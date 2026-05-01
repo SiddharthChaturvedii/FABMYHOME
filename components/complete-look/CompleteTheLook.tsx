@@ -60,10 +60,6 @@ export default function CompleteTheLook() {
           transition={{ delay: item.delay * 0.5, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           className="relative"
         >
-          {index > 0 && (
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-8 h-[2px] bg-[var(--color-terracotta)]/40 rounded-full" />
-          )}
-          
           <div className="bg-white px-6 py-3 shadow-xl shadow-black/5 flex items-center gap-4 rounded-full border border-white w-fit transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[var(--color-terracotta)]/20 cursor-pointer group">
             <div className="w-2 h-2 rounded-full bg-[var(--color-terracotta)] transition-transform duration-300 group-hover:scale-150" />
             <span className="font-sans font-medium text-base text-[var(--color-midnight)] tracking-wide">{item.label}</span>
