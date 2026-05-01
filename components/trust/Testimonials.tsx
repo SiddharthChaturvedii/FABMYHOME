@@ -1,8 +1,15 @@
+"use client";
+
 import { TiltCard } from "@/components/ui/tilt-card";
 import ScrollFloat from "@/components/ui/ScrollFloat";
 
 const testimonials = [
-  // ... (existing testimonials)
+  "FabMyHome completely transformed my living room in minutes. Truly magical! — Priya S.",
+  "The AI-matching is scary accurate. It found the perfect curtains for my bedroom. — Rahul M.",
+  "Minimal effort, maximum aesthetic. This is the future of interior design. — Ananya K.",
+  "I saved weeks of hunting for the right furniture. Exceptional experience. — Vikram D.",
+  "Finally, a tool that understands my style better than I do! — Sarah J.",
+  "The 30-second promise is real. I had a full room concept in under a minute. — Deepa R.",
 ];
 
 export default function Testimonials() {
