@@ -118,17 +118,17 @@ export default function HeroSection() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 1.5 }}
-              className="max-w-5xl text-center flex flex-col items-center pointer-events-auto"
+              className="max-w-5xl w-full text-left flex flex-col items-start pointer-events-auto"
             >
               <motion.h1 
                 initial={{ y: 30, opacity: 0, filter: isLandscape ? "blur(10px)" : "none" }}
                 animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
                 transition={{ 
-                  delay: isLandscape ? 0.8 : 0.2, 
+                  delay: isLandscape ? 11 : 0.2, 
                   duration: 1.2, 
                   ease: [0.16, 1, 0.3, 1] 
                 }}
-                className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[1] tracking-tighter drop-shadow-2xl mb-8"
+                className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[0.95] tracking-tighter drop-shadow-2xl mb-8"
               >
                 {siteContent.hero.headline}
               </motion.h1>
@@ -137,10 +137,10 @@ export default function HeroSection() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ 
-                  delay: isLandscape ? 1.4 : 0.4, 
+                  delay: isLandscape ? 11.4 : 0.4, 
                   duration: 1 
                 }}
-                className="font-sans text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 max-w-3xl mx-auto drop-shadow-md"
+                className="font-sans text-white/90 text-xl md:text-2xl font-light tracking-wide mb-12 max-w-2xl drop-shadow-md"
               >
                 {siteContent.hero.subheadline}
               </motion.p>
@@ -149,10 +149,10 @@ export default function HeroSection() {
                 initial={{ y: 20, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ 
-                  delay: isLandscape ? 1.8 : 0.6, 
+                  delay: isLandscape ? 11.8 : 0.6, 
                   duration: 1 
                 }}
-                className="flex flex-col sm:flex-row items-center justify-center gap-6"
+                className="flex flex-col sm:flex-row items-center justify-start gap-6 w-full"
               >
                 {siteContent.hero.ctas.map((cta, index) => {
                   let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-full ";

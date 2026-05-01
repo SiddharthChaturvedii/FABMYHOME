@@ -27,18 +27,29 @@ export default function LoadingCurtain() {
   if (!visible) return null;
 
   return (
-    <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-[var(--color-midnight)] transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-        exiting ? "-translate-y-full" : "translate-y-0"
-      }`}
-    >
-      <h1
-        className={`font-display text-4xl md:text-6xl font-bold text-[var(--color-alabaster)] tracking-tight transition-all duration-500 ${
-          exiting ? "-translate-y-8 opacity-0" : "translate-y-0 opacity-100"
-        }`}
-      >
-        FABMYHOME
-      </h1>
-    </div>
+    <AnimatePresence>
+      {visible && (
+        <motion.div 
+          initial={{ y: 0 }}
+          animate={exiting ? { y: "-100%" } : { y: 0 }}
+          transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
+          className="fixed inset-0 z-[9999] bg-[var(--color-midnight)] flex flex-col items-center justify-center pointer-events-none"
+        >
+          {/* Brand Logo / Text that lifts with curtain */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+          >
+            <h1 className="font-display text-4xl md:text-6xl text-white tracking-[0.3em] font-bold mb-4">
+              FABMYHOME
+            </h1>
+            <div className="h-[2px] w-24 bg-[var(--color-terracotta)] mx-auto" />
+          </motion.div>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

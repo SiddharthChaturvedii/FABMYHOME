@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { useUIStore } from "@/store/uiStore";
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { introStage } = useUIStore();
   const [isLandscape, setIsLandscape] = useState(true);
 
   useEffect(() => {
@@ -15,12 +17,21 @@ export default function HeroVideo() {
     return () => window.removeEventListener("resize", checkOrientation);
   }, []);
 
+  // Trigger video play on curtain lift
+  useEffect(() => {
+    if (introStage >= 1 && videoRef.current) {
+      videoRef.current.play().catch(err => console.log("Autoplay blocked:", err));
+    } else if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  }, [introStage]);
+
   return (
     <div className="absolute inset-0 w-full h-full overflow-hidden bg-[var(--color-midnight)]">
       <video
         ref={videoRef}
         key={isLandscape ? "laptop" : "mobile"}
-        autoPlay
         muted
         loop
         playsInline
