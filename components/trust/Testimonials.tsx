@@ -24,12 +24,12 @@ export default function Testimonials() {
 
       <div className="flex flex-col gap-8">
         {/* Row 1: Right to Left */}
-        <div className="relative flex overflow-hidden">
-          <div className="marquee flex gap-8 whitespace-nowrap">
+        <div className="marquee-container">
+          <div className="marquee-content">
             {[...testimonials, ...testimonials].map((text, i) => (
               <div 
                 key={i} 
-                className="bg-white/5 border border-white/10 backdrop-blur-md px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
+                className="glass px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
               >
                 {text}
               </div>
@@ -38,12 +38,12 @@ export default function Testimonials() {
         </div>
 
         {/* Row 2: Right to Left (Faster) */}
-        <div className="relative flex overflow-hidden">
-          <div className="marquee flex gap-8 whitespace-nowrap" style={{ animationDuration: '30s' }}>
+        <div className="marquee-container">
+          <div className="marquee-content" style={{ animationDuration: '30s' }}>
             {[...testimonials, ...testimonials].map((text, i) => (
               <div 
                 key={i} 
-                className="bg-white/5 border border-white/10 backdrop-blur-md px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
+                className="glass px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
               >
                 {text}
               </div>
@@ -52,12 +52,12 @@ export default function Testimonials() {
         </div>
 
         {/* Row 3: Right to Left (Slower) */}
-        <div className="relative flex overflow-hidden">
-          <div className="marquee flex gap-8 whitespace-nowrap" style={{ animationDuration: '50s' }}>
+        <div className="marquee-container">
+          <div className="marquee-content" style={{ animationDuration: '50s' }}>
             {[...testimonials, ...testimonials].map((text, i) => (
               <div 
                 key={i} 
-                className="bg-white/5 border border-white/10 backdrop-blur-md px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
+                className="glass px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
               >
                 {text}
               </div>
