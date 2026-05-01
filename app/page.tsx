@@ -23,7 +23,6 @@ export default function Home() {
         <CompleteTheLook />
         <VisualSearch />
         <Testimonials />
-        <FinalCTA />
       </div>
 
       <Footer />

@@ -42,7 +42,7 @@ export default function LoadingCurtain() {
           initial={{ y: 0 }}
           animate={exiting ? { y: "-100%" } : { y: 0 }}
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] bg-[var(--color-midnight)] flex flex-col items-center justify-center pointer-events-none border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          className="fixed inset-0 z-[9999] bg-[#0a2121] flex flex-col items-center justify-center pointer-events-none border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
         >
           {/* Brand Logo / Text that lifts with curtain */}
           <motion.div
