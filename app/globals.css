@@ -1,40 +1,44 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @theme {
-  --color-midnight: #002B36;  /* Deep Midnight Teal */
-  --color-alabaster: #F7F7F7; /* Soft Alabaster */
-  --color-terracotta: #E67E22; /* Burnt Terracotta */
-  --color-cyan: #00ADB5;       /* Electric Cyan-Teal */
-  --color-graphite: #333333;   /* Graphite Grey */
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
 
-  --font-display: var(--font-display), system-ui, sans-serif;
-  --font-serif: var(--font-serif), Georgia, serif;
-  --font-sans: var(--font-sans), system-ui, sans-serif;
+  --color-midnight: #0a0a0a;
+  --color-alabaster: #f5f5f7;
+  --color-terracotta: #d2691e;
+  --color-cyan: #00d1ff;
+  --color-graphite: #1d1d1f;
 }
 
-:root {
-  --background: #F7F7F7; /* Soft Alabaster */
-  --foreground: #333333; /* Graphite Grey */
+@layer base {
+  * {
+    @apply border-white/10;
+    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  }
+  body {
+    @apply bg-midnight text-alabaster font-sans antialiased;
+    letter-spacing: -0.011em;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold tracking-tight;
+  }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-2xl bg-white/5 border border-white/10;
+  }
+  
+  .marquee {
+    display: flex;
+    gap: 2rem;
+    width: max-content;
+    animation: scroll 40s linear infinite;
+  }
 
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-@keyframes float {
-  0% { transform: translateY(0) translateX(0); }
-  50% { transform: translateY(-20px) translateX(10px); }
-  100% { transform: translateY(0) translateX(0); }
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
 }

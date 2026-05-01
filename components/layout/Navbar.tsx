@@ -1,98 +1,45 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
-import { navigation } from "@/data/navigation";
-import { useUIStore } from "@/store/uiStore";
+import { useEffect, useState } from "react";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { introStage } = useUIStore();
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setMounted(true);
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!mounted) return null;
-
   return (
-    <>
-      <header
-        className={`fixed left-1/2 -translate-x-1/2 z-50 transition-all duration-1000 w-[95%] max-w-7xl rounded-full ${
-          introStage < 4 ? "-translate-y-32 opacity-0" : "translate-y-0 opacity-100"
-        } ${
-          isScrolled
-            ? "bg-[var(--color-midnight)]/80 backdrop-blur-xl py-4 shadow-2xl shadow-black/20 border border-white/10 top-4"
-            : "bg-transparent py-6 top-6"
-        }`}
-      >
-        <div className="px-8 md:px-12 flex items-center justify-between">
-          {/* Logo */}
-          <Link 
-            href="/" 
-            className={`font-display text-2xl font-bold tracking-[0.1em] transition-colors text-white`}
-          >
-            FABMYHOME
-          </Link>
+    <nav 
+      className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 px-6 md:px-12 py-6 ${
+        scrolled ? "bg-black/60 backdrop-blur-xl border-b border-white/5" : "bg-transparent"
+      }`}
+    >
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <Link href="/" className="font-display text-2xl font-bold tracking-tight text-white group">
+          FAB<span className="text-[var(--color-terracotta)] group-hover:text-white transition-colors">MY</span>HOME
+        </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-10">
-            {navigation.mainNav.map((item) => (
-              <Link
-                key={item.label}
-                href={item.href}
-                className={`font-sans text-xs font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:scale-105 ${
-                  item.highlight
-                    ? "text-[var(--color-terracotta)] hover:text-white"
-                    : "text-white/70 hover:text-white"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white hover:scale-110 transition-transform"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            aria-label="Toggle Menu"
-          >
-            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`fixed inset-0 z-40 bg-[var(--color-midnight)] transition-transform duration-500 ease-in-out ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex flex-col h-full justify-center px-8 gap-8">
-          {navigation.mainNav.map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`font-display text-3xl font-bold ${
-                item.highlight ? "text-[var(--color-terracotta)]" : "text-white"
-              }`}
+        <div className="hidden md:flex items-center gap-10">
+          {["Shop by Space", "Shop by Mood", "Design My Room", "Free Consultation"].map((item) => (
+            <Link 
+              key={item} 
+              href={`#${item.toLowerCase().replace(/ /g, "-")}`}
+              className="text-[13px] font-medium uppercase tracking-[0.15em] text-white/70 hover:text-white transition-colors"
             >
-              {item.label}
+              {item}
             </Link>
           ))}
         </div>
+
+        <button className="bg-white text-black px-6 py-2.5 rounded-full text-[13px] font-bold uppercase tracking-wider hover:bg-[var(--color-terracotta)] hover:text-white transition-all">
+          Get Started
+        </button>
       </div>
-    </>
+    </nav>
   );
 }

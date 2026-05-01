@@ -29,10 +29,8 @@ export default function HeroSection() {
       {/* 1. Loading Curtain */}
       <LoadingCurtain />
       
-      {/* 2. Top-Level Navigation (Highest Z-Index) */}
-      <div className="absolute top-0 left-0 w-full z-[100]">
-        <Navbar />
-      </div>
+      {/* 2. Top-Level Navigation */}
+      <Navbar />
 
       {/* 3. Main Hero Visual Layer */}
       <div className="absolute inset-0 z-0">
