@@ -1,27 +1,27 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-
-@theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
-
-  --color-midnight: #0a0a0a;
-  --color-alabaster: #f5f5f7;
-  --color-terracotta: #d2691e;
-  --color-cyan: #00d1ff;
-  --color-graphite: #1d1d1f;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 @layer base {
-  * {
-    @apply border-white/10;
-    font-feature-settings: "cv02", "cv03", "cv04", "ss01";
+  :root {
+    --color-midnight: 10 10 10;
+    --color-alabaster: 245 245 247;
+    --color-terracotta: 210 105 30;
+    --color-cyan: 0 209 255;
+    --color-graphite: 29 29 31;
   }
+
   body {
-    @apply bg-midnight text-alabaster font-sans antialiased;
+    background-color: rgb(var(--color-midnight));
+    color: rgb(var(--color-alabaster));
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
     letter-spacing: -0.011em;
   }
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display font-semibold tracking-tight;
+    font-weight: 600;
+    letter-spacing: -0.022em;
   }
 }
 
