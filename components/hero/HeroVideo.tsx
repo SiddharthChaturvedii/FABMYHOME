@@ -28,7 +28,7 @@ export default function HeroVideo() {
         style={{ filter: "brightness(0.9) contrast(1.1)" }}
       >
         <source 
-          src={isLandscape ? "/hero section laptop.mp4" : "/hero section mobiletablet.mp4"} 
+          src={isLandscape ? "/hero-laptop.mp4" : "/hero-mobile.mp4"} 
           type="video/mp4" 
         />
       </video>
