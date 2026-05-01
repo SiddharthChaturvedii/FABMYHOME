@@ -25,6 +25,10 @@ export default function HeroVideo() {
         autoPlay
         muted
         playsInline
+        webkit-playsinline="true"
+        preload="auto"
+        disablePictureInPicture
+        disableRemotePlayback
         className={`w-full h-full object-cover transition-opacity duration-1000 ${
           introStage >= 1 ? "opacity-100" : "opacity-0"
         }`}

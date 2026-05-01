@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ChevronDown, Search, ShoppingBag, User } from "lucide-react";
+import { ChevronDown, Search, ShoppingBag, User, Menu, X } from "lucide-react";
 import {
   HoverCard,
   HoverCardContent,
@@ -59,6 +59,7 @@ const navItems = [
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -69,16 +70,16 @@ export default function Navbar() {
   return (
     <nav 
       className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 px-6 md:px-12 py-5 ${
-        scrolled ? "bg-black/80 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+        scrolled || isMobileMenuOpen ? "bg-black/80 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="font-display text-2xl font-bold tracking-tight text-white group">
+        <Link href="/" className="font-display text-2xl font-bold tracking-tight text-white group z-[1001]">
           FAB<span className="text-[var(--color-terracotta)] group-hover:text-white transition-colors">MY</span>HOME
         </Link>
 
-        {/* Central Navigation */}
-        <div className="hidden md:flex items-center gap-10">
+        {/* Central Navigation (Desktop) */}
+        <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
             <HoverCard key={item.title} openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
@@ -124,8 +125,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right Action Icons */}
-        <div className="flex items-center gap-4 text-white/90">
+        {/* Right Action Icons & Hamburger */}
+        <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
           {[
             { icon: Search, label: "Search" },
             { icon: ShoppingBag, label: "Cart" },
@@ -135,16 +136,58 @@ export default function Navbar() {
               key={label}
               whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.4)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/5 transition-colors relative group"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/5 transition-colors relative group"
             >
-              <Icon className="h-[18px] w-[18px] stroke-[1.5]" />
-              <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap font-bold bg-black/40 px-2 py-1 rounded-md backdrop-blur-sm">
+              <Icon className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
+              <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap font-bold bg-black/40 px-2 py-1 rounded-md backdrop-blur-sm">
                 {label}
               </span>
             </motion.button>
           ))}
+
+          {/* Hamburger Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/5 text-white ml-1"
+          >
+            {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-3xl z-[1000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
+          >
+            <div className="flex flex-col gap-12">
+              {navItems.map((item) => (
+                <div key={item.title} className="space-y-6">
+                  <p className="text-white/30 text-[10px] uppercase tracking-[0.4em] font-black border-b border-white/5 pb-2">
+                    {item.title}
+                  </p>
+                  <div className="grid grid-cols-1 gap-5">
+                    {item.links.map((link) => (
+                      <Link 
+                        key={link.label} 
+                        href={link.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="text-white text-2xl font-display font-medium tracking-tight hover:text-[var(--color-terracotta)] transition-colors"
+                      >
+                        {link.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
