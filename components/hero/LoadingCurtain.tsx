@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useUIStore } from "@/store/uiStore";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function LoadingCurtain() {
   const [visible, setVisible] = useState(true);
