@@ -14,7 +14,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="h-screen w-full bg-[#0a2121] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
+    <section className="h-screen w-full bg-[#124444] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6 mb-16 relative z-20">
         <h2 className="text-5xl md:text-8xl font-display font-black tracking-tighter text-center text-white uppercase">
           Testimonials
