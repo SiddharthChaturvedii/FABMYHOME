@@ -34,14 +34,25 @@ const navItems = [
     ],
   },
   {
-    title: "Design Services",
-    description: "Expert AI-powered design consultations.",
+    title: "Design My Room",
+    description: "Transform your space with AI-powered design tools.",
     image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=600&auto=format&fit=crop",
     links: [
+      { label: "Start Style Quiz", href: "#quiz" },
       { label: "AI Room Scan", href: "#scan" },
-      { label: "Style Quiz", href: "#quiz" },
-      { label: "Expert Consult", href: "#consult" },
-      { label: "Pro Moodboards", href: "#moodboards" },
+      { label: "Visual Search", href: "#search" },
+      { label: "View Mockups", href: "#mockups" },
+    ],
+  },
+  {
+    title: "Free Consultation",
+    description: "Speak with our expert designers today.",
+    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop",
+    links: [
+      { label: "Book a Call", href: "#book" },
+      { label: "WhatsApp Chat", href: "#chat" },
+      { label: "Expert Portfolio", href: "#portfolio" },
+      { label: "Service Plans", href: "#plans" },
     ],
   },
 ];
@@ -111,9 +122,6 @@ export default function Navbar() {
               </HoverCardContent>
             </HoverCard>
           ))}
-          <Link href="#blog" className="text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors">
-            Blog
-          </Link>
         </div>
 
         {/* Right Action Icons */}
