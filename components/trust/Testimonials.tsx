@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { TiltCard } from "@/components/ui/tilt-card";
 
 const testimonials = [
   "FabMyHome completely transformed my living room in minutes. Truly magical! — Priya S.",
@@ -9,62 +10,72 @@ const testimonials = [
   "I saved weeks of hunting for the right furniture. Exceptional experience. — Vikram D.",
   "Finally, a tool that understands my style better than I do! — Sarah J.",
   "The 30-second promise is real. I had a full room concept in under a minute. — Deepa R.",
-  "Premium quality, premium tech. Highly recommended for busy homeowners. — Arjun P.",
-  "This is basically a personal interior designer in your pocket. — Meera V.",
 ];
 
 export default function Testimonials() {
   return (
-    <section className="py-32 bg-black overflow-hidden border-y border-white/5">
-      <div className="max-w-7xl mx-auto px-6 mb-16">
-        <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight text-center">
+    <section className="h-screen w-full bg-[#0a2121] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
+      <div className="max-w-7xl mx-auto px-6 mb-12 relative z-20">
+        <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight text-center text-white">
           Testimonies
         </h2>
       </div>
 
-      <div className="flex flex-col gap-8">
+      <div className="flex flex-col gap-10 relative z-10">
         {/* Row 1: Right to Left */}
         <div className="marquee-container">
-          <div className="marquee-content">
+          <div className="marquee-content py-4">
             {[...testimonials, ...testimonials].map((text, i) => (
-              <div 
-                key={i} 
-                className="glass px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
+              <TiltCard 
+                key={`r1-${i}`}
+                tiltLimit={10}
+                className="glass px-10 py-8 rounded-3xl w-[400px] flex-shrink-0 cursor-default"
               >
-                {text}
-              </div>
+                <div className="relative z-20">
+                  <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic">
+                    "{text.split(' — ')[0]}"
+                  </p>
+                  <div className="mt-6 flex items-center gap-3">
+                    <div className="w-8 h-[1px] bg-[var(--color-terracotta)]" />
+                    <span className="text-sm font-bold uppercase tracking-widest text-white/50">
+                      {text.split(' — ')[1]}
+                    </span>
+                  </div>
+                </div>
+              </TiltCard>
             ))}
           </div>
         </div>
 
-        {/* Row 2: Right to Left (Faster) */}
+        {/* Row 2: Right to Left (Faster Offset) */}
         <div className="marquee-container">
-          <div className="marquee-content" style={{ animationDuration: '30s' }}>
-            {[...testimonials, ...testimonials].map((text, i) => (
-              <div 
-                key={i} 
-                className="glass px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
+          <div className="marquee-content py-4" style={{ animationDuration: '35s' }}>
+            {[...testimonials, ...testimonials].reverse().map((text, i) => (
+              <TiltCard 
+                key={`r2-${i}`}
+                tiltLimit={10}
+                className="glass px-10 py-8 rounded-3xl w-[400px] flex-shrink-0 cursor-default"
               >
-                {text}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Row 3: Right to Left (Slower) */}
-        <div className="marquee-container">
-          <div className="marquee-content" style={{ animationDuration: '50s' }}>
-            {[...testimonials, ...testimonials].map((text, i) => (
-              <div 
-                key={i} 
-                className="glass px-10 py-6 rounded-2xl text-xl font-medium text-white/90"
-              >
-                {text}
-              </div>
+                <div className="relative z-20">
+                  <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic">
+                    "{text.split(' — ')[0]}"
+                  </p>
+                  <div className="mt-6 flex items-center gap-3">
+                    <div className="w-8 h-[1px] bg-[var(--color-terracotta)]" />
+                    <span className="text-sm font-bold uppercase tracking-widest text-white/50">
+                      {text.split(' — ')[1]}
+                    </span>
+                  </div>
+                </div>
+              </TiltCard>
             ))}
           </div>
         </div>
       </div>
+
+      {/* Decorative Brand Accent */}
+      <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-white/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-[var(--color-terracotta)]/10 blur-[100px] rounded-full pointer-events-none" />
     </section>
   );
 }
