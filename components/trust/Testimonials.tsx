@@ -15,21 +15,21 @@ const testimonials = [
 export default function Testimonials() {
   return (
     <section className="h-screen w-full bg-[#0a2121] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
-      <div className="max-w-7xl mx-auto px-6 mb-12 relative z-20">
-        <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tight text-center text-white">
-          Testimonies
+      <div className="max-w-7xl mx-auto px-6 mb-16 relative z-20">
+        <h2 className="text-5xl md:text-8xl font-display font-black tracking-tighter text-center text-white uppercase">
+          Testimonials
         </h2>
       </div>
 
       <div className="flex flex-col gap-10 relative z-10">
         {/* Row 1: Right to Left */}
-        <div className="marquee-container">
-          <div className="marquee-content py-4">
+        <div className="marquee-container group">
+          <div className="marquee-content py-4 group-hover:[animation-play-state:paused]">
             {[...testimonials, ...testimonials].map((text, i) => (
               <TiltCard 
                 key={`r1-${i}`}
-                tiltLimit={10}
-                className="glass px-10 py-8 rounded-3xl w-[400px] flex-shrink-0 cursor-default"
+                tiltLimit={20}
+                className="glass px-10 py-10 rounded-[32px] w-[450px] flex-shrink-0 cursor-default"
               >
                 <div className="relative z-20">
                   <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic">
@@ -48,13 +48,13 @@ export default function Testimonials() {
         </div>
 
         {/* Row 2: Right to Left (Faster Offset) */}
-        <div className="marquee-container">
-          <div className="marquee-content py-4" style={{ animationDuration: '35s' }}>
+        <div className="marquee-container group">
+          <div className="marquee-content py-4 group-hover:[animation-play-state:paused]" style={{ animationDuration: '35s' }}>
             {[...testimonials, ...testimonials].reverse().map((text, i) => (
               <TiltCard 
                 key={`r2-${i}`}
-                tiltLimit={10}
-                className="glass px-10 py-8 rounded-3xl w-[400px] flex-shrink-0 cursor-default"
+                tiltLimit={20}
+                className="glass px-10 py-10 rounded-[32px] w-[450px] flex-shrink-0 cursor-default"
               >
                 <div className="relative z-20">
                   <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic">
