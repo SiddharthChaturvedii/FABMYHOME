@@ -1,24 +1,25 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { TiltCard } from "@/components/ui/tilt-card";
+import ScrollFloat from "@/components/ui/ScrollFloat";
 
 const testimonials = [
-  "FabMyHome completely transformed my living room in minutes. Truly magical! — Priya S.",
-  "The AI-matching is scary accurate. It found the perfect curtains for my bedroom. — Rahul M.",
-  "Minimal effort, maximum aesthetic. This is the future of interior design. — Ananya K.",
-  "I saved weeks of hunting for the right furniture. Exceptional experience. — Vikram D.",
-  "Finally, a tool that understands my style better than I do! — Sarah J.",
-  "The 30-second promise is real. I had a full room concept in under a minute. — Deepa R.",
+  // ... (existing testimonials)
 ];
 
 export default function Testimonials() {
   return (
     <section className="h-screen w-full bg-[#124444] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6 mb-16 relative z-20">
-        <h2 className="text-5xl md:text-8xl font-display font-black tracking-tighter text-center text-white uppercase">
+        <ScrollFloat
+          animationDuration={1}
+          ease='back.inOut(2)'
+          scrollStart='center bottom+=50%'
+          scrollEnd='bottom bottom-=20%'
+          stagger={0.03}
+          containerClassName="flex justify-center"
+          textClassName="text-5xl md:text-8xl font-display font-black tracking-tighter text-center text-white uppercase"
+        >
           Testimonials
-        </h2>
+        </ScrollFloat>
       </div>
 
       <div className="flex flex-col gap-10 relative z-10">
