@@ -17,11 +17,11 @@ export default function Testimonials() {
     <section className="h-screen w-full bg-[#124444] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
       <div className="max-w-7xl mx-auto px-6 mb-16 relative z-20">
         <ScrollFloat
-          animationDuration={1}
-          ease='back.inOut(2)'
-          scrollStart='center bottom+=50%'
-          scrollEnd='bottom bottom-=20%'
-          stagger={0.03}
+          animationDuration={1.2}
+          ease='back.out(2.5)'
+          scrollStart='center bottom+=60%'
+          scrollEnd='bottom bottom-=10%'
+          stagger={0.05}
           containerClassName="flex justify-center"
           textClassName="text-5xl md:text-8xl font-display font-black tracking-tighter text-center text-white uppercase"
         >
@@ -32,12 +32,13 @@ export default function Testimonials() {
       <div className="flex flex-col gap-10 relative z-10">
         {/* Row 1: Right to Left */}
         <div className="marquee-container group">
-          <div className="marquee-content py-4 group-hover:[animation-play-state:paused]">
+          <div className="marquee-content py-6 group-hover:[animation-play-state:paused]">
             {[...testimonials, ...testimonials].map((text, i) => (
               <TiltCard 
                 key={`r1-${i}`}
-                tiltLimit={20}
-                className="glass px-10 py-10 rounded-[32px] w-[450px] flex-shrink-0 cursor-default"
+                tiltLimit={35}
+                scale={1.1}
+                className="glass px-10 py-12 rounded-[40px] w-[500px] flex-shrink-0 cursor-default"
               >
                 <div className="relative z-20">
                   <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic">
@@ -57,12 +58,13 @@ export default function Testimonials() {
 
         {/* Row 2: Right to Left (Faster Offset) */}
         <div className="marquee-container group">
-          <div className="marquee-content py-4 group-hover:[animation-play-state:paused]" style={{ animationDuration: '35s' }}>
+          <div className="marquee-content py-6 group-hover:[animation-play-state:paused]" style={{ animationDuration: '35s' }}>
             {[...testimonials, ...testimonials].reverse().map((text, i) => (
               <TiltCard 
                 key={`r2-${i}`}
-                tiltLimit={20}
-                className="glass px-10 py-10 rounded-[32px] w-[450px] flex-shrink-0 cursor-default"
+                tiltLimit={35}
+                scale={1.1}
+                className="glass px-10 py-12 rounded-[40px] w-[500px] flex-shrink-0 cursor-default"
               >
                 <div className="relative z-20">
                   <p className="text-lg md:text-xl font-medium text-white/90 leading-relaxed italic">
