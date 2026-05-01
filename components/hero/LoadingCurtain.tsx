@@ -19,10 +19,18 @@ export default function LoadingCurtain() {
 
     const timer = setTimeout(() => {
       setExiting(true);
-      setIntroStage(1); // Start Brand Animation
-    }, 1200);
-    const removeTimer = setTimeout(() => setVisible(false), 2000);
-    return () => { clearTimeout(timer); clearTimeout(removeTimer); };
+      // Let the curtain lift for 0.4s before we start the video/text logic
+      setTimeout(() => {
+        setIntroStage(1);
+      }, 400);
+      
+      // Completely remove curtain after animation finishes
+      setTimeout(() => {
+        setVisible(false);
+      }, 1600);
+    }, 1500);
+
+    return () => clearTimeout(timer);
   }, [setIntroStage]);
 
   if (!visible) return null;
@@ -34,7 +42,7 @@ export default function LoadingCurtain() {
           initial={{ y: 0 }}
           animate={exiting ? { y: "-100%" } : { y: 0 }}
           transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1] }}
-          className="fixed inset-0 z-[9999] bg-[var(--color-midnight)] flex flex-col items-center justify-center pointer-events-none"
+          className="fixed inset-0 z-[9999] bg-[var(--color-midnight)] flex flex-col items-center justify-center pointer-events-none border-b border-white/5 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
         >
           {/* Brand Logo / Text that lifts with curtain */}
           <motion.div
