@@ -14,21 +14,30 @@ export default function HeroVideo() {
     };
     checkOrientation();
     window.addEventListener("resize", checkOrientation);
+
+    // Force play on mount/update
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => console.log("Autoplay blocked:", err));
+    }
+
     return () => window.removeEventListener("resize", checkOrientation);
-  }, []);
+  }, [isLandscape]);
 
   return (
-    <div className="absolute inset-0 w-full h-full overflow-hidden bg-black">
+    <div className="absolute inset-0 w-full h-full overflow-hidden bg-black pointer-events-none">
       <video
         ref={videoRef}
         key={isLandscape ? "laptop" : "mobile"}
         autoPlay
         muted
+        loop
         playsInline
         webkit-playsinline="true"
         preload="auto"
+        controls={false}
         disablePictureInPicture
         disableRemotePlayback
+        onLoadedMetadata={() => videoRef.current?.play()}
         className={`w-full h-full object-cover transition-opacity duration-1000 ${
           introStage >= 1 ? "opacity-100" : "opacity-0"
         }`}
