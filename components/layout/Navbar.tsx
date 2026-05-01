@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search, ShoppingBag, User } from "lucide-react";
 import {
   HoverCard,
   HoverCardContent,
@@ -66,20 +66,21 @@ export default function Navbar() {
           FAB<span className="text-[var(--color-terracotta)] group-hover:text-white transition-colors">MY</span>HOME
         </Link>
 
+        {/* Central Navigation */}
         <div className="hidden md:flex items-center gap-10">
           {navItems.map((item) => (
-            <HoverCard key={item.title} openDelay={100} closeDelay={100}>
+            <HoverCard key={item.title} openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
-                <button className="group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-white transition-colors">
+                <div className="group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-white cursor-pointer transition-colors">
                   {item.title}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 opacity-50" />
-                </button>
+                </div>
               </HoverCardTrigger>
 
               <HoverCardContent 
                 align="start" 
                 sideOffset={25}
-                className="overflow-hidden border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)]"
+                className="glass overflow-hidden border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)]"
               >
                 <div className="overflow-hidden">
                   <img
@@ -115,9 +116,26 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button className="bg-white text-black px-7 py-2.5 rounded-full text-[12px] font-bold uppercase tracking-widest hover:bg-[var(--color-terracotta)] hover:text-white transition-all transform hover:scale-105">
-          Get Started
-        </button>
+        {/* Right Action Icons */}
+        <div className="flex items-center gap-6 text-white/70">
+          {[
+            { icon: Search, label: "Search" },
+            { icon: ShoppingBag, label: "Cart" },
+            { icon: User, label: "Profile" }
+          ].map(({ icon: Icon, label }, i) => (
+            <motion.button
+              key={label}
+              whileHover={{ scale: 1.15, color: "#fff" }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 transition-colors relative group"
+            >
+              <Icon className="h-5 w-5 stroke-[1.5]" />
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                {label}
+              </span>
+            </motion.button>
+          ))}
+        </div>
       </div>
     </nav>
   );
