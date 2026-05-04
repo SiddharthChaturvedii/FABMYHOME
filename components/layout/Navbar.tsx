@@ -12,47 +12,51 @@ import {
 
 const navItems = [
   {
-    title: "Shop by Space",
-    description: "Curated collections for every corner of your home.",
-    image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=600&auto=format&fit=crop",
-    links: [
-      { label: "Living Room", href: "#living" },
-      { label: "Bedroom", href: "#bedroom" },
-      { label: "Home Office", href: "#office" },
-      { label: "Dining Area", href: "#dining" },
-    ],
-  },
-  {
-    title: "Shop by Mood",
-    description: "Furniture that speaks your emotional language.",
-    image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=600&auto=format&fit=crop",
-    links: [
-      { label: "Minimalist", href: "#minimal" },
-      { label: "Earthy & Warm", href: "#earthy" },
-      { label: "Modern Classic", href: "#classic" },
-      { label: "Bold & Vibrant", href: "#bold" },
+    title: "Shop By",
+    sections: [
+      {
+        title: "Shop by Space",
+        links: [
+          { label: "Living Room", href: "#living", image: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?q=80&w=400&auto=format&fit=crop" },
+          { label: "Bedroom", href: "#bedroom", image: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=400&auto=format&fit=crop" },
+          { label: "Dining Room", href: "#dining", image: "https://images.unsplash.com/photo-1577113398331-d843d3341a63?q=80&w=400&auto=format&fit=crop" },
+          { label: "Kids Room", href: "#kids", image: "https://images.unsplash.com/photo-1533090481720-856c6e3c1fdc?q=80&w=400&auto=format&fit=crop" },
+          { label: "Outdoor", href: "#outdoor", image: "https://images.unsplash.com/photo-1591825729269-caeb96ae0804?q=80&w=400&auto=format&fit=crop" },
+          { label: "Office Space", href: "#office", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop" },
+        ],
+      },
+      {
+        title: "Shop by Mood",
+        links: [
+          { label: "Calm Luxury", href: "#calm", image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=400&auto=format&fit=crop" },
+          { label: "Modern Minimal", href: "#minimal", image: "https://images.unsplash.com/photo-1512918766675-21d740c04944?q=80&w=400&auto=format&fit=crop" },
+          { label: "Hotel Luxury", href: "#hotel", image: "https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?q=80&w=400&auto=format&fit=crop" },
+          { label: "Scandinavian Calm", href: "#scandi", image: "https://images.unsplash.com/photo-1556020685-ae41abfc9365?q=80&w=400&auto=format&fit=crop" },
+          { label: "Earthy Natural", href: "#earthy", image: "https://images.unsplash.com/photo-1513519247388-19345420bd33?q=80&w=400&auto=format&fit=crop" },
+          { label: "Royal Classic", href: "#royal", image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=400&auto=format&fit=crop" },
+        ],
+      },
+      {
+        title: "Our World",
+        links: [
+          { label: "Blogs", href: "#blogs", image: "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&w=400&auto=format&fit=crop" },
+          { label: "Design Stories", href: "#stories", image: "https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=400&auto=format&fit=crop" },
+        ]
+      }
     ],
   },
   {
     title: "Design My Room",
-    description: "Transform your space with AI-powered design tools.",
-    image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=600&auto=format&fit=crop",
-    links: [
-      { label: "Start Style Quiz", href: "#quiz" },
-      { label: "AI Room Scan", href: "#scan" },
-      { label: "Visual Search", href: "#search" },
-      { label: "View Mockups", href: "#mockups" },
-    ],
-  },
-  {
-    title: "Free Consultation",
-    description: "Speak with our expert designers today.",
-    image: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=600&auto=format&fit=crop",
-    links: [
-      { label: "Book a Call", href: "#book" },
-      { label: "WhatsApp Chat", href: "#chat" },
-      { label: "Expert Portfolio", href: "#portfolio" },
-      { label: "Service Plans", href: "#plans" },
+    sections: [
+      {
+        title: "AI Design Tools",
+        links: [
+          { label: "Start Style Quiz", href: "#quiz", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
+          { label: "AI Room Scan", href: "#scan", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
+          { label: "Visual Search", href: "#search", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
+          { label: "View Mockups", href: "#mockups", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
+        ],
+      },
     ],
   },
 ];
@@ -60,6 +64,8 @@ const navItems = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -74,8 +80,10 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="font-display text-2xl font-bold tracking-tight text-white group z-[1001]">
-          FAB<span className="text-[var(--color-terracotta)] group-hover:text-white transition-colors">MY</span>HOME
+        <Link href="/" className="font-display text-2xl tracking-tight text-white z-[1001]">
+          <span className="font-bold">FAB</span>
+          <span className="font-normal text-black">MY</span>
+          <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
         </Link>
 
         {/* Central Navigation (Desktop) */}
@@ -90,35 +98,38 @@ export default function Navbar() {
               </HoverCardTrigger>
 
               <HoverCardContent 
-                align="start" 
+                align="center" 
                 sideOffset={25}
-                className="glass overflow-hidden border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.8)]"
+                className="w-screen max-w-none p-0 bg-white border-none shadow-2xl rounded-none overflow-hidden z-[1000]"
               >
-                <div className="overflow-hidden">
-                  <img
-                    src={item.image}
-                    alt={item.title}
-                    className="h-32 w-full object-cover brightness-75 transition-transform duration-700 hover:scale-110"
-                  />
-                  <div className="p-6 space-y-4">
-                    <div>
-                      <p className="text-[13px] font-bold text-white mb-1 uppercase tracking-widest">{item.title}</p>
-                      <p className="text-[11px] leading-relaxed text-white/50 font-medium">
-                        {item.description}
+                <div className="max-w-7xl mx-auto py-12 px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                  {item.sections.map((section) => (
+                    <div key={section.title} className="space-y-6">
+                      <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
+                        {section.title}
                       </p>
+                      <div className="grid grid-cols-1 gap-4">
+                        {section.links.map((link) => (
+                          <Link
+                            key={link.label}
+                            href={link.href}
+                            className="group flex items-center gap-4 transition-all"
+                          >
+                            <div className="w-16 h-16 overflow-hidden rounded-none bg-gray-100 shrink-0">
+                              <img 
+                                src={link.image} 
+                                alt={link.label} 
+                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                              />
+                            </div>
+                            <span className="text-[14px] font-medium text-black hover:text-[var(--color-terracotta)] transition-colors">
+                              {link.label}
+                            </span>
+                          </Link>
+                        ))}
+                      </div>
                     </div>
-                    <div className="grid grid-cols-1 gap-2 border-t border-white/10 pt-4">
-                      {item.links.map((link) => (
-                        <Link
-                          key={link.label}
-                          href={link.href}
-                          className="text-[12px] text-white/60 transition-all hover:text-white hover:translate-x-1 py-0.5"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </HoverCardContent>
             </HoverCard>
@@ -126,20 +137,20 @@ export default function Navbar() {
         </div>
 
         {/* Right Action Icons & Hamburger */}
-        <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
           {[
-            { icon: Search, label: "Search" },
-            { icon: ShoppingBag, label: "Cart" },
-            { icon: User, label: "Profile" }
-          ].map(({ icon: Icon, label }) => (
+            { icon: Search, label: "Search", onClick: () => setIsSearchOpen(true) },
+            { icon: ShoppingBag, label: "Cart", onClick: () => console.log("Cart clicked") },
+            { icon: User, label: "Profile", onClick: () => console.log("Profile clicked") }
+          ].map(({ icon: Icon, label, onClick }) => (
             <motion.button
               key={label}
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(0, 0, 0, 0.4)" }}
+              onClick={onClick}
+              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
               whileTap={{ scale: 0.95 }}
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/5 transition-colors relative group"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent hover:bg-white/10 transition-colors relative group cursor-pointer"
             >
               <Icon className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
-              <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap font-bold bg-black/40 px-2 py-1 rounded-md backdrop-blur-sm">
+              <span className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap font-bold bg-white text-black px-2 py-1 rounded-none shadow-xl border border-black/5 z-50">
                 {label}
               </span>
             </motion.button>
@@ -148,12 +159,78 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md border border-white/5 text-white ml-1"
+            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-none bg-black/20 backdrop-blur-md border border-white/5 text-white ml-1 cursor-pointer"
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
+
+      {/* Search Overlay Animation */}
+      <AnimatePresence>
+        {isSearchOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute inset-0 z-[2000] bg-white flex flex-col"
+          >
+            <div className="max-w-7xl mx-auto w-full px-6 md:px-12 h-[80px] flex items-center justify-between gap-8">
+              <div className="flex-1 flex items-center gap-4 border-b border-black/10 py-2">
+                <Search className="text-black/40 h-5 w-5" />
+                <input 
+                  autoFocus
+                  type="text" 
+                  placeholder="Search products, rooms, styles..."
+                  className="w-full bg-transparent border-none outline-none text-xl font-display text-black placeholder:text-black/20"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+              <button 
+                onClick={() => setIsSearchOpen(false)}
+                className="text-black/60 hover:text-black transition-colors uppercase text-[12px] font-bold tracking-widest flex items-center gap-2 cursor-pointer"
+              >
+                Close <X className="h-4 w-4" />
+              </button>
+            </div>
+            
+            {/* Search Suggestions */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.1 }}
+              className="max-w-7xl mx-auto w-full px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-12"
+            >
+              <div className="space-y-4">
+                <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30">Suggestions</p>
+                <div className="flex flex-col gap-3">
+                  {["Living Room Sets", "Velvet Sofas", "Minimalist Bedroom", "Calm Luxury Mood"].map(s => (
+                    <button key={s} className="text-left text-black/60 hover:text-[var(--color-terracotta)] transition-colors text-sm font-medium cursor-pointer">
+                      {s}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
+                {[
+                  { label: "Trending", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=200&auto=format&fit=crop" },
+                  { label: "New In", img: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=200&auto=format&fit=crop" },
+                  { label: "Best Sellers", img: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=200&auto=format&fit=crop" },
+                  { label: "Limited", img: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=200&auto=format&fit=crop" }
+                ].map(item => (
+                  <div key={item.label} className="group cursor-pointer">
+                    <div className="aspect-square overflow-hidden bg-gray-100 rounded-none mb-2">
+                      <img src={item.img} alt={item.label} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                    </div>
+                    <p className="text-[11px] font-bold uppercase tracking-widest">{item.label}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -171,15 +248,22 @@ export default function Navbar() {
                     {item.title}
                   </p>
                   <div className="grid grid-cols-1 gap-5">
-                    {item.links.map((link) => (
-                      <Link 
-                        key={link.label} 
-                        href={link.href}
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        className="text-white text-2xl font-display font-medium tracking-tight hover:text-[var(--color-terracotta)] transition-colors"
-                      >
-                        {link.label}
-                      </Link>
+                    {item.sections.map((section) => (
+                      <div key={section.title} className="space-y-4">
+                        <p className="text-white/10 text-[9px] uppercase tracking-widest">{section.title}</p>
+                        <div className="flex flex-col gap-4">
+                          {section.links.map((link) => (
+                            <Link 
+                              key={link.label} 
+                              href={link.href}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="text-white text-2xl font-display font-medium tracking-tight hover:text-[var(--color-terracotta)] transition-colors"
+                            >
+                              {link.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     ))}
                   </div>
                 </div>
