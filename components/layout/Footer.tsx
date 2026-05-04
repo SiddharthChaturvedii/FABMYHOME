@@ -20,13 +20,13 @@ export default function Footer() {
 
           {/* Links Columns */}
           <div>
-            <h3 className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] text-[var(--color-terracotta)] mb-8">
+            <h3 className="font-sans font-bold uppercase tracking-[0.2em] text-[13px] text-[var(--color-terracotta)] mb-8">
               Shop by Space
             </h3>
             <ul className="space-y-5">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-base font-light text-white/70 hover:text-[var(--color-terracotta)] transition-all duration-300">
+                  <Link href={link.href} className="font-sans text-[14px] font-light text-white/50 hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide">
                     {link.label}
                   </Link>
                 </li>
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] text-[var(--color-terracotta)] mb-8">
+            <h3 className="font-sans font-bold uppercase tracking-[0.2em] text-[13px] text-[var(--color-terracotta)] mb-8">
               Our Services
             </h3>
             <ul className="space-y-5">
@@ -50,7 +50,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-sans font-bold uppercase tracking-[0.3em] text-[10px] text-[var(--color-terracotta)] mb-8">
+            <h3 className="font-sans font-bold uppercase tracking-[0.2em] text-[13px] text-[var(--color-terracotta)] mb-8">
               The Company
             </h3>
             <ul className="space-y-5">
@@ -67,9 +67,6 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="font-sans text-sm text-white/30 font-light">
-            © {new Date().getFullYear()} FABMYHOME Luxury Interiors. All rights reserved.
-          </p>
           <div className="flex gap-8">
             <Link href="#" className="font-sans text-sm text-white/30 hover:text-white transition-colors font-light">
               Privacy Policy
@@ -78,6 +75,9 @@ export default function Footer() {
               Terms of Service
             </Link>
           </div>
+          <p className="font-sans text-sm text-white/30 font-light">
+            © {new Date().getFullYear()} FABMYHOME Luxury Interiors. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
