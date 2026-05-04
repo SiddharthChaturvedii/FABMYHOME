@@ -201,7 +201,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="max-w-7xl mx-auto w-full px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-12"
+              className="max-w-7xl mx-auto w-full px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-white"
             >
               <div className="space-y-4">
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30">Suggestions</p>

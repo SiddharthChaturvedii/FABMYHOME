@@ -42,7 +42,7 @@ export default function StyleQuiz() {
                 key={room.id}
                 variants={itemVariants}
                 onClick={() => { setRoom(room.id); nextStep(); }}
-                className={`relative h-80 rounded-3xl overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 hover:-translate-y-2 ${
+                className={`relative h-48 md:h-64 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 hover:-translate-y-2 ${
                   selections.room === room.id ? "ring-2 ring-[var(--color-terracotta)]" : ""
                 }`}
               >
@@ -52,7 +52,7 @@ export default function StyleQuiz() {
                   alt={room.label}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10"
                 />
-                <h3 className="absolute bottom-8 left-8 text-white font-display text-3xl z-30 drop-shadow-lg">
+                <h3 className="absolute bottom-6 left-6 text-white font-display text-2xl md:text-3xl z-30 drop-shadow-lg font-bold italic tracking-tight">
                   {room.label}
                 </h3>
               </motion.button>
@@ -77,7 +77,7 @@ export default function StyleQuiz() {
                 className={`flex flex-col items-center gap-6 group transition-all duration-300 hover:-translate-y-2`}
               >
                 <div 
-                  className={`w-32 h-32 rounded-full shadow-inner transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--color-terracotta)]/20 ${selections.color === color.id ? "ring-4 ring-offset-8 ring-[var(--color-terracotta)] scale-110" : "hover:scale-110"}`}
+                  className={`w-32 h-32 rounded-none shadow-inner transition-all duration-500 hover:shadow-2xl hover:shadow-[var(--color-terracotta)]/20 ${selections.color === color.id ? "ring-4 ring-offset-8 ring-[var(--color-terracotta)] scale-110" : "hover:scale-110"}`}
                   style={{ backgroundColor: color.hex }}
                 />
                 <span className="font-sans text-[var(--color-graphite)] font-medium text-lg">{color.label}</span>
@@ -100,7 +100,7 @@ export default function StyleQuiz() {
                 key={texture.id}
                 variants={itemVariants}
                 onClick={() => { setTexture(texture.id); nextStep(); }}
-                className={`relative h-80 rounded-3xl overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[#8b7d6b]/30 hover:-translate-y-2 ${
+                className={`relative h-48 md:h-64 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[#8b7d6b]/30 hover:-translate-y-2 ${
                   selections.texture === texture.id ? "ring-2 ring-[var(--color-terracotta)]" : ""
                 }`}
               >
@@ -110,7 +110,7 @@ export default function StyleQuiz() {
                   alt={texture.label}
                   className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10"
                 />
-                <h3 className="absolute bottom-8 left-8 text-white font-display text-3xl z-30 drop-shadow-lg">
+                <h3 className="absolute bottom-6 left-6 text-white font-display text-2xl md:text-3xl z-30 drop-shadow-lg font-bold italic tracking-tight">
                   {texture.label}
                 </h3>
               </motion.button>
@@ -124,7 +124,7 @@ export default function StyleQuiz() {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ type: "spring", stiffness: 200, damping: 20 }}
-            className="flex flex-col items-center text-center max-w-2xl bg-white/40 backdrop-blur-md p-12 rounded-[3rem] shadow-xl border border-white/40"
+            className="flex flex-col items-center text-center max-w-2xl bg-white/40 backdrop-blur-md p-12 rounded-none shadow-xl border border-white/40"
           >
             <h3 className="font-display text-5xl text-[var(--color-midnight)] mb-6">
               Your Style Profile
@@ -133,12 +133,12 @@ export default function StyleQuiz() {
               We&apos;ve analyzed your selections. You lean towards a <span className="text-[var(--color-terracotta)] font-semibold">{selections.color}</span> palette with <span className="text-[var(--color-terracotta)] font-semibold">{selections.texture}</span> textures for your {selections.room}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-[var(--color-midnight)] text-white font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-full hover:scale-105 hover:shadow-2xl hover:shadow-[var(--color-midnight)]/30 transition-all duration-300">
+              <button className="bg-[var(--color-midnight)] text-white font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-none hover:scale-105 hover:shadow-2xl hover:shadow-[var(--color-midnight)]/30 transition-all duration-300">
                 View Your Curated Room
               </button>
               <button 
                 onClick={resetQuiz}
-                className="bg-transparent border border-[var(--color-graphite)]/20 text-[var(--color-graphite)] font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-full hover:bg-[var(--color-graphite)]/5 transition-all duration-300"
+                className="bg-transparent border border-[var(--color-graphite)]/20 text-[var(--color-graphite)] font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-none hover:bg-[var(--color-graphite)]/5 transition-all duration-300"
               >
                 Retake Quiz
               </button>
@@ -159,7 +159,7 @@ export default function StyleQuiz() {
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
         className="text-center mb-16 max-w-3xl"
       >
-        <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-8">
+        <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-8 font-medium italic">
           {headline}
         </h2>
         <p className="font-sans text-[var(--color-graphite)]/80 text-2xl font-light">
@@ -188,7 +188,7 @@ export default function StyleQuiz() {
         key={currentStep}
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
-        className="font-sans text-3xl text-[var(--color-graphite)] mb-16 font-light tracking-wide italic"
+        className="font-sans text-2xl md:text-3xl text-[var(--color-graphite)] mb-12 md:mb-16 font-light tracking-wide italic"
       >
         {stepTitles[currentStep]}
       </motion.h3>

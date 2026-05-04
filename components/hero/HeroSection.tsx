@@ -70,7 +70,7 @@ export default function HeroSection() {
                 duration: 1.2, 
                 ease: [0.16, 1, 0.3, 1] 
               }}
-              className="font-display text-5xl md:text-8xl lg:text-[100px] text-white leading-[0.95] tracking-tighter drop-shadow-2xl mb-8"
+              className="font-display text-5xl md:text-7xl lg:text-[100px] text-white leading-[0.95] tracking-tighter drop-shadow-2xl mb-8"
             >
               {siteContent.hero.headline}
             </motion.h1>
@@ -97,7 +97,7 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row items-center justify-start gap-6 w-full"
             >
               {siteContent.hero.ctas.map((cta, index) => {
-                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-full ";
+                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-none ";
                 if (cta.variant === "terracotta") classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl";
                 else if (cta.variant === "teal-outline") classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
                 else classes += "text-white/80 hover:text-white hover:bg-white/10";

@@ -14,7 +14,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="h-screen w-full bg-[#124444] flex flex-col justify-center overflow-hidden border-y border-white/5 relative">
+    <section className="h-screen w-full bg-white flex flex-col justify-center overflow-hidden border-y border-black/5 relative">
       <div className="max-w-7xl mx-auto px-6 mb-8 md:mb-16 relative z-20 pt-12 md:pt-0">
         <ScrollFloat
           animationDuration={1.2}
@@ -23,7 +23,7 @@ export default function Testimonials() {
           scrollEnd='bottom bottom-=10%'
           stagger={0.05}
           containerClassName="flex justify-center overflow-visible"
-          textClassName="text-5xl md:text-8xl font-display font-black tracking-tighter text-center text-white uppercase"
+          textClassName="text-5xl md:text-8xl font-serif font-medium tracking-tight text-center text-black uppercase"
         >
           Testimonials
         </ScrollFloat>
@@ -38,13 +38,13 @@ export default function Testimonials() {
                 key={`r1-${i}`}
                 tiltLimit={35}
                 scale={1.1}
-                className="glass px-8 md:px-10 py-10 md:py-12 rounded-[32px] md:rounded-[40px] w-[85vw] md:w-[500px] flex-shrink-0 cursor-default"
+                className="bg-white px-8 md:px-10 py-10 md:py-12 rounded-[32px] md:rounded-[40px] w-[85vw] md:w-[500px] flex-shrink-0 cursor-default shadow-xl shadow-black/5 border border-black/5"
               >
                 <div className="relative z-20">
-                  <p className="text-base md:text-xl font-medium text-white/90 leading-relaxed italic">
+                  <p className="text-base md:text-xl font-medium text-black/80 leading-relaxed italic">
                     "{text.split(' — ')[0]}"
                   </p>
-                  <div className="mt-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white/50">
+                  <div className="mt-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-black/30">
                     {text.split(' — ')[1]}
                   </div>
                 </div>
@@ -61,13 +61,13 @@ export default function Testimonials() {
                 key={`r2-${i}`}
                 tiltLimit={35}
                 scale={1.1}
-                className="glass px-8 md:px-10 py-10 md:py-12 rounded-[32px] md:rounded-[40px] w-[85vw] md:w-[500px] flex-shrink-0 cursor-default"
+                className="bg-white px-8 md:px-10 py-10 md:py-12 rounded-[32px] md:rounded-[40px] w-[85vw] md:w-[500px] flex-shrink-0 cursor-default shadow-xl shadow-black/5 border border-black/5"
               >
                 <div className="relative z-20">
-                  <p className="text-base md:text-xl font-medium text-white/90 leading-relaxed italic">
+                  <p className="text-base md:text-xl font-medium text-black/80 leading-relaxed italic">
                     "{text.split(' — ')[0]}"
                   </p>
-                  <div className="mt-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-white/50">
+                  <div className="mt-6 flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-black/30">
                     {text.split(' — ')[1]}
                   </div>
                 </div>
