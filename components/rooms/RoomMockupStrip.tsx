@@ -12,10 +12,15 @@ export default function RoomMockupStrip() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const { scrollLeft, clientWidth } = scrollContainerRef.current;
-      const scrollTo = direction === 'left' 
-        ? scrollLeft - clientWidth * 0.8 
-        : scrollLeft + clientWidth * 0.8;
+      const { scrollLeft, clientWidth, scrollWidth } = scrollContainerRef.current;
+      
+      // Calculate next position with boundary checks
+      let scrollTo;
+      if (direction === 'left') {
+        scrollTo = Math.max(0, scrollLeft - clientWidth);
+      } else {
+        scrollTo = Math.min(scrollWidth - clientWidth, scrollLeft + clientWidth);
+      }
       
       scrollContainerRef.current.scrollTo({
         left: scrollTo,
@@ -49,7 +54,7 @@ export default function RoomMockupStrip() {
   };
 
   return (
-    <section className="py-24 bg-[var(--color-alabaster)] overflow-hidden">
+    <section className="py-24 bg-white overflow-hidden border-t border-black/5">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -67,15 +72,15 @@ export default function RoomMockupStrip() {
         <div className="flex justify-center gap-4 mt-12">
           <button 
             onClick={() => scroll('left')}
-            className="w-14 h-14 rounded-none border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group"
+            className="w-16 h-16 rounded-none bg-white border border-black shadow-xl flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group z-30"
           >
-            <ChevronLeft size={24} className="transition-transform group-hover:-translate-x-1" />
+            <ChevronLeft size={28} className="transition-transform group-hover:-translate-x-1" />
           </button>
           <button 
             onClick={() => scroll('right')}
-            className="w-14 h-14 rounded-none border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group"
+            className="w-16 h-16 rounded-none bg-white border border-black shadow-xl flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group z-30"
           >
-            <ChevronRight size={24} className="transition-transform group-hover:translate-x-1" />
+            <ChevronRight size={28} className="transition-transform group-hover:translate-x-1" />
           </button>
         </div>
       </motion.div>
@@ -93,8 +98,11 @@ export default function RoomMockupStrip() {
         {presetRooms.map((room) => (
           <motion.div 
             key={room.id}
-            variants={cardVariants}
-            className="relative flex-none w-[85vw] md:w-[50vw] lg:w-[35vw] h-[60vh] md:h-[75vh] snap-center group rounded-[2.5rem] overflow-hidden bg-[var(--color-graphite)] shadow-2xl shadow-black/10 transition-all duration-700 hover:shadow-black/20"
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ type: "spring", stiffness: 50, damping: 20 }}
+            className="relative flex-none w-[90vw] md:w-[85vw] lg:w-[35vw] h-[60vh] md:h-[75vh] snap-center group rounded-[2.5rem] overflow-hidden bg-[var(--color-graphite)] shadow-2xl shadow-black/10 transition-all duration-700 hover:shadow-black/20"
           >
             {/* Image rendered underneath gradient */}
             <img 

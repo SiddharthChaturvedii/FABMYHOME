@@ -67,7 +67,7 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-2xl"
+            className="grid grid-cols-2 gap-4 w-full max-w-xl mx-auto"
           >
             {quizOptions.colors.map((color) => (
               <motion.button
@@ -150,7 +150,7 @@ export default function StyleQuiz() {
   const stepTitles = ["Which room are we styling?", "What colors feel like home?", "Which texture attracts you?", "Perfect."];
 
   return (
-    <section id="quiz" className="py-20 bg-[var(--color-alabaster)] flex flex-col items-center px-6 overflow-hidden">
+    <section id="quiz" className="py-20 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}

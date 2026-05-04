@@ -139,7 +139,7 @@ export default function CompleteTheLook() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         className={`absolute left-[100%] ml-8 lg:ml-16 w-max hidden lg:flex flex-col gap-4 z-0 pointer-events-auto ${
-                          isLastItem ? "bottom-0" : "top-[40%] -translate-y-1/2"
+                          isLastItem ? "bottom-0" : "top-[15%] -translate-y-1/2"
                         }`}
                       >
                         {renderSuggestions(product.suggestions)}
