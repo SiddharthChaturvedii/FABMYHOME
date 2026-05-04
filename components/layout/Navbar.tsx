@@ -137,6 +137,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Action Icons & Hamburger */}
+        <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(true) },
             { icon: ShoppingBag, label: "Cart", onClick: () => console.log("Cart clicked") },
