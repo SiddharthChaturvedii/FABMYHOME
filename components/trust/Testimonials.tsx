@@ -1,6 +1,7 @@
 "use client";
 
 import { TiltCard } from "@/components/ui/tilt-card";
+import { motion } from "framer-motion";
 
 const testimonials = [
   "FabMyHome completely transformed my living room in minutes. Truly magical! — Priya S.",
