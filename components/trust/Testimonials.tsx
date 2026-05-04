@@ -1,7 +1,6 @@
 "use client";
 
 import { TiltCard } from "@/components/ui/tilt-card";
-import ScrollFloat from "@/components/ui/ScrollFloat";
 
 const testimonials = [
   "FabMyHome completely transformed my living room in minutes. Truly magical! — Priya S.",
@@ -16,17 +15,14 @@ export default function Testimonials() {
   return (
     <section className="h-screen w-full bg-white flex flex-col justify-center overflow-hidden border-y border-black/5 relative">
       <div className="max-w-7xl mx-auto px-6 mb-8 md:mb-16 relative z-20 pt-12 md:pt-0">
-        <ScrollFloat
-          animationDuration={1.2}
-          ease='back.out(2.5)'
-          scrollStart='center bottom+=60%'
-          scrollEnd='bottom bottom-=10%'
-          stagger={0.05}
-          containerClassName="flex justify-center overflow-visible"
-          textClassName="text-5xl md:text-8xl font-serif font-medium tracking-tight text-center text-black uppercase"
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-5xl md:text-8xl font-serif font-medium tracking-tight text-center text-black uppercase"
         >
           Testimonials
-        </ScrollFloat>
+        </motion.h2>
       </div>
 
       <div className="flex flex-col gap-6 md:gap-10 relative z-10">

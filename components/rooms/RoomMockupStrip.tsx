@@ -4,10 +4,25 @@ import { useRef } from "react";
 import { presetRooms } from "@/data/rooms";
 import { siteContent } from "@/data/siteContent";
 import { motion } from "framer-motion";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 export default function RoomMockupStrip() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const { headline, subheadline } = siteContent.rooms;
+
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const { scrollLeft, clientWidth } = scrollContainerRef.current;
+      const scrollTo = direction === 'left' 
+        ? scrollLeft - clientWidth * 0.8 
+        : scrollLeft + clientWidth * 0.8;
+      
+      scrollContainerRef.current.scrollTo({
+        left: scrollTo,
+        behavior: 'smooth'
+      });
+    }
+  };
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -48,6 +63,21 @@ export default function RoomMockupStrip() {
         <p className="font-sans text-[var(--color-graphite)]/70 text-2xl font-light max-w-3xl mx-auto italic">
           {subheadline}
         </p>
+
+        <div className="flex justify-center gap-4 mt-12">
+          <button 
+            onClick={() => scroll('left')}
+            className="w-14 h-14 rounded-none border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group"
+          >
+            <ChevronLeft size={24} className="transition-transform group-hover:-translate-x-1" />
+          </button>
+          <button 
+            onClick={() => scroll('right')}
+            className="w-14 h-14 rounded-none border border-black/10 flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group"
+          >
+            <ChevronRight size={24} className="transition-transform group-hover:translate-x-1" />
+          </button>
+        </div>
       </motion.div>
 
       {/* Horizontal Swipe Container */}

@@ -54,9 +54,7 @@ const navItems = [
           { label: "Start Style Quiz", href: "#quiz", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
           { label: "AI Room Scan", href: "#scan", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
           { label: "Visual Search", href: "#search", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
-          { label: "Upload Your Room", href: "#upload", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
-          { label: "Trade / Interior Designers", href: "#trade", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop" },
-          { label: "Book Store Visit", href: "#store", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
+          { label: "View Mockups", href: "#mockups", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
         ],
       },
     ],
@@ -143,8 +141,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(true) },
-            { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) },
-            { icon: User, label: "Profile", onClick: () => console.log("Profile clicked") }
+            { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) }
           ].map(({ icon: Icon, label, onClick }) => (
             <motion.button
               key={label}
@@ -159,6 +156,29 @@ export default function Navbar() {
               </span>
             </motion.button>
           ))}
+
+          {/* Profile Hover Card */}
+          <HoverCard openDelay={0} closeDelay={100}>
+            <HoverCardTrigger asChild>
+              <motion.button
+                whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                whileTap={{ scale: 0.95 }}
+                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent hover:bg-white/10 transition-colors relative group cursor-pointer"
+              >
+                <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
+              </motion.button>
+            </HoverCardTrigger>
+            <HoverCardContent align="end" className="w-48 p-0 bg-white border-none shadow-2xl rounded-none overflow-hidden z-[1002]">
+              <div className="flex flex-col">
+                <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:bg-[var(--color-terracotta)] hover:text-white transition-colors">
+                  Sign In
+                </Link>
+                <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
+                  Sign Up
+                </Link>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
 
           {/* Hamburger Button */}
           <button 
