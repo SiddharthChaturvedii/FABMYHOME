@@ -42,7 +42,7 @@ export default function StyleQuiz() {
                 key={room.id}
                 variants={itemVariants}
                 onClick={() => { setRoom(room.id); nextStep(); }}
-                className={`relative h-48 md:h-64 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 hover:-translate-y-2 ${
+                className={`relative h-32 md:h-48 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 hover:-translate-y-2 ${
                   selections.room === room.id ? "ring-2 ring-[var(--color-terracotta)]" : ""
                 }`}
               >
@@ -100,7 +100,7 @@ export default function StyleQuiz() {
                 key={texture.id}
                 variants={itemVariants}
                 onClick={() => { setTexture(texture.id); nextStep(); }}
-                className={`relative h-48 md:h-64 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[#8b7d6b]/30 hover:-translate-y-2 ${
+                className={`relative h-32 md:h-48 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[#8b7d6b]/30 hover:-translate-y-2 ${
                   selections.texture === texture.id ? "ring-2 ring-[var(--color-terracotta)]" : ""
                 }`}
               >

@@ -23,7 +23,7 @@ export default function Footer() {
             <h3 className="font-sans font-bold uppercase tracking-[0.2em] text-[13px] text-[var(--color-terracotta)] mb-8">
               Shop by Space
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-2.5">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="font-sans text-[14px] font-light text-white/50 hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide">
@@ -38,7 +38,7 @@ export default function Footer() {
             <h3 className="font-sans font-bold uppercase tracking-[0.2em] text-[13px] text-[var(--color-terracotta)] mb-8">
               Our Services
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-2.5">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="font-sans text-[14px] font-light text-white/50 hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide">
@@ -53,7 +53,7 @@ export default function Footer() {
             <h3 className="font-sans font-bold uppercase tracking-[0.2em] text-[13px] text-[var(--color-terracotta)] mb-8">
               The Company
             </h3>
-            <ul className="space-y-5">
+            <ul className="space-y-2.5">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="font-sans text-[14px] font-light text-white/50 hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide">

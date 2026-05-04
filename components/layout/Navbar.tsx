@@ -54,7 +54,9 @@ const navItems = [
           { label: "Start Style Quiz", href: "#quiz", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
           { label: "AI Room Scan", href: "#scan", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
           { label: "Visual Search", href: "#search", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
-          { label: "View Mockups", href: "#mockups", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
+          { label: "Upload Your Room", href: "#upload", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
+          { label: "Trade / Interior Designers", href: "#trade", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop" },
+          { label: "Book Store Visit", href: "#store", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
         ],
       },
     ],
@@ -66,6 +68,7 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -140,7 +143,7 @@ export default function Navbar() {
         <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(true) },
-            { icon: ShoppingBag, label: "Cart", onClick: () => console.log("Cart clicked") },
+            { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) },
             { icon: User, label: "Profile", onClick: () => console.log("Profile clicked") }
           ].map(({ icon: Icon, label, onClick }) => (
             <motion.button
@@ -201,7 +204,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
-              className="max-w-7xl mx-auto w-full px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-white"
+              className="w-full px-6 md:px-12 py-12 grid grid-cols-1 md:grid-cols-4 gap-12 bg-white border-t border-black/5"
             >
               <div className="space-y-4">
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30">Suggestions</p>
@@ -271,6 +274,64 @@ export default function Navbar() {
               ))}
             </div>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Cart Sidebar */}
+      <AnimatePresence>
+        {isCartOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsCartOpen(false)}
+              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[2500]"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="fixed top-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[2600] shadow-2xl flex flex-col"
+            >
+              <div className="p-8 flex items-center justify-between border-b border-black/5">
+                <h2 className="font-display text-2xl font-bold uppercase tracking-widest">Your Cart</h2>
+                <button 
+                  onClick={() => setIsCartOpen(false)}
+                  className="p-2 hover:rotate-90 transition-transform duration-300"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              
+              <div className="flex-1 flex flex-col items-center justify-center p-12 text-center">
+                <div className="w-20 h-20 bg-[var(--color-alabaster)] rounded-none flex items-center justify-center mb-6">
+                  <ShoppingBag size={32} className="text-black/20" />
+                </div>
+                <h3 className="font-sans text-lg font-medium mb-2">Your cart is empty</h3>
+                <p className="font-sans text-sm text-black/40 mb-8 max-w-[200px]">
+                  Start styling your room to see items appear here.
+                </p>
+                <button 
+                  onClick={() => setIsCartOpen(false)}
+                  className="font-sans text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-black pb-1 hover:text-[var(--color-terracotta)] hover:border-[var(--color-terracotta)] transition-all"
+                >
+                  Continue Shopping
+                </button>
+              </div>
+
+              <div className="p-8 border-t border-black/5 bg-[var(--color-alabaster)]/30">
+                <div className="flex items-center justify-between mb-8">
+                  <span className="font-sans text-sm uppercase tracking-widest text-black/40">Subtotal</span>
+                  <span className="font-sans text-lg font-bold">₹0.00</span>
+                </div>
+                <button className="w-full bg-black text-white font-sans font-bold uppercase tracking-[0.2em] py-5 text-xs rounded-none hover:bg-[var(--color-midnight)] transition-colors opacity-50 cursor-not-allowed">
+                  Checkout
+                </button>
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </nav>

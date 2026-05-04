@@ -97,10 +97,10 @@ export default function HeroSection() {
               className="flex flex-col sm:flex-row items-center justify-start gap-6 w-full"
             >
               {siteContent.hero.ctas.map((cta, index) => {
-                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-12 py-6 text-xs transition-all duration-500 rounded-none ";
+                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-10 py-4 text-xs transition-all duration-500 rounded-none ";
                 if (cta.variant === "terracotta") classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl";
                 else if (cta.variant === "teal-outline") classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
-                else classes += "text-white/80 hover:text-white hover:bg-white/10";
+                else classes += "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm border border-white/10";
 
                 return <button key={index} className={classes}>{cta.label}</button>;
               })}

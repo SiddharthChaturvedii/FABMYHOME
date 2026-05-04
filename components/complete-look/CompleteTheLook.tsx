@@ -82,7 +82,7 @@ export default function CompleteTheLook() {
   );
 
   return (
-    <section className="py-16 bg-[var(--color-alabaster)] relative overflow-visible">
+    <section className="pt-0 pb-24 bg-white relative overflow-visible">
       <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-20 items-start">
         
         <motion.div
