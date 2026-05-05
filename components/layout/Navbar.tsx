@@ -98,7 +98,7 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="font-display text-2xl tracking-tight z-[1001] text-white">
           <span className="font-bold">FAB</span>
-          <span className="font-normal text-white/60">MY</span>
+          <span className="font-normal text-black">MY</span>
           <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
         </Link>
 

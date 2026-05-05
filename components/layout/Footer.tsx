@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="mb-20 text-center flex flex-col items-center">
           <Link href="/" className="font-display text-3xl md:text-4xl tracking-tight text-white inline-block mb-6">
             <span className="font-bold">FAB</span>
-            <span className="font-normal text-white/40">MY</span>
+            <span className="font-normal text-black">MY</span>
             <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
           </Link>
           <p className="font-sans text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light italic text-center">
@@ -21,17 +21,17 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Middle Section: Links Grid - Strict 3x1 Equal Spacing */}
-        <div className="grid grid-cols-3 gap-4 md:gap-8 lg:gap-12 mb-20 border-t border-white/5 pt-16 items-start w-full">
+        {/* Middle Section: Links Grid - Evenly Spaced Flex Layout */}
+        <div className="flex flex-row justify-between items-start w-full max-w-5xl mx-auto mb-20 border-t border-white/5 pt-16">
           {/* Shop by Space */}
-          <div className="flex flex-col">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[9px] md:text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
+          <div className="flex flex-col min-w-[150px]">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               Shop by Space
             </h3>
             <ul className="space-y-1.5 mt-2">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[12px] md:text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -40,14 +40,14 @@ export default function Footer() {
           </div>
 
           {/* Our Services */}
-          <div className="flex flex-col">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[9px] md:text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
+          <div className="flex flex-col min-w-[150px]">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               Our Services
             </h3>
             <ul className="space-y-1.5 mt-2">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[12px] md:text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -56,14 +56,14 @@ export default function Footer() {
           </div>
 
           {/* The Company */}
-          <div className="flex flex-col">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[9px] md:text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
+          <div className="flex flex-col min-w-[150px]">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               The Company
             </h3>
             <ul className="space-y-1.5 mt-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[12px] md:text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
