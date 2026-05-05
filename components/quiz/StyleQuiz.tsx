@@ -245,6 +245,7 @@ export default function StyleQuiz() {
         <AnimatePresence mode="wait">
           {renderStep()}
         </AnimatePresence>
+        </div>
       </div>
 
       {currentStep > 0 && currentStep < 3 && (
