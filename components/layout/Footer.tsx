@@ -21,17 +21,17 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Middle Section: Links Grid (Below Logo as per diagram) */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-24 mb-20 border-t border-white/5 pt-16">
+        {/* Middle Section: Links Grid - Aligned Baseline */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 mb-20 border-t border-white/5 pt-16 items-start">
           {/* Shop by Space */}
-          <div>
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6">
+          <div className="flex flex-col">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               Shop by Space
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 mt-2">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[14px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -40,14 +40,14 @@ export default function Footer() {
           </div>
 
           {/* Our Services */}
-          <div>
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6">
+          <div className="flex flex-col">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               Our Services
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 mt-2">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[14px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -56,14 +56,14 @@ export default function Footer() {
           </div>
 
           {/* The Company */}
-          <div>
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6">
+          <div className="flex flex-col">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               The Company
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5 mt-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[14px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
