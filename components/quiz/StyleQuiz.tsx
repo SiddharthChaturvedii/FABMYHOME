@@ -4,6 +4,7 @@ import { useQuizStore } from "@/store/quizStore";
 import { quizOptions } from "@/data/quizOptions";
 import { siteContent } from "@/data/siteContent";
 import { motion, AnimatePresence } from "framer-motion";
+import QuizModel from "./QuizModel";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -44,7 +45,7 @@ export default function StyleQuiz() {
                 onClick={() => { setRoom(room.id); nextStep(); }}
                 className={`relative group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg ${
                   selections.room === room.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"
-                } flex flex-row items-center gap-4 py-1 px-4 overflow-hidden w-full max-w-2xl`}
+                } flex flex-row items-center gap-4 py-1 px-2 overflow-hidden w-full max-w-2xl`}
               >
                 <div className="w-14 h-14 md:w-20 md:h-14 shrink-0 relative overflow-hidden rounded-none border border-black/5">
                   <img 
@@ -80,7 +81,7 @@ export default function StyleQuiz() {
                 key={color.id}
                 variants={itemVariants}
                 onClick={() => { setColor(color.id); nextStep(); }}
-                className={`flex items-center gap-4 py-1 px-4 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg w-full max-w-2xl ${selections.color === color.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
+                className={`flex items-center gap-4 py-1 px-2 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg w-full max-w-2xl ${selections.color === color.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
               >
                 <div 
                   className={`w-8 h-8 md:w-10 md:h-8 rounded-none shadow-inner transition-all duration-500 shrink-0 ${selections.color === color.id ? "ring-2 ring-offset-1 ring-[var(--color-terracotta)]" : ""}`}
@@ -111,7 +112,7 @@ export default function StyleQuiz() {
                 key={texture.id}
                 variants={itemVariants}
                 onClick={() => { setTexture(texture.id); nextStep(); }}
-                className={`flex items-center gap-4 py-1 px-4 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg w-full max-w-2xl ${selections.texture === texture.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
+                className={`flex items-center gap-4 py-1 px-2 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg w-full max-w-2xl ${selections.texture === texture.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
               >
                 <div className="w-12 h-12 md:w-16 md:h-12 rounded-none overflow-hidden shrink-0 border border-black/5">
                   <img 
@@ -231,7 +232,7 @@ export default function StyleQuiz() {
         ))}
       </motion.div>
 
-      <div className="min-h-[400px] w-full max-w-2xl transition-all duration-500 mx-auto min-[760px]:items-center items-start flex flex-col">
+      <div className="min-h-[400px] w-full max-w-5xl transition-all duration-500 mx-auto min-[760px]:items-center items-start flex flex-col">
         <motion.h3 
           key={currentStep}
           initial={{ opacity: 0, x: -20 }}
@@ -241,10 +242,18 @@ export default function StyleQuiz() {
           {stepTitles[currentStep]}
         </motion.h3>
 
-        <div className="w-full flex justify-center min-[760px]:justify-center justify-start">
-        <AnimatePresence mode="wait">
-          {renderStep()}
-        </AnimatePresence>
+        <div className="w-full flex flex-col md:flex-row items-center gap-12 min-[760px]:justify-center justify-start">
+          <div className="flex-1 w-full flex justify-center min-[760px]:justify-center justify-start">
+            <AnimatePresence mode="wait">
+              {renderStep()}
+            </AnimatePresence>
+          </div>
+          
+          {currentStep < 3 && (
+            <div className="flex-1 w-full md:w-[400px] h-[300px] md:h-[400px]">
+              <QuizModel />
+            </div>
+          )}
         </div>
       </div>
 
