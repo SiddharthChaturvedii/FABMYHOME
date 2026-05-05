@@ -14,7 +14,7 @@ export default function QuizModel() {
     <div className="w-full h-[300px] md:h-[500px] relative">
       <Canvas dpr={[1, 2]} camera={{ fov: 45 }}>
         <Suspense fallback={null}>
-          <Stage environment="city" intensity={0.5} contactShadow={false}>
+          <Stage environment="city" intensity={0.5} shadows={false}>
             <Float speed={2} rotationIntensity={0.5} floatIntensity={0.5}>
               <Model />
             </Float>
