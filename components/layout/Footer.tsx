@@ -21,17 +21,17 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Middle Section: Links Grid - Centered & Balanced */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16 mb-20 border-t border-white/5 pt-16 items-start max-w-4xl mx-auto">
+        {/* Middle Section: Links Grid - Strict 3x1 Equal Spacing */}
+        <div className="grid grid-cols-3 gap-4 md:gap-8 lg:gap-12 mb-20 border-t border-white/5 pt-16 items-start w-full">
           {/* Shop by Space */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4 text-center md:text-left">
+          <div className="flex flex-col">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[9px] md:text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               Shop by Space
             </h3>
-            <ul className="space-y-1.5 mt-2 text-center md:text-left">
+            <ul className="space-y-1.5 mt-2">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[12px] md:text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -40,14 +40,14 @@ export default function Footer() {
           </div>
 
           {/* Our Services */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4 text-center md:text-left">
+          <div className="flex flex-col">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[9px] md:text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               Our Services
             </h3>
-            <ul className="space-y-1.5 mt-2 text-center md:text-left">
+            <ul className="space-y-1.5 mt-2">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[12px] md:text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -56,14 +56,14 @@ export default function Footer() {
           </div>
 
           {/* The Company */}
-          <div className="flex flex-col items-center md:items-start">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4 text-center md:text-left">
+          <div className="flex flex-col">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[9px] md:text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
               The Company
             </h3>
-            <ul className="space-y-1.5 mt-2 text-center md:text-left">
+            <ul className="space-y-1.5 mt-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[12px] md:text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
