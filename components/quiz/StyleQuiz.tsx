@@ -172,18 +172,25 @@ export default function StyleQuiz() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "0px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="text-center mb-16 max-w-3xl flex flex-col items-center"
+        className="text-center mb-8 max-w-3xl flex flex-col items-center"
       >
-        {/* New AI Guidance Component */}
+        <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-4 font-medium italic">
+          {headline}
+        </h2>
+        <p className="font-sans text-[var(--color-graphite)]/80 text-xl md:text-2xl font-light mb-6">
+          {subheadline}
+        </p>
+
+        {/* Repositioned AI Guidance Component - Closer to Questions */}
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ 
-            delay: 0.5,
+            delay: 0.2,
             type: "spring",
             stiffness: 200
           }}
-          className="mb-8"
+          className="mb-6"
         >
           <motion.div 
             animate={{ 
@@ -195,21 +202,14 @@ export default function StyleQuiz() {
               repeat: Infinity,
               ease: "easeInOut"
             }}
-            className="px-6 py-2 rounded-full bg-[var(--color-midnight)]/5 border border-[var(--color-terracotta)]/30 backdrop-blur-sm"
+            className="px-4 py-1.5 rounded-full bg-[var(--color-midnight)]/5 border border-[var(--color-terracotta)]/30 backdrop-blur-sm"
           >
-            <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] text-[var(--color-terracotta)] flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[var(--color-terracotta)] animate-pulse" />
-              ✨ AI-Assisted Styling Experience
+            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[var(--color-terracotta)] flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-terracotta)] animate-pulse" />
+              ✨ AI-Assisted Styling
             </span>
           </motion.div>
         </motion.div>
-
-        <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-8 font-medium italic">
-          {headline}
-        </h2>
-        <p className="font-sans text-[var(--color-graphite)]/80 text-2xl font-light">
-          {subheadline}
-        </p>
       </motion.div>
 
       <motion.div 
