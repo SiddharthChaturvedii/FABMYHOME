@@ -116,9 +116,9 @@ export default function Navbar() {
               <HoverCardContent 
                 align="start" 
                 sideOffset={25}
-                className="w-screen max-w-none p-0 bg-white border-none shadow-2xl rounded-none overflow-hidden z-[1000]"
+                className="w-[85vw] max-w-5xl p-0 bg-white border border-black/5 shadow-2xl rounded-none overflow-hidden z-[1000]"
               >
-                <div className="max-w-7xl mx-auto py-12 px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <div className="py-12 px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                   {item.sections.map((section) => (
                     <div key={section.title} className="space-y-6">
                       <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
