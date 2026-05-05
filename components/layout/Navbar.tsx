@@ -266,7 +266,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black z-[2000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black z-[6000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
           >
             <div className="flex flex-col gap-12">
               {navItems.map((item) => (
@@ -309,14 +309,14 @@ export default function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsCartOpen(false)}
-              className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[2500]"
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[4500]"
             />
             <motion.div
               initial={{ x: "100%" }}
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[2600] shadow-2xl flex flex-col"
+              className="fixed top-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[5000] shadow-2xl flex flex-col"
             >
               <div className="p-4 md:px-8 py-2.5 flex items-center justify-between border-b border-black/5 bg-white">
                 <h2 className="font-display text-lg font-black uppercase tracking-[0.2em] text-black">Your Cart</h2>
