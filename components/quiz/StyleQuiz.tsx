@@ -172,8 +172,38 @@ export default function StyleQuiz() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "0px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="text-center mb-16 max-w-3xl"
+        className="text-center mb-16 max-w-3xl flex flex-col items-center"
       >
+        {/* New AI Guidance Component */}
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ 
+            delay: 0.5,
+            type: "spring",
+            stiffness: 200
+          }}
+          className="mb-8"
+        >
+          <motion.div 
+            animate={{ 
+              scale: [1, 1.05, 1],
+              opacity: [0.8, 1, 0.8]
+            }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+            className="px-6 py-2 rounded-full bg-[var(--color-midnight)]/5 border border-[var(--color-terracotta)]/30 backdrop-blur-sm"
+          >
+            <span className="text-[10px] md:text-[12px] font-black uppercase tracking-[0.4em] text-[var(--color-terracotta)] flex items-center gap-3">
+              <span className="w-2 h-2 rounded-full bg-[var(--color-terracotta)] animate-pulse" />
+              ✨ AI-Assisted Styling Experience
+            </span>
+          </motion.div>
+        </motion.div>
+
         <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-8 font-medium italic">
           {headline}
         </h2>
