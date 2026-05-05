@@ -166,11 +166,11 @@ export default function CompleteTheLook() {
           </div>
         </motion.div>
 
-        <div className="hidden lg:flex absolute top-[-10%] right-[6%] w-1/3 h-full justify-center items-start pointer-events-none z-0 drop-shadow-2xl">
+        <div className="hidden lg:flex absolute top-[7%] right-[6%] w-1/3 h-full justify-center items-start pointer-events-none z-0 drop-shadow-2xl">
           <img 
             src="/pillar.png" 
             alt="Decorative Pillar" 
-            className="object-contain h-full max-h-[950px] transform -translate-y-12"
+            className="object-contain h-full max-h-[900px] transform -translate-y-2"
           />
         </div>
 

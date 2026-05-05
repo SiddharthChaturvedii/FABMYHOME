@@ -35,24 +35,26 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-5xl"
+            className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-5xl"
           >
             {quizOptions.rooms.map((room) => (
               <motion.button
                 key={room.id}
                 variants={itemVariants}
                 onClick={() => { setRoom(room.id); nextStep(); }}
-                className={`relative h-32 md:h-48 lg:h-80 rounded-none overflow-hidden group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 hover:-translate-y-2 ${
+                className={`relative group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 ${
                   selections.room === room.id ? "ring-2 ring-[var(--color-terracotta)]" : ""
-                }`}
+                } flex flex-row md:flex-col items-center md:items-stretch gap-4 md:gap-0 p-3 md:p-0 bg-white md:bg-transparent md:h-48 lg:h-80 overflow-hidden`}
               >
-                <div className="absolute inset-0 bg-[var(--color-midnight)]/10 group-hover:bg-[var(--color-midnight)]/30 transition-colors z-20" />
-                <img 
-                  src={room.image} 
-                  alt={room.label}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-10"
-                />
-                <h3 className="absolute bottom-6 left-6 text-white font-display text-2xl md:text-3xl z-30 drop-shadow-lg font-bold italic tracking-tight">
+                <div className="w-20 h-20 md:w-full md:h-full shrink-0 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-[var(--color-midnight)]/10 group-hover:bg-[var(--color-midnight)]/30 transition-colors z-20 md:block hidden" />
+                  <img 
+                    src={room.image} 
+                    alt={room.label}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                </div>
+                <h3 className="md:absolute md:bottom-6 md:left-6 text-[var(--color-midnight)] md:text-white font-display text-lg md:text-2xl lg:text-3xl z-30 md:drop-shadow-lg font-bold md:italic tracking-tight">
                   {room.label}
                 </h3>
               </motion.button>
@@ -132,12 +134,12 @@ export default function StyleQuiz() {
               We&apos;ve analyzed your selections. You lean towards a <span className="text-[var(--color-terracotta)] font-semibold">{selections.color}</span> palette with <span className="text-[var(--color-terracotta)] font-semibold">{selections.texture}</span> textures for your {selections.room}.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <button className="bg-[var(--color-midnight)] text-white font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-none hover:scale-105 hover:shadow-2xl hover:shadow-[var(--color-midnight)]/30 transition-all duration-300">
+              <button className="bg-[var(--color-midnight)] text-white font-sans font-semibold uppercase tracking-[0.15em] px-8 py-3 rounded-none hover:scale-105 hover:shadow-2xl hover:shadow-[var(--color-midnight)]/30 transition-all duration-300">
                 View Your Curated Room
               </button>
               <button 
                 onClick={resetQuiz}
-                className="bg-transparent border border-[var(--color-graphite)]/20 text-[var(--color-graphite)] font-sans font-semibold uppercase tracking-[0.15em] px-8 py-5 rounded-none hover:bg-[var(--color-graphite)]/5 transition-all duration-300"
+                className="bg-transparent border border-[var(--color-graphite)]/20 text-[var(--color-graphite)] font-sans font-semibold uppercase tracking-[0.15em] px-8 py-3 rounded-none hover:bg-[var(--color-graphite)]/5 transition-all duration-300"
               >
                 Retake Quiz
               </button>

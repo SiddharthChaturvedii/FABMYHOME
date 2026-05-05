@@ -20,7 +20,7 @@ export default function Testimonials() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-5xl md:text-8xl font-serif font-medium tracking-tight text-center text-black uppercase"
+          className="text-4xl md:text-6xl font-serif font-medium tracking-tight text-center text-black uppercase"
         >
           Testimonials
         </motion.h2>
