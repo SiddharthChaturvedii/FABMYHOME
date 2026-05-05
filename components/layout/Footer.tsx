@@ -3,7 +3,7 @@ import { footerLinks } from "@/data/navigation";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0a2e2e] text-white pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <footer className="bg-[#0d3d3d] text-white pt-24 pb-12 px-6 md:px-12 relative overflow-hidden">
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-gradient-to-br from-white to-transparent" />
 

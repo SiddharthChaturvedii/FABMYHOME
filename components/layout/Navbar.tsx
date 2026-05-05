@@ -92,13 +92,13 @@ export default function Navbar() {
     <>
       <nav 
       className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
-        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#0a2e2e]/95 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#0d3d3d] backdrop-blur-2xl border-b border-white/10" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="font-display text-2xl tracking-tight z-[1001] text-white">
           <span className="font-bold">FAB</span>
-          <span className={`font-normal ${scrolled ? "text-white/60" : "text-black"}`}>MY</span>
+          <span className="font-normal text-white/60">MY</span>
           <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
         </Link>
 
@@ -107,7 +107,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <HoverCard key={item.title} openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
-                <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-[#124444]/70 hover:text-[#124444]" : "text-white/70 hover:text-white"}`}>
+                <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white hover:text-[var(--color-terracotta)]" : "text-white/70 hover:text-white"}`}>
                   {item.title}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 opacity-50" />
                 </div>
@@ -155,7 +155,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-[#124444]/60 hover:text-[#124444]" : "text-white/60 hover:text-white"}`}
+              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-white/80 hover:text-white" : "text-white/60 hover:text-white"}`}
             >
               {link.label}
             </Link>
