@@ -262,13 +262,13 @@ export default function Navbar() {
                   ))}
                 </div>
               </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                   {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
                     <button 
                       key={cat}
-                      className="text-left py-3 px-4 text-[10px] font-black uppercase tracking-[0.25em] text-black/40 hover:text-black transition-colors border border-black/5 hover:border-black"
+                      className="flex items-center justify-center aspect-square md:aspect-video p-4 text-[10px] font-black uppercase tracking-[0.25em] text-black/40 hover:text-black transition-all duration-300 border border-black/5 hover:border-black hover:bg-black/5 group"
                     >
-                      {cat}
+                      <span className="group-hover:scale-110 transition-transform">{cat}</span>
                     </button>
                   ))}
                 </div>
