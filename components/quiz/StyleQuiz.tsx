@@ -204,9 +204,15 @@ export default function StyleQuiz() {
             }}
             className="px-4 py-1.5 rounded-full bg-[var(--color-midnight)]/5 border border-[var(--color-terracotta)]/30 backdrop-blur-sm"
           >
-            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.4em] text-[var(--color-terracotta)] flex items-center gap-2">
+            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] text-[var(--color-terracotta)] flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-terracotta)] animate-pulse" />
-              ✨ AI-Assisted Styling
+              ✨ Select an option below to start your AI journey
+              <motion.span
+                animate={{ y: [0, 3, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                ↓
+              </motion.span>
             </span>
           </motion.div>
         </motion.div>
