@@ -114,7 +114,7 @@ export default function Navbar() {
               </HoverCardTrigger>
 
               <HoverCardContent 
-                align="center" 
+                align="start" 
                 sideOffset={25}
                 className="w-screen max-w-none p-0 bg-white border-none shadow-2xl rounded-none overflow-hidden z-[1000]"
               >
