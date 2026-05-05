@@ -81,12 +81,22 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMobileMenuOpen || isCartOpen || isSearchOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => { document.body.style.overflow = "unset"; };
+  }, [isMobileMenuOpen, isCartOpen, isSearchOpen]);
+
   return (
-    <nav 
-      className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
-        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-black/90 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
-      }`}
-    >
+    <>
+      <nav 
+        className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
+          isMobileMenuOpen ? "bg-black" : scrolled ? "bg-black/90 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+        }`}
+      >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="font-display text-2xl tracking-tight text-white z-[1001]">
           <span className="font-bold">FAB</span>
@@ -258,6 +268,7 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+      </nav>
 
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
@@ -316,7 +327,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed top-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[5000] shadow-2xl flex flex-col"
+              className="fixed inset-y-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[5000] shadow-2xl flex flex-col overflow-hidden"
             >
               <div className="p-4 md:px-8 py-2.5 flex items-center justify-between border-b border-black/5 bg-white">
                 <h2 className="font-display text-lg font-black uppercase tracking-[0.2em] text-black">Your Cart</h2>
@@ -328,7 +339,7 @@ export default function Navbar() {
                 </button>
               </div>
               
-              <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 text-center text-black">
+              <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 text-center text-black overflow-y-auto">
                 <div className="w-12 h-12 bg-[var(--color-alabaster)] rounded-none flex items-center justify-center mb-4">
                   <ShoppingBag size={24} className="text-black/40" />
                 </div>
@@ -357,6 +368,6 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </nav>
+    </>
   );
 }

@@ -1,69 +1,65 @@
-FABMYHOME - Developer Guide
-===========================
+FABMYHOME - Developer Guide & Project Showcase
+===========================================
 
-Welcome to the FABMYHOME frontend repository! This document is designed to get you up to speed quickly on how the project is structured, how the UI is built, and how you can attach a real backend to this Next.js application.
+Welcome to the FABMYHOME technical documentation. This document serves as both a developer onboarding guide and a "Showcase Dossier" detailing the engineering challenges we solved from concept to production.
 
 ---
 
 1. ARCHITECTURE & STRUCTURE
+---------------------------
+Next.js 15/16 (App Router), React, TypeScript, Tailwind CSS, Zustand, and Framer Motion.
 
-This project is built using Next.js 15 (App Router), React, TypeScript, Tailwind CSS, Zustand (for state), and Framer Motion (for animations).
-
-Key Directories:
-- /app : Contains the main routing (`page.tsx`, `layout.tsx`) and global styles (`globals.css`).
-- /components : The heart of the UI. Broken down by feature:
-    -> /hero : The initial cinematic loading sequence and hero banner.
-    -> /quiz : The multi-step "Style Quiz" interactive component.
-    -> /complete-look : The smart suggestion engine showing related products.
-    -> /visual-search : The drag-and-drop image analyzer.
-    -> /bundle : The dynamic pricing and bundle calculator.
-    -> /rooms, /trust, /ai-correction : Supporting visual modules.
-- /store : Zustand state management.
-    -> `uiStore.ts`: Controls global UI states like whether the hero animation has finished.
-    -> `quizStore.ts`: Controls the state of the multi-step Style Quiz.
-- /data : Contains static fallback data (`siteContent.ts`, `quizOptions.ts`).
-- /public : All static images, textures, and graphical assets used in the UI.
+- /app : Core routing and global styles (globals.css).
+- /components : Feature-based modules (Hero, Quiz, Complete-The-Look, Visual-Search).
+- /store : Zustand state managers (uiStore.ts for coordination, quizStore.ts for onboarding).
+- /lib/utils.ts : The cn() helper for class merging (Tailwind-merge + Clsx).
 
 ---
 
-2. ANIMATION PHILOSOPHY
+2. ENGINEERING CHALLENGES & DEBUG HISTORY (The "Bigger Ones")
+-------------------------------------------------------------
 
-We use Framer Motion extensively. Almost all animations on scroll use `whileInView` with `spring` physics rather than standard linear easing.
-Example of standard animation settings used:
-`transition={{ type: "spring", stiffness: 100, damping: 20 }}`
-This ensures animations look premium, smooth, and do not lag heavily on scroll.
+A) [EARLY PHASE] The Hydration & Coordinate Conflict
+- Problem: The complex Hero sequence caused "Hydration Mismatch" errors because the client-side Framer Motion triggers didn't match the initial server-rendered HTML.
+- Debug/Fix: Centralized the entire entrance sequence into a Zustand store (uiStore). We implemented a "mounted" state guard and coordinated the LoadingCurtain with the introStage (0-3). This ensured the browser only started animations once the React tree was stable.
 
----
+B) [MIDDLE PHASE] The 50MB Performance Wall
+- Problem: Our high-fidelity hero animation originally relied on 192 static image frames. This caused extreme TTI (Time-To-Interactive) delays, especially on 4G mobile networks.
+- Debug/Fix: We refactored the entire system from frame-by-frame rendering to hardware-accelerated video streaming. We built a responsive "HeroVideo" component that detects viewport orientation to serve optimized .mp4 files (laptop vs mobile), cutting the asset weight by 90% while improving visual quality.
 
-3. ADDING A BACKEND / DATABASE
+C) [MIDDLE PHASE] Layout Overlaps & Z-Index Layering
+- Problem: As we added Glassmorphic Mega Menus, the hero video would often "leak" through or navigation items would become unclickable on mobile.
+- Debug/Fix: We implemented a strict z-index hierarchy and added 'pointer-events-none' to background video containers. We also solved a "Ref Forwarding" issue where the Radix UI HoverCard trigger wasn't firing because it was wrapped in a custom component that didn't expose its DOM reference.
 
-Right now, FABMYHOME operates purely on the client-side using Zustand stores and static mock data. If you are preparing to attach a real backend (e.g., Node.js/Express, Python/Django, or directly to Firebase/Supabase), here is exactly what you need to do:
+D) [RECENT] The Vercel PostCSS Stabilization
+- Problem: During deployment, Vercel threw "Unknown Utility Class" errors for modern Tailwind v4 features (like backdrop-blur-2xl).
+- Debug/Fix: We had to debug the PostCSS pipeline and move complex effects (Glassmorphism, Marquee animations) into pure CSS variables and keyframes within globals.css to ensure build-time stability across different environments.
 
-A) User Authentication
-- NextAuth.js (Auth.js) is recommended for Next.js.
-- Create `/app/api/auth/[...nextauth]/route.ts`.
-- Wrap the main application in `<SessionProvider>` in `layout.tsx`.
-- Modify the Navbar to read session state to replace the "Free Consultation" button with "My Profile".
-
-B) Database Integration (Products & Quiz)
-- Currently, `quizOptions.ts` and `siteContent.ts` are hardcoded.
-- You should create API routes (e.g., `/api/products` and `/api/quiz`) to fetch this data from your database (PostgreSQL/MongoDB).
-- In components like `<CompleteTheLook />`, replace the static `products` array with a React Query (`useQuery`) or Next.js `fetch` call to retrieve actual SKU data, prices, and suggestions based on the user's active selections.
-
-C) AI Features (Visual Search & Smart Correction)
-- The `<VisualSearch />` currently uses a `setTimeout` to simulate AI analysis.
-- To make this real: 
-  1. Capture the dropped image file.
-  2. Send a `POST` request with FormData to an API route (e.g., `/api/analyze-image`).
-  3. Your backend should interface with an actual Vision AI (like OpenAI Vision or Google Cloud Vision) to extract keywords.
-  4. Query your database for products matching those keywords and return them to the client to render instead of the "View Similar Items" mock button.
-
-D) Shopping Cart & Checkout
-- The `<BundleRewards />` component currently simulates dynamic pricing.
-- You will need to implement a true Cart Store (using Zustand).
-- Integrate Stripe or Razorpay via Next.js Server Actions or API routes when the user clicks "Checkout".
+E) [NOW] The Mobile Autoplay & Interaction Lock
+- Problem: Mobile browsers were showing a "Play Button" on the background video and pausing it by default to save data.
+- Debug/Fix: We implemented a "Triple-Lock" system:
+  1. Forced muted/playsinline attributes.
+  2. Manual .play() triggers in a useEffect hook.
+  3. A transparent 'pointer-events-none' overlay to prevent accidental user pauses.
 
 ---
 
+3. DESIGN SYSTEM & TYPOGRAPHY
+-----------------------------
+- Primary Font: Inter (Variable weight). Chosen for its "Institutional Apple" feel.
+- Heading Style: All-Caps, Font-Black (900), Tracking-Tighter.
+- Signature Color: Lighter Brand Teal (#124444) for Curtain/Footer/Testimonials.
+- Interactive Physics: Custom 35-degree 3D TiltCards with GSAP-powered ScrollFloat reveals.
+
+---
+
+4. ADDING A BACKEND (THE NEXT STEPS)
+------------------------------------
+- Authentication: NextAuth.js integration via /app/api/auth.
+- Data Persistence: Transition /data/ mocks to PostgreSQL or MongoDB using Prisma.
+- AI Logic: Replace setTimeout mocks in VisualSearch with actual POST requests to an OpenAI Vision or custom PyTorch endpoint.
+- Commerce: Integrate Stripe/Razorpay for the Bundle Checkout process.
+
+---
 SUMMARY
-The UI is fully responsive, interactive, and polished. Your primary backend tasks will be swapping out the `setTimeout` mocks for actual `fetch` calls, routing the static `data/` files to database queries, and integrating a payment/auth gateway.
+The project has evolved from a static prototype to a production-hardened cinematic experience. Every technical hurdle—from hydration to mobile media policies—was solved with systematic state management and performance-first architecture.
