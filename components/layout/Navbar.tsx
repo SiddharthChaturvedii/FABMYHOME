@@ -92,7 +92,7 @@ export default function Navbar() {
     <>
       <nav 
       className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
-        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#0d3d3d] backdrop-blur-2xl border-b border-white/10" : "bg-transparent"
+        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#124c4c] backdrop-blur-2xl border-b border-white/10" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -163,7 +163,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Action Icons & Hamburger */}
-        <div className={`flex items-center gap-3 md:gap-4 z-[1001] ${scrolled ? "text-[#124444]" : "text-white/90"}`}>
+        <div className={`flex items-center gap-3 md:gap-4 z-[1001] ${scrolled ? "text-white" : "text-white/90"}`}>
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(!isSearchOpen) },
             { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) }
