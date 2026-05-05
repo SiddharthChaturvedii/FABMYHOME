@@ -35,28 +35,33 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 w-full max-w-5xl"
+            className="grid grid-cols-1 gap-4 w-full max-w-3xl"
           >
             {quizOptions.rooms.map((room) => (
               <motion.button
                 key={room.id}
                 variants={itemVariants}
                 onClick={() => { setRoom(room.id); nextStep(); }}
-                className={`relative group transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-[var(--color-midnight)]/20 ${
-                  selections.room === room.id ? "ring-2 ring-[var(--color-terracotta)]" : ""
-                } flex flex-row md:flex-col items-center md:items-stretch gap-4 md:gap-0 p-3 md:p-0 bg-white md:bg-transparent md:h-48 lg:h-80 overflow-hidden`}
+                className={`relative group transition-all duration-500 border border-black/5 hover:bg-white hover:shadow-xl hover:shadow-black/5 ${
+                  selections.room === room.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"
+                } flex flex-row items-center gap-6 p-4 overflow-hidden`}
               >
-                <div className="w-20 h-20 md:w-full md:h-full shrink-0 relative overflow-hidden">
-                  <div className="absolute inset-0 bg-[var(--color-midnight)]/10 group-hover:bg-[var(--color-midnight)]/30 transition-colors z-20 md:block hidden" />
+                <div className="w-24 h-24 md:w-32 md:h-20 shrink-0 relative overflow-hidden rounded-none border border-black/5">
                   <img 
                     src={room.image} 
                     alt={room.label}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 </div>
-                <h3 className="md:absolute md:bottom-6 md:left-6 text-[var(--color-midnight)] md:text-white font-display text-lg md:text-2xl lg:text-3xl z-30 md:drop-shadow-lg font-bold md:italic tracking-tight">
-                  {room.label}
-                </h3>
+                <div className="flex flex-col items-start">
+                  <h3 className="text-[var(--color-midnight)] font-display text-xl md:text-2xl font-bold tracking-tight">
+                    {room.label}
+                  </h3>
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-black text-black/30 mt-1">Select Space</p>
+                </div>
+                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity pr-4">
+                  <span className="text-[var(--color-terracotta)] text-2xl">→</span>
+                </div>
               </motion.button>
             ))}
           </motion.div>
@@ -69,20 +74,26 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-2 gap-4 w-full max-w-xl mx-auto"
+            className="grid grid-cols-1 gap-4 w-full max-w-2xl mx-auto"
           >
             {quizOptions.colors.map((color) => (
               <motion.button
                 key={color.id}
                 variants={itemVariants}
                 onClick={() => { setColor(color.id); nextStep(); }}
-                className={`flex items-center gap-4 p-4 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-xl hover:shadow-black/5 ${selections.color === color.id ? "bg-white border-[var(--color-terracotta)]" : "bg-white/50"}`}
+                className={`flex items-center gap-6 p-4 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-xl hover:shadow-black/5 ${selections.color === color.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
               >
                 <div 
-                  className={`w-12 h-12 rounded-none shadow-inner transition-all duration-500 ${selections.color === color.id ? "ring-2 ring-offset-2 ring-[var(--color-terracotta)]" : ""}`}
+                  className={`w-14 h-14 rounded-none shadow-inner transition-all duration-500 shrink-0 ${selections.color === color.id ? "ring-2 ring-offset-2 ring-[var(--color-terracotta)]" : ""}`}
                   style={{ backgroundColor: color.hex }}
                 />
-                <span className="font-sans text-[var(--color-graphite)] font-bold text-sm md:text-base uppercase tracking-widest">{color.label}</span>
+                <div className="flex flex-col items-start">
+                  <span className="font-sans text-[var(--color-midnight)] font-bold text-lg uppercase tracking-widest">{color.label}</span>
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-black text-black/20 mt-0.5">Vibe Check</p>
+                </div>
+                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity pr-4">
+                  <span className="text-[var(--color-terracotta)] text-2xl">→</span>
+                </div>
               </motion.button>
             ))}
           </motion.div>
