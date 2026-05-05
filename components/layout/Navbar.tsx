@@ -49,12 +49,19 @@ const navItems = [
     title: "Design My Room",
     sections: [
       {
-        title: "AI Design Tools",
+        title: "Services",
+        links: [
+          { label: "Upload Your Room", href: "#upload", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
+          { label: "Trade / Interior Designers", href: "#trade", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop" },
+          { label: "Book Store Visit", href: "#store", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
+        ],
+      },
+      {
+        title: "AI Tools",
         links: [
           { label: "Start Style Quiz", href: "#quiz", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
           { label: "AI Room Scan", href: "#scan", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
           { label: "Visual Search", href: "#search", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
-          { label: "View Mockups", href: "#mockups", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
         ],
       },
     ],
@@ -76,8 +83,8 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-[1000] transition-all duration-500 px-6 md:px-12 py-5 ${
-        scrolled || isMobileMenuOpen ? "bg-black/80 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-3 ${
+        scrolled || isMobileMenuOpen ? "bg-black/90 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -140,7 +147,7 @@ export default function Navbar() {
         {/* Right Action Icons & Hamburger */}
         <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
           {[
-            { icon: Search, label: "Search", onClick: () => setIsSearchOpen(true) },
+            { icon: Search, label: "Search", onClick: () => setIsSearchOpen(!isSearchOpen) },
             { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) }
           ].map(({ icon: Icon, label, onClick }) => (
             <motion.button
@@ -183,23 +190,26 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden w-9 h-9 flex items-center justify-center rounded-none bg-black/20 backdrop-blur-md border border-white/5 text-white ml-1 cursor-pointer"
+            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-none border border-white/10 text-white ml-2 transition-all duration-300 ${
+              scrolled || isMobileMenuOpen ? "bg-black/90" : "bg-transparent"
+            }`}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {/* Search Overlay Animation */}
+      {/* Search Dropdown (Under Navbar) */}
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="absolute inset-0 z-[2000] bg-white flex flex-col"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="absolute top-full left-0 w-full z-[999] bg-white border-b border-black/5 shadow-2xl overflow-hidden"
           >
-            <div className="max-w-7xl mx-auto w-full px-6 md:px-12 h-[80px] flex items-center justify-between gap-8">
+            <div className="max-w-7xl mx-auto px-6 md:px-12 py-8 flex items-center justify-between gap-8">
               <div className="flex-1 flex items-center gap-4 border-b border-black/10 py-2">
                 <Search className="text-black/40 h-5 w-5" />
                 <input 
@@ -236,21 +246,16 @@ export default function Navbar() {
                   ))}
                 </div>
               </div>
-              <div className="md:col-span-3 grid grid-cols-2 md:grid-cols-4 gap-4">
-                {[
-                  { label: "Trending", img: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=200&auto=format&fit=crop" },
-                  { label: "New In", img: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=200&auto=format&fit=crop" },
-                  { label: "Best Sellers", img: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=200&auto=format&fit=crop" },
-                  { label: "Limited", img: "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?q=80&w=200&auto=format&fit=crop" }
-                ].map(item => (
-                  <div key={item.label} className="group cursor-pointer">
-                    <div className="aspect-square overflow-hidden bg-gray-100 rounded-none mb-2">
-                      <img src={item.img} alt={item.label} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
-                    </div>
-                    <p className="text-[11px] font-bold uppercase tracking-widest">{item.label}</p>
-                  </div>
-                ))}
-              </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                  {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
+                    <button 
+                      key={cat}
+                      className="text-left py-3 px-4 text-xs font-bold uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors bg-black/5 hover:bg-black/10 border-l-2 border-transparent hover:border-[var(--color-terracotta)]"
+                    >
+                      {cat}
+                    </button>
+                  ))}
+                </div>
             </motion.div>
           </motion.div>
         )}
@@ -263,7 +268,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black/95 backdrop-blur-3xl z-[1000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black z-[2000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
           >
             <div className="flex flex-col gap-12">
               {navItems.map((item) => (
@@ -315,38 +320,38 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="fixed top-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[2600] shadow-2xl flex flex-col"
             >
-              <div className="p-8 flex items-center justify-between border-b border-black/5">
-                <h2 className="font-display text-2xl font-bold uppercase tracking-widest">Your Cart</h2>
+              <div className="p-4 md:p-6 flex items-center justify-between border-b border-black/5">
+                <h2 className="font-display text-xl font-bold uppercase tracking-widest text-black">Your Cart</h2>
                 <button 
                   onClick={() => setIsCartOpen(false)}
-                  className="p-2 hover:rotate-90 transition-transform duration-300"
+                  className="p-2 hover:rotate-90 transition-transform duration-300 text-black"
                 >
-                  <X size={24} />
+                  <X size={20} />
                 </button>
               </div>
               
-              <div className="flex-1 flex flex-col items-center justify-center p-12 text-center">
-                <div className="w-20 h-20 bg-[var(--color-alabaster)] rounded-none flex items-center justify-center mb-6">
-                  <ShoppingBag size={32} className="text-black/20" />
+              <div className="flex-1 flex flex-col items-center justify-center p-4 md:p-8 text-center text-black">
+                <div className="w-12 h-12 bg-[var(--color-alabaster)] rounded-none flex items-center justify-center mb-4">
+                  <ShoppingBag size={24} className="text-black/40" />
                 </div>
-                <h3 className="font-sans text-lg font-medium mb-2">Your cart is empty</h3>
-                <p className="font-sans text-sm text-black/40 mb-8 max-w-[200px]">
+                <h3 className="font-sans text-base font-bold mb-1 uppercase tracking-wider">Your cart is empty</h3>
+                <p className="font-sans text-[10px] text-black/50 mb-6 max-w-[180px] leading-relaxed">
                   Start styling your room to see items appear here.
                 </p>
                 <button 
                   onClick={() => setIsCartOpen(false)}
-                  className="font-sans text-xs font-bold uppercase tracking-[0.2em] border-b-2 border-black pb-1 hover:text-[var(--color-terracotta)] hover:border-[var(--color-terracotta)] transition-all"
+                  className="font-sans text-[10px] font-black uppercase tracking-[0.2em] border-b-2 border-black pb-1 hover:text-[var(--color-terracotta)] hover:border-[var(--color-terracotta)] transition-all"
                 >
-                  Continue Shopping
+                  Design Your Room
                 </button>
               </div>
 
-              <div className="p-8 border-t border-black/5 bg-[var(--color-alabaster)]/30">
-                <div className="flex items-center justify-between mb-8">
-                  <span className="font-sans text-sm uppercase tracking-widest text-black/40">Subtotal</span>
-                  <span className="font-sans text-lg font-bold">₹0.00</span>
+              <div className="p-4 md:p-6 border-t border-black/5 bg-white">
+                <div className="flex items-center justify-between mb-6 text-black">
+                  <span className="font-sans text-[9px] font-black uppercase tracking-[0.3em] text-black/40">Subtotal</span>
+                  <span className="font-sans text-lg font-bold tracking-tighter">₹0.00</span>
                 </div>
-                <button className="w-full bg-black text-white font-sans font-bold uppercase tracking-[0.2em] py-5 text-xs rounded-none hover:bg-[var(--color-midnight)] transition-colors opacity-50 cursor-not-allowed">
+                <button className="w-full bg-black text-white font-sans font-bold uppercase tracking-[0.2em] py-4 text-[10px] rounded-none hover:bg-[var(--color-midnight)] transition-colors opacity-50 cursor-not-allowed">
                   Checkout
                 </button>
               </div>
