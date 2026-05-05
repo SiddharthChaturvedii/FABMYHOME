@@ -232,7 +232,7 @@ export default function StyleQuiz() {
         ))}
       </motion.div>
 
-      <div className="min-h-[400px] w-full max-w-5xl transition-all duration-500 mx-auto min-[760px]:items-center items-start flex flex-col">
+      <div className="min-h-[400px] w-full max-w-7xl transition-all duration-500 mx-auto min-[760px]:items-center items-start flex flex-col relative">
         <motion.h3 
           key={currentStep}
           initial={{ opacity: 0, x: -20 }}
@@ -242,15 +242,15 @@ export default function StyleQuiz() {
           {stepTitles[currentStep]}
         </motion.h3>
 
-        <div className="w-full flex flex-col md:flex-row items-center gap-12 min-[760px]:justify-center justify-start">
-          <div className="flex-1 w-full flex justify-center min-[760px]:justify-center justify-start">
+        <div className="w-full flex flex-col md:flex-row items-center justify-start gap-12 lg:gap-24">
+          <div className="w-full md:w-auto flex justify-start z-10">
             <AnimatePresence mode="wait">
               {renderStep()}
             </AnimatePresence>
           </div>
           
           {currentStep < 3 && (
-            <div className="flex-1 w-full md:w-[400px] h-[300px] md:h-[400px]">
+            <div className="w-full md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-[500px] lg:w-[700px] h-[350px] md:h-[600px] shrink-0 pointer-events-none">
               <QuizModel />
             </div>
           )}
