@@ -8,14 +8,14 @@ export default function Footer() {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-gradient-to-br from-white to-transparent" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Top Section: Brand & Tagline */}
-        <div className="mb-20 text-center md:text-left">
+        {/* Top Section: Brand & Tagline - Centered */}
+        <div className="mb-20 text-center flex flex-col items-center">
           <Link href="/" className="font-display text-3xl md:text-4xl tracking-tight text-white inline-block mb-6">
             <span className="font-bold">FAB</span>
             <span className="font-normal text-white/40">MY</span>
             <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
           </Link>
-          <p className="font-sans text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light italic">
+          <p className="font-sans text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light italic text-center">
             India&apos;s first AI-assisted interior styling platform. <br className="hidden md:block" />
             <span className="text-white/40">We believe every room has a story to tell.</span>
           </p>
@@ -25,13 +25,13 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-24 mb-20 border-t border-white/5 pt-16">
           {/* Shop by Space */}
           <div>
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-8">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6">
               Shop by Space
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[15px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[14px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -41,13 +41,13 @@ export default function Footer() {
 
           {/* Our Services */}
           <div>
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-8">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6">
               Our Services
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[15px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[14px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -57,13 +57,13 @@ export default function Footer() {
 
           {/* The Company */}
           <div>
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-8">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6">
               The Company
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[15px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[14px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
