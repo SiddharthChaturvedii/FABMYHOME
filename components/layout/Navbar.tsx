@@ -49,14 +49,6 @@ const navItems = [
     title: "Design My Room",
     sections: [
       {
-        title: "Services",
-        links: [
-          { label: "Upload Your Room", href: "#upload", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=400&auto=format&fit=crop" },
-          { label: "Trade / Interior Designers", href: "#trade", image: "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=400&auto=format&fit=crop" },
-          { label: "Book Store Visit", href: "#store", image: "https://images.unsplash.com/photo-1616489953149-755e74c0e927?q=80&w=400&auto=format&fit=crop" },
-        ],
-      },
-      {
         title: "AI Tools",
         links: [
           { label: "Start Style Quiz", href: "#quiz", image: "https://images.unsplash.com/photo-1616137422495-1e9e46e2aa77?q=80&w=400&auto=format&fit=crop" },
@@ -66,6 +58,12 @@ const navItems = [
       },
     ],
   },
+];
+
+const topLinks = [
+  { label: "Upload Your Room", href: "#upload" },
+  { label: "Trade / Designers", href: "#trade" },
+  { label: "Store Visit", href: "#store" },
 ];
 
 export default function Navbar() {
@@ -151,6 +149,16 @@ export default function Navbar() {
                 </div>
               </HoverCardContent>
             </HoverCard>
+          ))}
+
+          {topLinks.map((link) => (
+            <Link
+              key={link.label}
+              href={link.href}
+              className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors"
+            >
+              {link.label}
+            </Link>
           ))}
         </div>
 
