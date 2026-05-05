@@ -91,8 +91,8 @@ export default function Navbar() {
   return (
     <>
       <nav 
-      className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
-        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#124c4c] backdrop-blur-2xl border-b border-white/10" : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-[7000] transition-all duration-500 px-6 md:px-12 py-2 ${
+        isMobileMenuOpen || scrolled ? "bg-[#B6D0D2] backdrop-blur-2xl border-b border-black/10" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -107,7 +107,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <HoverCard key={item.title} openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
-                <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white hover:text-[var(--color-terracotta)]" : "text-white/70 hover:text-white"}`}>
+                <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white" : "text-white/70 hover:text-white"}`}>
                   {item.title}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 opacity-50" />
                 </div>
@@ -138,7 +138,7 @@ export default function Navbar() {
                                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                               />
                             </div>
-                            <span className="text-[14px] font-medium text-black hover:text-[var(--color-terracotta)] transition-colors">
+                            <span className="text-[14px] font-medium text-black hover:text-black/60 transition-colors">
                               {link.label}
                             </span>
                           </Link>
@@ -171,9 +171,9 @@ export default function Navbar() {
             <motion.button
               key={label}
               onClick={onClick}
-              whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+              whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent hover:bg-white/10 transition-colors relative group cursor-pointer"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer"
             >
               <Icon className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
               <span className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap font-bold bg-white text-black px-2 py-1 rounded-none shadow-xl border border-black/5 z-50">
@@ -186,16 +186,16 @@ export default function Navbar() {
           <HoverCard openDelay={0} closeDelay={100}>
             <HoverCardTrigger asChild>
               <motion.button
-                whileHover={{ scale: 1.1, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
+                whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
-                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent hover:bg-white/10 transition-colors relative group cursor-pointer"
+                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer"
               >
                 <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
               </motion.button>
             </HoverCardTrigger>
             <HoverCardContent align="end" className="w-48 p-0 bg-white border-none shadow-2xl rounded-none overflow-hidden z-[1002]">
               <div className="flex flex-col">
-                <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:bg-[var(--color-terracotta)] hover:text-white transition-colors">
+                <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors">
                   Sign In
                 </Link>
                 <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
@@ -208,7 +208,7 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-none border transition-all duration-300 bg-transparent ${scrolled ? "border-black/10 text-black" : "border-white/10 text-white"}`}
+            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-white`}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -285,7 +285,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-black z-[6000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-[#B6D0D2] z-[6000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
           >
             <div className="flex flex-col gap-12">
               {navItems.map((item) => (
