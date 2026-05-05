@@ -83,8 +83,8 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-3 ${
-        scrolled || isMobileMenuOpen ? "bg-black/90 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+      className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
+        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-black/90 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -190,9 +190,7 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-none border border-white/10 text-white ml-2 transition-all duration-300 ${
-              scrolled || isMobileMenuOpen ? "bg-black/90" : "bg-transparent"
-            }`}
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none border border-white/10 text-white ml-2 transition-all duration-300 bg-transparent"
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -246,11 +244,11 @@ export default function Navbar() {
                   ))}
                 </div>
               </div>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
                     <button 
                       key={cat}
-                      className="text-left py-3 px-4 text-xs font-bold uppercase tracking-[0.2em] text-black/60 hover:text-black transition-colors bg-black/5 hover:bg-black/10 border-l-2 border-transparent hover:border-[var(--color-terracotta)]"
+                      className="text-left py-3 px-4 text-[10px] font-black uppercase tracking-[0.25em] text-black/40 hover:text-black transition-colors border border-black/5 hover:border-black"
                     >
                       {cat}
                     </button>
@@ -320,13 +318,13 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
               className="fixed top-0 right-0 h-full w-[85vw] md:w-[25%] bg-white z-[2600] shadow-2xl flex flex-col"
             >
-              <div className="p-4 md:p-6 flex items-center justify-between border-b border-black/5">
-                <h2 className="font-display text-xl font-bold uppercase tracking-widest text-black">Your Cart</h2>
+              <div className="p-4 md:px-8 py-2.5 flex items-center justify-between border-b border-black/5 bg-white">
+                <h2 className="font-display text-lg font-black uppercase tracking-[0.2em] text-black">Your Cart</h2>
                 <button 
                   onClick={() => setIsCartOpen(false)}
                   className="p-2 hover:rotate-90 transition-transform duration-300 text-black"
                 >
-                  <X size={20} />
+                  <X size={18} />
                 </button>
               </div>
               
