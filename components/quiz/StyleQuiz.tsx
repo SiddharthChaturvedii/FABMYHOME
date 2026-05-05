@@ -177,44 +177,40 @@ export default function StyleQuiz() {
         <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-4 font-medium italic">
           {headline}
         </h2>
-        <p className="font-sans text-[var(--color-graphite)]/80 text-xl md:text-2xl font-light mb-6">
+        <p className="font-sans text-[var(--color-graphite)]/80 text-xl md:text-2xl font-light">
           {subheadline}
         </p>
+      </motion.div>
 
-        {/* Repositioned AI Guidance Component - Closer to Questions */}
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ 
-            delay: 0.2,
-            type: "spring",
-            stiffness: 200
+      {/* Final AI Guidance Placement - Directly Above Options */}
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ delay: 0.3 }}
+        className="mb-8 z-20"
+      >
+        <motion.div 
+          animate={{ 
+            scale: [1, 1.05, 1],
+            opacity: [0.8, 1, 0.8]
           }}
-          className="mb-6"
+          transition={{ 
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="px-4 py-1.5 rounded-full bg-[var(--color-midnight)]/5 border border-[var(--color-terracotta)]/30 backdrop-blur-sm shadow-sm"
         >
-          <motion.div 
-            animate={{ 
-              scale: [1, 1.05, 1],
-              opacity: [0.8, 1, 0.8]
-            }}
-            transition={{ 
-              duration: 3,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="px-4 py-1.5 rounded-full bg-[var(--color-midnight)]/5 border border-[var(--color-terracotta)]/30 backdrop-blur-sm"
-          >
-            <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] text-[var(--color-terracotta)] flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-terracotta)] animate-pulse" />
-              ✨ Select an option below to start your AI journey
-              <motion.span
-                animate={{ y: [0, 3, 0] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-              >
-                ↓
-              </motion.span>
-            </span>
-          </motion.div>
+          <span className="text-[9px] md:text-[11px] font-black uppercase tracking-[0.3em] text-[var(--color-terracotta)] flex items-center gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-terracotta)] animate-pulse" />
+            ✨ Select an option below to start your AI journey
+            <motion.span
+              animate={{ y: [0, 3, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              ↓
+            </motion.span>
+          </span>
         </motion.div>
       </motion.div>
 
