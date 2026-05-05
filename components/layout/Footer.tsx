@@ -21,14 +21,14 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Middle Section: Links Grid - Aligned Baseline */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 mb-20 border-t border-white/5 pt-16 items-start">
+        {/* Middle Section: Links Grid - Centered & Balanced */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 lg:gap-16 mb-20 border-t border-white/5 pt-16 items-start max-w-4xl mx-auto">
           {/* Shop by Space */}
-          <div className="flex flex-col">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4 text-center md:text-left">
               Shop by Space
             </h3>
-            <ul className="space-y-1.5 mt-2">
+            <ul className="space-y-1.5 mt-2 text-center md:text-left">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
@@ -40,11 +40,11 @@ export default function Footer() {
           </div>
 
           {/* Our Services */}
-          <div className="flex flex-col">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4 text-center md:text-left">
               Our Services
             </h3>
-            <ul className="space-y-1.5 mt-2">
+            <ul className="space-y-1.5 mt-2 text-center md:text-left">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
@@ -56,11 +56,11 @@ export default function Footer() {
           </div>
 
           {/* The Company */}
-          <div className="flex flex-col">
-            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">
+          <div className="flex flex-col items-center md:items-start">
+            <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4 text-center md:text-left">
               The Company
             </h3>
-            <ul className="space-y-1.5 mt-2">
+            <ul className="space-y-1.5 mt-2 text-center md:text-left">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
