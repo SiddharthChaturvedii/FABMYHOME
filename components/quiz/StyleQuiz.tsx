@@ -167,7 +167,7 @@ export default function StyleQuiz() {
   const stepTitles = ["Which room are we styling?", "What colors feel like home?", "Which texture attracts you?", "Perfect."];
 
   return (
-    <section id="quiz" className="py-20 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5">
+    <section id="quiz" className="py-20 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5 relative">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -248,13 +248,14 @@ export default function StyleQuiz() {
               {renderStep()}
             </AnimatePresence>
           </div>
-          
-          {currentStep < 3 && (
-            <div className="w-full md:absolute md:right-0 md:top-1/2 md:-translate-y-1/2 md:w-[500px] lg:w-[700px] h-[350px] md:h-[600px] shrink-0 pointer-events-none">
-              <QuizModel />
-            </div>
-          )}
         </div>
+
+        {/* 3D Model - Positioned at the very right of the screen */}
+        {currentStep < 3 && (
+          <div className="hidden md:block absolute right-[-100px] lg:right-[-200px] top-1/2 -translate-y-1/2 w-[600px] lg:w-[900px] h-[500px] lg:h-[800px] pointer-events-none z-0">
+            <QuizModel />
+          </div>
+        )}
       </div>
 
       {currentStep > 0 && currentStep < 3 && (

@@ -92,7 +92,7 @@ export default function RoomMockupStrip() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "0px" }}
-        className="flex overflow-x-auto gap-8 px-6 md:px-12 pb-16 snap-x snap-mandatory hide-scrollbar"
+        className="flex overflow-x-auto gap-8 px-6 md:px-12 pb-16 snap-x snap-mandatory hide-scrollbar no-scrollbar"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {presetRooms.map((room) => (
