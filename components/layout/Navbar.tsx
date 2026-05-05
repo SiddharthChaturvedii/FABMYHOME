@@ -91,14 +91,14 @@ export default function Navbar() {
   return (
     <>
       <nav 
-        className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
-          isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#eef7f7]/90 backdrop-blur-2xl border-b border-black/5" : "bg-transparent"
-        }`}
-      >
+      className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
+        isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#0a2e2e]/95 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+      }`}
+    >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className={`font-display text-2xl tracking-tight z-[1001] ${scrolled ? "text-[#124444]" : "text-white"}`}>
+        <Link href="/" className="font-display text-2xl tracking-tight z-[1001] text-white">
           <span className="font-bold">FAB</span>
-          <span className={`font-normal ${scrolled ? "text-black/60" : "text-black"}`}>MY</span>
+          <span className={`font-normal ${scrolled ? "text-white/60" : "text-black"}`}>MY</span>
           <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
         </Link>
 
