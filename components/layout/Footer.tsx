@@ -22,7 +22,7 @@ export default function Footer() {
         </div>
 
         {/* Middle Section: Links Grid - Evenly Spaced Flex Layout */}
-        <div className="flex flex-row justify-between items-start w-full max-w-5xl mx-auto mb-20 border-t border-white/5 pt-16">
+        <div className="flex flex-col lg:flex-row justify-between items-center lg:items-start w-full max-w-5xl mx-auto mb-20 border-t border-white/5 pt-16 gap-16 lg:gap-8 text-center lg:text-left">
           {/* Shop by Space */}
           <div className="flex flex-col min-w-[150px]">
             <h3 className="font-sans font-black uppercase tracking-[0.3em] text-[11px] text-[var(--color-terracotta)] mb-6 h-4">

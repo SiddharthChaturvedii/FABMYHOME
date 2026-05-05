@@ -35,7 +35,7 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-1 gap-1.5 w-full max-w-2xl"
+            className="flex flex-col gap-1.5 w-full items-start"
           >
             {quizOptions.rooms.map((room) => (
               <motion.button
@@ -44,9 +44,9 @@ export default function StyleQuiz() {
                 onClick={() => { setRoom(room.id); nextStep(); }}
                 className={`relative group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg ${
                   selections.room === room.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"
-                } flex flex-row items-center gap-3 p-1.5 overflow-hidden`}
+                } flex flex-row items-center gap-4 py-1 px-4 overflow-hidden w-full max-w-2xl`}
               >
-                <div className="w-12 h-12 md:w-16 md:h-12 shrink-0 relative overflow-hidden rounded-none border border-black/5">
+                <div className="w-14 h-14 md:w-20 md:h-14 shrink-0 relative overflow-hidden rounded-none border border-black/5">
                   <img 
                     src={room.image} 
                     alt={room.label}
@@ -73,14 +73,14 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-1 gap-1.5 w-full max-w-2xl mx-auto"
+            className="flex flex-col gap-1.5 w-full items-start"
           >
             {quizOptions.colors.map((color) => (
               <motion.button
                 key={color.id}
                 variants={itemVariants}
                 onClick={() => { setColor(color.id); nextStep(); }}
-                className={`flex items-center gap-4 p-1.5 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg ${selections.color === color.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
+                className={`flex items-center gap-4 py-1 px-4 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg w-full max-w-2xl ${selections.color === color.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
               >
                 <div 
                   className={`w-8 h-8 md:w-10 md:h-8 rounded-none shadow-inner transition-all duration-500 shrink-0 ${selections.color === color.id ? "ring-2 ring-offset-1 ring-[var(--color-terracotta)]" : ""}`}
@@ -104,14 +104,14 @@ export default function StyleQuiz() {
             initial="hidden"
             animate="show"
             exit="exit"
-            className="grid grid-cols-1 gap-1.5 w-full max-w-2xl mx-auto"
+            className="flex flex-col gap-1.5 w-full items-start"
           >
             {quizOptions.textures.map((texture) => (
               <motion.button
                 key={texture.id}
                 variants={itemVariants}
                 onClick={() => { setTexture(texture.id); nextStep(); }}
-                className={`flex items-center gap-4 p-1.5 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg ${selections.texture === texture.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
+                className={`flex items-center gap-4 py-1 px-4 group transition-all duration-300 border border-black/5 hover:bg-white hover:shadow-lg w-full max-w-2xl ${selections.texture === texture.id ? "bg-white border-[var(--color-terracotta)] ring-1 ring-[var(--color-terracotta)]" : "bg-white/50"}`}
               >
                 <div className="w-12 h-12 md:w-16 md:h-12 rounded-none overflow-hidden shrink-0 border border-black/5">
                   <img 
@@ -231,16 +231,17 @@ export default function StyleQuiz() {
         ))}
       </motion.div>
 
-      <motion.h3 
-        key={currentStep}
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="font-sans text-2xl md:text-3xl text-[var(--color-graphite)] mb-12 md:mb-16 font-light tracking-wide italic"
-      >
-        {stepTitles[currentStep]}
-      </motion.h3>
+      <div className="min-h-[400px] w-full max-w-2xl transition-all duration-500 mx-auto min-[760px]:items-center items-start flex flex-col">
+        <motion.h3 
+          key={currentStep}
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          className="font-sans text-2xl md:text-3xl text-[var(--color-graphite)] mb-12 md:mb-16 font-light tracking-wide italic text-left w-full"
+        >
+          {stepTitles[currentStep]}
+        </motion.h3>
 
-      <div className="min-h-[400px] w-full flex justify-center">
+        <div className="w-full flex justify-center min-[760px]:justify-center justify-start">
         <AnimatePresence mode="wait">
           {renderStep()}
         </AnimatePresence>
