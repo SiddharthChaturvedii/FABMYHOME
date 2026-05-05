@@ -92,13 +92,13 @@ export default function Navbar() {
     <>
       <nav 
         className={`fixed top-0 left-0 w-full z-[3000] transition-all duration-500 px-6 md:px-12 py-2 ${
-          isMobileMenuOpen ? "bg-black" : scrolled ? "bg-black/90 backdrop-blur-2xl border-b border-white/5" : "bg-transparent"
+          isMobileMenuOpen ? "bg-black" : scrolled ? "bg-[#eef7f7]/90 backdrop-blur-2xl border-b border-black/5" : "bg-transparent"
         }`}
       >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/" className="font-display text-2xl tracking-tight text-white z-[1001]">
+        <Link href="/" className={`font-display text-2xl tracking-tight z-[1001] ${scrolled ? "text-[#124444]" : "text-white"}`}>
           <span className="font-bold">FAB</span>
-          <span className="font-normal text-black">MY</span>
+          <span className={`font-normal ${scrolled ? "text-black/60" : "text-black"}`}>MY</span>
           <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
         </Link>
 
@@ -107,7 +107,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <HoverCard key={item.title} openDelay={0} closeDelay={100}>
               <HoverCardTrigger asChild>
-                <div className="group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] text-white/70 hover:text-white cursor-pointer transition-colors">
+                <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-[#124444]/70 hover:text-[#124444]" : "text-white/70 hover:text-white"}`}>
                   {item.title}
                   <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 opacity-50" />
                 </div>
@@ -155,7 +155,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/60 hover:text-white transition-colors"
+              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-[#124444]/60 hover:text-[#124444]" : "text-white/60 hover:text-white"}`}
             >
               {link.label}
             </Link>
@@ -163,7 +163,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Action Icons & Hamburger */}
-        <div className="flex items-center gap-3 md:gap-4 text-white/90 z-[1001]">
+        <div className={`flex items-center gap-3 md:gap-4 z-[1001] ${scrolled ? "text-[#124444]" : "text-white/90"}`}>
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(!isSearchOpen) },
             { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) }
@@ -208,7 +208,7 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none border border-white/10 text-white ml-2 transition-all duration-300 bg-transparent"
+            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-none border transition-all duration-300 bg-transparent ${scrolled ? "border-black/10 text-black" : "border-white/10 text-white"}`}
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
