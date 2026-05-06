@@ -125,7 +125,7 @@ export default function Navbar() {
               key={item.title}
               onMouseEnter={() => handleMouseEnter(item.title)}
               onMouseLeave={handleMouseLeave}
-              className="relative py-4"
+              className="py-4"
             >
               <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-none ${
                 activeMenu === item.title 
@@ -136,7 +136,7 @@ export default function Navbar() {
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
               </div>
 
-              {/* Nested Mega Menu - Part of the same hover zone */}
+              {/* Nested Mega Menu - Edge-to-edge background with centered content */}
               <AnimatePresence>
                 {activeMenu === item.title && (
                   <motion.div
@@ -145,7 +145,7 @@ export default function Navbar() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -8 }}
                     transition={{ duration: 0.2 }}
-                    className="absolute top-full left-1/2 -translate-x-1/2 w-screen z-[1000] pt-4 pointer-events-auto"
+                    className="absolute top-full left-0 w-screen z-[1000] pt-4 pointer-events-auto"
                   >
                     <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
                       <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
