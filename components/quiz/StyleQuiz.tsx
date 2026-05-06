@@ -232,7 +232,7 @@ export default function StyleQuiz() {
         ))}
       </motion.div>
 
-      <div className="min-h-[400px] w-full max-w-5xl transition-all duration-500 mx-auto min-[760px]:items-center items-start flex flex-col relative">
+      <div className="min-h-[400px] w-full max-w-5xl transition-all duration-500 md:ml-auto md:mr-40 lg:mr-64 min-[760px]:items-start items-start flex flex-col relative">
         <motion.h3 
           key={currentStep}
           initial={{ opacity: 0, x: -20 }}
@@ -250,9 +250,9 @@ export default function StyleQuiz() {
           </div>
         </div>
 
-        {/* 3D Model - Tucked away as a decorative side-element */}
+        {/* 3D Model - Pinned strictly to the far-right corner */}
         {currentStep < 3 && (
-          <div className="hidden md:block absolute right-[-150px] bottom-[-80px] w-[300px] lg:w-[400px] h-[300px] lg:h-[400px] pointer-events-none z-0 opacity-80">
+          <div className="hidden md:block absolute right-[-150px] lg:right-[-250px] bottom-[-50px] w-[250px] lg:w-[350px] h-[250px] lg:h-[350px] pointer-events-none z-0 opacity-80">
             <QuizModel />
           </div>
         )}
