@@ -216,7 +216,7 @@ export default function Navbar() {
             </motion.button>
           ))}
 
-          {/* Profile Dropdown */}
+          {/* Profile Dropdown — hover on desktop, tap on mobile/tablet */}
           <div 
             className="relative"
             onMouseEnter={() => setIsProfileOpen(true)}
@@ -225,6 +225,7 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
+              onClick={() => setIsProfileOpen((prev) => !prev)}
               className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[var(--color-terracotta)]"
             >
               <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
@@ -232,22 +233,29 @@ export default function Navbar() {
 
             <AnimatePresence>
               {isProfileOpen && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                  className="absolute top-full right-0 w-48 bg-white border border-black/5 shadow-2xl overflow-hidden z-[1002]"
-                >
-                  <div className="flex flex-col">
-                    <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:text-[var(--color-terracotta)] hover:bg-[var(--color-alabaster)] transition-colors">
-                      Sign In
-                    </Link>
-                    <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:text-[var(--color-terracotta)] hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
-                      Sign Up
-                    </Link>
-                  </div>
-                </motion.div>
+                <>
+                  {/* Invisible backdrop to close on outside tap (mobile/tablet) */}
+                  <div 
+                    className="fixed inset-0 z-[1001] lg:hidden"
+                    onClick={() => setIsProfileOpen(false)}
+                  />
+                  <motion.div
+                    initial={{ opacity: 0, y: -8, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -8, scale: 0.95 }}
+                    transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                    className="absolute top-full right-0 w-48 bg-white border border-black/5 shadow-2xl overflow-hidden z-[1002]"
+                  >
+                    <div className="flex flex-col">
+                      <Link href="#signin" onClick={() => setIsProfileOpen(false)} className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:text-[var(--color-terracotta)] hover:bg-[var(--color-alabaster)] transition-colors">
+                        Sign In
+                      </Link>
+                      <Link href="#signup" onClick={() => setIsProfileOpen(false)} className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:text-[var(--color-terracotta)] hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
+                        Sign Up
+                      </Link>
+                    </div>
+                  </motion.div>
+                </>
               )}
             </AnimatePresence>
           </div>
