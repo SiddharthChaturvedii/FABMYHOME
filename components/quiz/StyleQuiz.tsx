@@ -85,8 +85,8 @@ export default function StyleQuiz() {
               animate={{ opacity: 1, y: 0 }}
               className="w-full max-w-5xl mb-4 flex items-center gap-4"
             >
-              <div className="w-12 h-[1px] bg-[#ff6b00]/30" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ff6b00]">
+              <div className="w-12 h-[1px] bg-[var(--color-terracotta)]/30" />
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--color-terracotta)]">
                 AI STYLE ENGINE
               </span>
             </motion.div>
@@ -107,7 +107,7 @@ export default function StyleQuiz() {
                   : "grid-cols-1 lg:grid-cols-3"
               }`}>
                 {questions[currentStep].options.map((option, index) => (
-                  <motion.div
+                   <motion.div
                     key={option.label}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -115,8 +115,8 @@ export default function StyleQuiz() {
                     onClick={() => handleOptionSelect(option.label)}
                     className={`group cursor-pointer transition-all duration-300 border relative
                       ${selectedOptions[currentStep] === option.label 
-                        ? 'border-[#ff6b00] shadow-[0_0_25px_rgba(255,107,0,0.5)] z-10 scale-[1.02]' 
-                        : 'border-black/5 bg-white hover:border-[#ff6b00]/30 hover:shadow-[0_0_15px_rgba(255,107,0,0.2)]'
+                        ? 'border-[var(--color-terracotta)] shadow-[0_0_25px_rgba(255,107,0,0.5)] z-10 scale-[1.02]' 
+                        : 'border-black/5 bg-white hover:border-[var(--color-terracotta)]/30 hover:shadow-[0_0_15px_rgba(255,107,0,0.2)]'
                       }
                       flex items-center 
                       ${currentStep !== 1 
@@ -151,7 +151,7 @@ export default function StyleQuiz() {
                         ml-6 
                         /* Desktop Label */
                         md:ml-0 ${currentStep !== 1 ? 'md:p-6' : 'md:ml-6'}
-                        ${selectedOptions[currentStep] === option.label ? 'text-[#ff6b00] font-bold' : 'text-black/80'}
+                        ${selectedOptions[currentStep] === option.label ? 'text-[var(--color-terracotta)] font-bold' : 'text-black/80'}
                       `}>
                         {option.label}
                       </span>
@@ -166,7 +166,7 @@ export default function StyleQuiz() {
                       <motion.div 
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute top-4 right-4 w-6 h-6 bg-[#ff6b00] rounded-full flex items-center justify-center text-white"
+                        className="absolute top-4 right-4 w-6 h-6 bg-[var(--color-terracotta)] rounded-full flex items-center justify-center text-white"
                       >
                         <Check size={12} strokeWidth={3} />
                       </motion.div>

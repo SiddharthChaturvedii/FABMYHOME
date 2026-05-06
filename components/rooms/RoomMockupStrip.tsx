@@ -72,13 +72,13 @@ export default function RoomMockupStrip() {
         <div className="flex justify-center gap-4 mt-12">
           <button 
             onClick={() => scroll('left')}
-            className="w-16 h-16 rounded-none bg-white border border-black shadow-xl flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group z-30"
+            className="w-16 h-16 rounded-full bg-white border border-black/10 shadow-xl flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group z-30"
           >
             <ChevronLeft size={28} className="transition-transform group-hover:-translate-x-1" />
           </button>
           <button 
             onClick={() => scroll('right')}
-            className="w-16 h-16 rounded-none bg-white border border-black shadow-xl flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group z-30"
+            className="w-16 h-16 rounded-full bg-white border border-black/10 shadow-xl flex items-center justify-center hover:bg-black hover:text-white transition-all duration-300 group z-30"
           >
             <ChevronRight size={28} className="transition-transform group-hover:translate-x-1" />
           </button>
@@ -117,12 +117,12 @@ export default function RoomMockupStrip() {
 
             {/* Content */}
             <div className="absolute bottom-0 left-0 right-0 p-10 md:p-14 transition-all duration-500 group-hover:pb-16">
-              <h3 className="font-display text-3xl md:text-5xl text-white mb-8 leading-tight">
+              <h3 className="font-display text-3xl md:text-5xl text-white mb-8 leading-tight uppercase tracking-tighter">
                 {room.name}
               </h3>
               
               {/* Mandatory CTA: Shop This Entire Look */}
-              <button className="bg-white/20 hover:bg-[var(--color-terracotta)] backdrop-blur-xl text-white font-sans font-bold uppercase tracking-[0.2em] px-10 py-5 text-xs rounded-full transition-all duration-500 transform hover:scale-105 shadow-lg">
+              <button className="bg-white/20 hover:bg-[var(--color-terracotta)] backdrop-blur-xl text-white font-sans font-bold uppercase tracking-[0.2em] px-10 py-5 text-[10px] md:text-xs rounded-full transition-all duration-500 transform hover:scale-105 shadow-lg border border-white/10">
                 Shop This Look
               </button>
             </div>

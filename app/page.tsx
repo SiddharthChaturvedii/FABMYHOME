@@ -1,4 +1,3 @@
-import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import LoadingCurtain from "@/components/hero/LoadingCurtain";
 import HeroSection from "@/components/hero/HeroSection";
@@ -23,6 +22,7 @@ export default function Home() {
         <CompleteTheLook />
         <VisualSearch />
         <Testimonials />
+        <FinalCTA />
       </div>
 
       <Footer />

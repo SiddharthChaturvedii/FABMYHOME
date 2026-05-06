@@ -3,7 +3,7 @@ import { footerLinks } from "@/data/navigation";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#B6D0D2] text-white pt-20 md:pt-32 pb-12 px-6 md:px-12 relative overflow-hidden">
+    <footer className="bg-[var(--color-sage)] text-white pt-20 md:pt-32 pb-12 px-6 md:px-12 relative overflow-hidden">
       {/* Subtle texture overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-gradient-to-br from-white to-transparent" />
 
@@ -34,7 +34,7 @@ export default function Footer() {
               <ul className="space-y-3 md:space-y-1.5 mt-2">
                 {footerLinks.categories.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-[#ff6b00] transition-all duration-300 tracking-wide block">
+                    <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide block">
                       {link.label}
                     </Link>
                   </li>
@@ -50,7 +50,7 @@ export default function Footer() {
               <ul className="space-y-3 md:space-y-1.5 mt-2">
                 {footerLinks.services.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-[#ff6b00] transition-all duration-300 tracking-wide block">
+                    <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide block">
                       {link.label}
                     </Link>
                   </li>
@@ -66,7 +66,7 @@ export default function Footer() {
               <ul className="space-y-3 md:space-y-1.5 mt-2">
                 {footerLinks.company.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-[#ff6b00] transition-all duration-300 tracking-wide block">
+                    <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-[var(--color-terracotta)] transition-all duration-300 tracking-wide block">
                       {link.label}
                     </Link>
                   </li>
@@ -79,10 +79,10 @@ export default function Footer() {
         {/* Section 5: Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col lg:flex-row justify-between items-center gap-6 md:gap-8 text-center lg:text-left">
           <div className="flex gap-8 md:gap-10 justify-center lg:justify-start">
-            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white hover:text-[#ff6b00] transition-colors">
+            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white hover:text-[var(--color-terracotta)] transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white hover:text-[#ff6b00] transition-colors">
+            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white hover:text-[var(--color-terracotta)] transition-colors">
               Terms of Service
             </Link>
           </div>

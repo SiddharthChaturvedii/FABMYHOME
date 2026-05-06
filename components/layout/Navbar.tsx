@@ -108,7 +108,7 @@ export default function Navbar() {
     <>
       <nav 
       className={`fixed top-0 left-0 w-full z-[7000] transition-[background-color,backdrop-filter,border-color] duration-500 px-6 md:px-12 py-2 ${
-        isMobileMenuOpen || scrolled ? "bg-[#B6D0D2] backdrop-blur-2xl border-b border-black/10" : "bg-transparent"
+        isMobileMenuOpen || scrolled ? "bg-[var(--color-sage)] backdrop-blur-2xl border-b border-black/10" : "bg-transparent"
       }`}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
@@ -129,8 +129,8 @@ export default function Navbar() {
             >
               <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-none ${
                 activeMenu === item.title 
-                  ? "text-[#ff6b00]" 
-                  : (scrolled ? "text-white" : "text-white/70 hover:text-[#ff6b00]")
+                  ? "text-[var(--color-terracotta)]" 
+                  : (scrolled ? "text-white" : "text-white/70 hover:text-[var(--color-terracotta)]")
               }`}>
                 {item.title}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
@@ -169,7 +169,7 @@ export default function Navbar() {
                                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                                   />
                                 </div>
-                                <span className="text-[14px] font-medium text-black hover:text-[#ff6b00] transition-colors">
+                                <span className="text-[14px] font-medium text-black hover:text-[var(--color-terracotta)] transition-colors">
                                   {link.label}
                                 </span>
                               </Link>
@@ -189,7 +189,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-white/80 hover:text-[#ff6b00]" : "text-white/60 hover:text-[#ff6b00]"}`}
+              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-white/80 hover:text-[var(--color-terracotta)]" : "text-white/60 hover:text-[var(--color-terracotta)]"}`}
             >
               {link.label}
             </Link>
@@ -207,7 +207,7 @@ export default function Navbar() {
               onClick={onClick}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[#ff6b00]"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[var(--color-terracotta)]"
             >
               <Icon className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
               <span className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap font-bold bg-white text-black px-2 py-1 rounded-none shadow-xl border border-black/5 z-50">
@@ -225,7 +225,7 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[#ff6b00]"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[var(--color-terracotta)]"
             >
               <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
             </motion.button>
@@ -240,10 +240,10 @@ export default function Navbar() {
                   className="absolute top-full right-0 w-48 bg-white border border-black/5 shadow-2xl overflow-hidden z-[1002]"
                 >
                   <div className="flex flex-col">
-                    <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:text-[#ff6b00] hover:bg-[var(--color-alabaster)] transition-colors">
+                    <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:text-[var(--color-terracotta)] hover:bg-[var(--color-alabaster)] transition-colors">
                       Sign In
                     </Link>
-                    <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:text-[#ff6b00] hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
+                    <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:text-[var(--color-terracotta)] hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
                       Sign Up
                     </Link>
                   </div>
@@ -255,7 +255,7 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-white hover:text-[#ff6b00]"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-white hover:text-[var(--color-terracotta)]"
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -302,7 +302,7 @@ export default function Navbar() {
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30">Suggestions</p>
                 <div className="flex flex-col gap-3">
                   {["Living Room Sets", "Velvet Sofas", "Minimalist Bedroom", "Calm Luxury Mood"].map(s => (
-                    <button key={s} className="text-left text-black/60 hover:text-[#ff6b00] transition-colors text-sm font-medium cursor-pointer">
+                    <button key={s} className="text-left text-black/60 hover:text-[var(--color-terracotta)] transition-colors text-sm font-medium cursor-pointer">
                       {s}
                     </button>
                   ))}
@@ -312,7 +312,7 @@ export default function Navbar() {
                 {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
                   <button 
                     key={cat}
-                    className="text-[11px] font-black uppercase tracking-[0.3em] text-black/40 hover:text-[#ff6b00] transition-all duration-300 group"
+                    className="text-[11px] font-black uppercase tracking-[0.3em] text-black/40 hover:text-[var(--color-terracotta)] transition-all duration-300 group"
                   >
                     <span className="group-hover:translate-x-1 inline-block transition-transform">{cat}</span>
                   </button>
@@ -331,7 +331,7 @@ export default function Navbar() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="fixed inset-0 top-0 left-0 w-full h-screen bg-[#B6D0D2] z-[6000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
+            className="fixed inset-0 top-0 left-0 w-full h-screen bg-[var(--color-sage)] z-[6000] lg:hidden flex flex-col pt-32 px-8 overflow-y-auto pb-20"
           >
             <div className="flex flex-col gap-12">
               {navItems.map((item) => (
@@ -349,7 +349,7 @@ export default function Navbar() {
                               key={link.label} 
                               href={link.href}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="text-white/70 text-lg font-sans font-light tracking-wide hover:text-[#ff6b00] transition-colors"
+                              className="text-white/70 text-lg font-sans font-light tracking-wide hover:text-[var(--color-terracotta)] transition-colors"
                             >
                               {link.label}
                             </Link>
