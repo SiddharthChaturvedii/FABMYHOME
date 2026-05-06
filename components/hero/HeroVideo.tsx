@@ -30,7 +30,7 @@ export default function HeroVideo() {
         key={isLandscape ? "laptop" : "mobile"}
         autoPlay
         muted
-        loop
+        loop={!isLandscape}
         playsInline
         webkit-playsinline="true"
         preload="auto"
