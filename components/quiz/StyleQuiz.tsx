@@ -250,13 +250,16 @@ export default function StyleQuiz() {
           </div>
         </div>
 
-        {/* 3D Model - Pinned strictly to the far-right corner */}
-        {currentStep < 3 && (
-          <div className="hidden md:block absolute right-[-150px] lg:right-[-250px] bottom-[20px] w-[250px] lg:w-[350px] h-[250px] lg:h-[350px] pointer-events-none z-0 opacity-100">
+      </div>
+
+      {/* 3D Model - Laptop Accessory (Pillar-like behavior) */}
+      {currentStep < 3 && (
+        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[2%] w-1/3 h-[500px] lg:h-[700px] justify-center items-center pointer-events-none z-0 drop-shadow-2xl">
+          <div className="w-[450px] h-[450px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
             <QuizModel />
           </div>
-        )}
-      </div>
+        </div>
+      )}
 
       {currentStep > 0 && currentStep < 3 && (
         <button 
