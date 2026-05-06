@@ -44,16 +44,6 @@ export default function StyleQuiz() {
 
   return (
     <section id="quiz" className="py-10 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5 relative">
-      {/* Side Note: AI Engine */}
-      <div className="hidden lg:block absolute left-12 top-1/2 -translate-y-1/2 h-[400px] pointer-events-none">
-        <div className="flex items-center gap-6 rotate-[-90deg] origin-left translate-y-[200px]">
-          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black/10 whitespace-nowrap">
-            Institutional AI-Powered Style Engine
-          </span>
-          <div className="w-24 h-[1px] bg-black/10" />
-        </div>
-      </div>
-
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +64,7 @@ export default function StyleQuiz() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="flex gap-4 mb-8"
+        className="flex gap-4 mb-12"
       >
         {[0, 1, 2].map((step) => (
           <div 
@@ -89,11 +79,23 @@ export default function StyleQuiz() {
       <div className="w-full max-w-7xl transition-all duration-500 mx-auto items-center flex flex-col relative px-4 md:px-0">
         {currentStep < 3 ? (
           <>
+            <motion.div 
+              key={`note-${currentStep}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="w-full max-w-5xl mb-4 flex items-center gap-4"
+            >
+              <div className="w-12 h-[1px] bg-[#ff6b00]/30" />
+              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ff6b00]">
+                Institutional AI Style Engine
+              </span>
+            </motion.div>
+
             <motion.h3 
               key={currentStep}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="font-serif text-3xl md:text-5xl lg:text-6xl text-black mb-6 text-center md:text-left w-full max-w-5xl"
+              className="font-serif text-3xl md:text-5xl lg:text-6xl text-black mb-8 text-left w-full max-w-5xl"
             >
               {questions[currentStep].title}
             </motion.h3>
