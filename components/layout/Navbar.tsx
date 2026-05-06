@@ -77,18 +77,12 @@ export default function Navbar() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const handleMouseEnter = (title: string) => {
-    console.log(`[Navbar] Mouse ENTER link: ${title}`);
-    if (menuTimeout) {
-      console.log(`[Navbar] Clearing existing timeout for ${activeMenu}`);
-      clearTimeout(menuTimeout);
-    }
+    if (menuTimeout) clearTimeout(menuTimeout);
     setActiveMenu(title);
   };
 
   const handleMouseLeave = () => {
-    console.log(`[Navbar] Mouse LEAVE area. Starting 500ms timeout for ${activeMenu}`);
     const timeout = setTimeout(() => {
-      console.log(`[Navbar] TIMEOUT EXPIRED for ${activeMenu}. Closing menu.`);
       setActiveMenu(null);
     }, 500);
     setMenuTimeout(timeout);
@@ -223,20 +217,11 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onMouseEnter={() => {
-              console.log(`[Navbar] Mouse ENTERED mega menu: ${activeMenu}. Clearing timeout.`);
-              if (menuTimeout) clearTimeout(menuTimeout);
-            }}
+            onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
             onMouseLeave={handleMouseLeave}
-            className="absolute top-full left-0 w-full z-[1000] bg-white/[0.001] pt-10 -mt-10 overflow-visible pointer-events-auto"
+            className="absolute top-full left-0 w-full z-[1000] bg-white/[0.001] pt-12 -mt-12 overflow-visible pointer-events-auto"
           >
-            <motion.div 
-              initial={{ height: 0 }}
-              animate={{ height: "auto" }}
-              exit={{ height: 0 }}
-              transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="bg-white border-t border-black/5 shadow-2xl overflow-hidden"
-            >
+            <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
               <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
               {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
                 <div key={section.title} className="space-y-6 min-w-[200px]">
@@ -267,12 +252,12 @@ export default function Navbar() {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>
 
-      {/* Search Dropdown (Under Navbar) */}
+      {/* Search Dropdown */}
       <AnimatePresence>
         {isSearchOpen && (
           <motion.div
@@ -302,7 +287,6 @@ export default function Navbar() {
               </button>
             </div>
             
-            {/* Search Suggestions */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
