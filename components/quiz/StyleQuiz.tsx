@@ -43,13 +43,13 @@ export default function StyleQuiz() {
   };
 
   return (
-    <section id="quiz" className="py-20 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5 relative">
+    <section id="quiz" className="py-10 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5 relative">
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "0px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="text-center mb-16 max-w-3xl flex flex-col items-center"
+        className="text-center mb-8 max-w-3xl flex flex-col items-center"
       >
         <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-4 font-medium italic">
           {headline}
@@ -64,7 +64,7 @@ export default function StyleQuiz() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="flex gap-4 mb-20"
+        className="flex gap-4 mb-10"
       >
         {[0, 1, 2].map((step) => (
           <div 
@@ -76,14 +76,14 @@ export default function StyleQuiz() {
         ))}
       </motion.div>
 
-      <div className="min-h-[400px] w-full max-w-7xl transition-all duration-500 mx-auto items-center flex flex-col relative px-4 md:px-0">
+      <div className="w-full max-w-7xl transition-all duration-500 mx-auto items-center flex flex-col relative px-4 md:px-0">
         {currentStep < 3 ? (
           <>
             <motion.h3 
               key={currentStep}
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="font-serif text-3xl md:text-5xl lg:text-6xl text-black mb-12 text-center md:text-left w-full max-w-5xl"
+              className="font-serif text-3xl md:text-5xl lg:text-6xl text-black mb-6 text-center md:text-left w-full max-w-5xl"
             >
               {questions[currentStep].title}
             </motion.h3>
@@ -189,7 +189,7 @@ export default function StyleQuiz() {
       {currentStep > 0 && currentStep < 3 && (
         <button 
           onClick={prevStep}
-          className="mt-20 font-sans text-sm tracking-[0.2em] uppercase text-[var(--color-graphite)]/40 hover:text-[var(--color-midnight)] transition-colors border-b border-transparent hover:border-[var(--color-midnight)] pb-1"
+          className="mt-10 font-sans text-sm tracking-[0.2em] uppercase text-[var(--color-graphite)]/40 hover:text-[var(--color-midnight)] transition-colors border-b border-transparent hover:border-[var(--color-midnight)] pb-1"
         >
           ← Back
         </button>
