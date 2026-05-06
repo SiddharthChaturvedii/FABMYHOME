@@ -208,20 +208,24 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mega Menu Dropdown (Full Width) */}
       <AnimatePresence>
         {activeMenu && (
           <motion.div
             key="mega-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
             onMouseLeave={handleMouseLeave}
             className="absolute top-full left-0 w-full z-[1000] bg-transparent pt-6 -mt-6 overflow-visible"
           >
-            <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
+            <motion.div 
+              initial={{ height: 0 }}
+              animate={{ height: "auto" }}
+              exit={{ height: 0 }}
+              transition={{ type: "spring", damping: 30, stiffness: 300 }}
+              className="bg-white border-t border-black/5 shadow-2xl overflow-hidden"
+            >
               <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
               {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
                 <div key={section.title} className="space-y-6 min-w-[200px]">
@@ -252,7 +256,7 @@ export default function Navbar() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
