@@ -15,9 +15,9 @@ export default function Footer() {
             <span className="font-normal text-black">MY</span>
             <span className="font-bold text-[var(--color-terracotta)]">HOME</span>
           </Link>
-          <p className="font-sans text-white/80 text-xl md:text-2xl leading-relaxed max-w-2xl font-light italic text-center">
+          <p className="font-sans text-white text-xl md:text-2xl leading-relaxed max-w-2xl font-light italic text-center">
             India&apos;s first AI-assisted interior styling platform. <br className="hidden md:block" />
-            <span className="text-white/40">We believe every room has a story to tell.</span>
+            <span className="text-white">We believe every room has a story to tell.</span>
           </p>
         </div>
 
@@ -31,7 +31,7 @@ export default function Footer() {
             <ul className="space-y-1.5 mt-2">
               {footerLinks.categories.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-white/70 transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -47,7 +47,7 @@ export default function Footer() {
             <ul className="space-y-1.5 mt-2">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-white/70 transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -63,7 +63,7 @@ export default function Footer() {
             <ul className="space-y-1.5 mt-2">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white/50 hover:text-white transition-all duration-300 tracking-wide block">
+                  <Link href={link.href} className="font-sans text-[13px] font-medium text-white hover:text-white/70 transition-all duration-300 tracking-wide block">
                     {link.label}
                   </Link>
                 </li>
@@ -75,14 +75,14 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
           <div className="flex gap-10">
-            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white/30 hover:text-white transition-colors">
+            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white hover:text-white/70 transition-colors">
               Privacy Policy
             </Link>
-            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white/30 hover:text-white transition-colors">
+            <Link href="#" className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white hover:text-white/70 transition-colors">
               Terms of Service
             </Link>
           </div>
-          <p className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white/20">
+          <p className="font-sans text-[11px] uppercase tracking-[0.2em] font-bold text-white/70">
             © {new Date().getFullYear()} FABMYHOME Luxury Interiors. All rights reserved.
           </p>
         </div>
