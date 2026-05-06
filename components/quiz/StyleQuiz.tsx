@@ -111,10 +111,10 @@ export default function StyleQuiz() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => handleOptionSelect(option.label)}
-                    className={`group cursor-pointer transition-all duration-300 border
+                    className={`group cursor-pointer transition-all duration-300 border relative
                       ${selectedOptions[currentStep] === option.label 
-                        ? 'border-black shadow-lg scale-[1.01]' 
-                        : 'border-black/5 bg-white hover:border-black/20 hover:shadow-md'
+                        ? 'border-[#ff6b00] shadow-[0_0_25px_rgba(255,107,0,0.5)] z-10 scale-[1.02]' 
+                        : 'border-black/5 bg-white hover:border-[#ff6b00]/30 hover:shadow-[0_0_15px_rgba(255,107,0,0.2)]'
                       }
                       flex items-center 
                       ${currentStep !== 1 
@@ -149,7 +149,7 @@ export default function StyleQuiz() {
                         ml-6 
                         /* Desktop Label */
                         md:ml-0 ${currentStep !== 1 ? 'md:p-6' : 'md:ml-6'}
-                        ${selectedOptions[currentStep] === option.label ? 'text-black font-bold' : 'text-black/80'}
+                        ${selectedOptions[currentStep] === option.label ? 'text-[#ff6b00] font-bold' : 'text-black/80'}
                       `}>
                         {option.label}
                       </span>
@@ -164,7 +164,7 @@ export default function StyleQuiz() {
                       <motion.div 
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute top-4 right-4 w-6 h-6 bg-black rounded-full flex items-center justify-center text-white"
+                        className="absolute top-4 right-4 w-6 h-6 bg-[#ff6b00] rounded-full flex items-center justify-center text-white"
                       >
                         <Check size={12} strokeWidth={3} />
                       </motion.div>
