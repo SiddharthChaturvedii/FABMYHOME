@@ -186,10 +186,10 @@ export default function Navbar() {
                   className="absolute top-full right-0 w-48 bg-white border border-black/5 shadow-2xl overflow-hidden z-[1002]"
                 >
                   <div className="flex flex-col">
-                    <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:bg-[var(--color-alabaster)] transition-colors">
+                    <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:text-[#ff6b00] hover:bg-[var(--color-alabaster)] transition-colors">
                       Sign In
                     </Link>
-                    <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
+                    <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:text-[#ff6b00] hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
                       Sign Up
                     </Link>
                   </div>
