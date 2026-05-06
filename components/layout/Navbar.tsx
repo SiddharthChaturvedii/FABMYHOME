@@ -74,9 +74,12 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [menuTimeout, setMenuTimeout] = useState<NodeJS.Timeout | null>(null);
+  const [menuOffset, setMenuOffset] = useState(0);
 
-  const handleMouseEnter = (title: string) => {
+  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, title: string) => {
     if (menuTimeout) clearTimeout(menuTimeout);
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMenuOffset(rect.left);
     setActiveMenu(title);
   };
 
@@ -119,7 +122,7 @@ export default function Navbar() {
           {navItems.map((item) => (
             <div 
               key={item.title}
-              onMouseEnter={() => handleMouseEnter(item.title)}
+              onMouseEnter={(e) => handleMouseEnter(e, item.title)}
               onMouseLeave={handleMouseLeave}
               className="relative py-4"
             >
@@ -207,7 +210,10 @@ export default function Navbar() {
             onMouseLeave={handleMouseLeave}
             className="absolute top-full left-0 w-full z-[1000] bg-white border-t border-black/5 shadow-2xl overflow-hidden"
           >
-            <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+            <div 
+              style={{ paddingLeft: menuOffset }}
+              className="py-12 pr-6 md:pr-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
+            >
               {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
                 <div key={section.title} className="space-y-6">
                   <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
