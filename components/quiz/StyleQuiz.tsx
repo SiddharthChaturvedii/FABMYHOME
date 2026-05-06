@@ -101,21 +101,32 @@ export default function StyleQuiz() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => handleOptionSelect(option.label)}
-                    className={`group relative overflow-hidden cursor-pointer transition-all duration-500 border
+                    className={`group cursor-pointer transition-all duration-300 border
                       ${selectedOptions[currentStep] === option.label 
-                        ? 'border-black bg-black text-white shadow-2xl' 
-                        : 'border-black/5 bg-white hover:border-black/20 hover:shadow-xl'
+                        ? 'border-black shadow-xl scale-[1.02]' 
+                        : 'border-black/5 bg-white hover:border-black/20 hover:shadow-lg'
                       }
-                      flex flex-row items-center p-3 h-20 
-                      md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px] md:rounded-none
+                      /* Mobile: The Perfect Baseline */
+                      flex items-center p-3 
+                      /* Desktop Enhancement */
+                      md:h-auto
+                      ${currentStep !== 1 
+                        ? 'md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px]' 
+                        : 'md:h-24'
+                      }
                     `}
                   >
-                    <div className="w-14 h-14 md:w-full md:h-2/3 overflow-hidden shrink-0">
+                    <div className={`overflow-hidden shrink-0 transition-all duration-500
+                      /* Mobile */
+                      w-14 h-14 
+                      /* Desktop */
+                      ${currentStep !== 1 ? 'md:w-full md:h-2/3' : 'md:w-16 md:h-16 md:ml-2'}
+                    `}>
                       {'image' in option ? (
                         <img 
                           src={option.image} 
                           alt={option.label} 
-                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                          className="w-full h-full object-cover grayscale-[50%] group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
                         />
                       ) : (
                         <div 
@@ -125,22 +136,28 @@ export default function StyleQuiz() {
                       )}
                     </div>
                     
-                    <div className="ml-4 md:ml-0 md:p-6 flex flex-col justify-center h-full">
+                    <div className="flex flex-col justify-center h-full">
                       <span className={`font-sans text-[11px] md:text-[13px] font-black uppercase tracking-[0.2em] transition-colors
-                        ${selectedOptions[currentStep] === option.label ? 'text-white' : 'text-black/80'}
+                        /* Mobile Label */
+                        ml-6 
+                        /* Desktop Label */
+                        md:ml-0 ${currentStep !== 1 ? 'md:p-6' : 'md:ml-6'}
+                        ${selectedOptions[currentStep] === option.label ? 'text-black font-bold' : 'text-black/80'}
                       `}>
                         {option.label}
                       </span>
-                      <span className="hidden md:block text-[10px] text-black/40 mt-2 font-medium tracking-widest group-hover:text-black/60 transition-colors uppercase">
-                        Select This Look
-                      </span>
+                      {currentStep !== 1 && (
+                        <span className="hidden md:block text-[10px] text-black/40 mt-2 font-medium tracking-widest group-hover:text-black/60 transition-colors uppercase md:px-6">
+                          Select This Look
+                        </span>
+                      )}
                     </div>
 
                     {selectedOptions[currentStep] === option.label && (
                       <motion.div 
                         initial={{ scale: 0 }}
                         animate={{ scale: 1 }}
-                        className="absolute top-4 right-4 w-6 h-6 bg-white rounded-full flex items-center justify-center text-black"
+                        className="absolute top-4 right-4 w-6 h-6 bg-black rounded-full flex items-center justify-center text-white"
                       >
                         <Check size={12} strokeWidth={3} />
                       </motion.div>
