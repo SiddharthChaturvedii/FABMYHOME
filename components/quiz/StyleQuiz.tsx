@@ -87,7 +87,7 @@ export default function StyleQuiz() {
             >
               <div className="w-12 h-[1px] bg-[#ff6b00]/30" />
               <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[#ff6b00]">
-                Institutional AI Style Engine
+                AI STYLE ENGINE
               </span>
             </motion.div>
 
