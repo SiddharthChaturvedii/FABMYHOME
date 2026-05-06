@@ -89,10 +89,10 @@ export default function StyleQuiz() {
             </motion.h3>
 
             <div className="w-full max-w-5xl">
-              <div className={`grid gap-2 md:gap-4 ${
+              <div className={`grid md:gap-4 ${
                 currentStep === 1 
-                  ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto" 
-                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                  ? "grid-cols-1 gap-1 max-w-4xl mx-auto" 
+                  : "grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
               }`}>
                 {questions[currentStep].options.map((option, index) => (
                   <motion.div
@@ -101,23 +101,22 @@ export default function StyleQuiz() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => handleOptionSelect(option.label)}
-                    className={`group cursor-pointer transition-all duration-300 border
                       ${selectedOptions[currentStep] === option.label 
                         ? 'border-black shadow-lg scale-[1.01]' 
                         : 'border-black/5 bg-white hover:border-black/20 hover:shadow-md'
                       }
-                      flex items-center p-2 
+                      flex items-center 
                       ${currentStep !== 1 
-                        ? 'md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px] md:rounded-none' 
-                        : 'h-14 md:h-16'
+                        ? 'p-3 md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px] md:rounded-none' 
+                        : 'p-1 h-11 md:p-2 md:h-16'
                       }
                     `}
                   >
                     <div className={`overflow-hidden shrink-0 transition-all duration-500
                       /* Mobile */
-                      w-10 h-10 md:w-12 md:h-12
+                      ${currentStep === 1 ? 'w-8 h-8' : 'w-10 h-10'}
                       /* Desktop */
-                      ${currentStep !== 1 ? 'md:w-full md:h-2/3' : 'md:ml-2'}
+                      ${currentStep !== 1 ? 'md:w-full md:h-2/3' : 'md:w-12 md:h-12 md:ml-2'}
                     `}>
                       {'image' in option ? (
                         <img 
