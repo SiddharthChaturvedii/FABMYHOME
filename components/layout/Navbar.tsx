@@ -74,13 +74,10 @@ export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [menuTimeout, setMenuTimeout] = useState<NodeJS.Timeout | null>(null);
-  const [menuOffset, setMenuOffset] = useState(0);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
-  const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, title: string) => {
+  const handleMouseEnter = (title: string) => {
     if (menuTimeout) clearTimeout(menuTimeout);
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMenuOffset(rect.left);
     setActiveMenu(title);
   };
 
@@ -123,11 +120,11 @@ export default function Navbar() {
           {navItems.map((item) => (
             <div 
               key={item.title}
-              onMouseEnter={(e) => handleMouseEnter(e, item.title)}
+              onMouseEnter={() => handleMouseEnter(item.title)}
               onMouseLeave={handleMouseLeave}
               className="relative py-4"
             >
-              <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white" : "text-white/70 hover:text-white"}`}>
+              <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white hover:text-[#ff6b00]" : "text-white/70 hover:text-[#ff6b00]"}`}>
                 {item.title}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
               </div>
@@ -138,7 +135,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-white/80 hover:text-white" : "text-white/60 hover:text-white"}`}
+              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-white/80 hover:text-[#ff6b00]" : "text-white/60 hover:text-[#ff6b00]"}`}
             >
               {link.label}
             </Link>
@@ -156,7 +153,7 @@ export default function Navbar() {
               onClick={onClick}
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[#ff6b00]"
             >
               <Icon className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
               <span className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-[10px] uppercase tracking-widest opacity-0 group-hover:opacity-100 transition-opacity hidden md:block whitespace-nowrap font-bold bg-white text-black px-2 py-1 rounded-none shadow-xl border border-black/5 z-50">
@@ -174,7 +171,7 @@ export default function Navbar() {
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
-              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer"
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer hover:text-[#ff6b00]"
             >
               <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
             </motion.button>
@@ -204,7 +201,7 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className={`lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-white`}
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-white hover:text-[#ff6b00]"
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -224,12 +221,9 @@ export default function Navbar() {
             onMouseLeave={handleMouseLeave}
             className="absolute top-full left-0 w-full z-[1000] bg-white border-t border-black/5 shadow-2xl overflow-hidden"
           >
-            <div 
-              style={{ paddingLeft: menuOffset }}
-              className="py-12 pr-6 md:pr-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12"
-            >
+            <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
               {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
-                <div key={section.title} className="space-y-6">
+                <div key={section.title} className="space-y-6 min-w-[200px]">
                   <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
                     {section.title}
                   </p>
@@ -248,7 +242,7 @@ export default function Navbar() {
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                           />
                         </div>
-                        <span className="text-[14px] font-medium text-black hover:text-black/60 transition-colors">
+                        <span className="text-[14px] font-medium text-black hover:text-[#ff6b00] transition-colors">
                           {link.label}
                         </span>
                       </Link>
