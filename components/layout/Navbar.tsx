@@ -86,11 +86,11 @@ export default function Navbar() {
   };
 
   const handleMouseLeave = () => {
-    console.log(`[Navbar] Mouse LEAVE area. Starting 300ms timeout for ${activeMenu}`);
+    console.log(`[Navbar] Mouse LEAVE area. Starting 500ms timeout for ${activeMenu}`);
     const timeout = setTimeout(() => {
       console.log(`[Navbar] TIMEOUT EXPIRED for ${activeMenu}. Closing menu.`);
       setActiveMenu(null);
-    }, 300);
+    }, 500);
     setMenuTimeout(timeout);
   };
 
@@ -228,7 +228,7 @@ export default function Navbar() {
               if (menuTimeout) clearTimeout(menuTimeout);
             }}
             onMouseLeave={handleMouseLeave}
-            className="absolute top-full left-0 w-full z-[1000] bg-transparent pt-6 -mt-6 overflow-visible"
+            className="absolute top-full left-0 w-full z-[1000] bg-white/[0.001] pt-10 -mt-10 overflow-visible pointer-events-auto"
           >
             <motion.div 
               initial={{ height: 0 }}
