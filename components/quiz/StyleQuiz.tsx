@@ -89,10 +89,10 @@ export default function StyleQuiz() {
             </motion.h3>
 
             <div className="w-full max-w-5xl">
-              <div className={`grid gap-1 md:gap-4 ${
+              <div className={`grid gap-2 md:gap-4 ${
                 currentStep === 1 
                   ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto" 
-                  : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
+                  : "grid-cols-1 lg:grid-cols-3"
               }`}>
                 {questions[currentStep].options.map((option, index) => (
                   <motion.div
