@@ -252,12 +252,10 @@ export default function StyleQuiz() {
 
       </div>
 
-      {/* 3D Model - Laptop Accessory (Pillar-like behavior) */}
+      {/* 3D Model - Laptop Accessory (Pillar-like styling, tucked in corner) */}
       {currentStep < 3 && (
-        <div className="hidden lg:flex absolute top-1/2 -translate-y-1/2 right-[2%] w-1/3 h-[500px] lg:h-[700px] justify-center items-center pointer-events-none z-0 drop-shadow-2xl">
-          <div className="w-[450px] h-[450px] lg:w-[600px] lg:h-[600px] flex items-center justify-center">
-            <QuizModel />
-          </div>
+        <div className="hidden lg:flex absolute bottom-[20px] right-[-150px] lg:right-[-250px] w-[300px] lg:w-[400px] h-[300px] lg:h-[400px] justify-center items-center pointer-events-none z-0 drop-shadow-2xl">
+          <QuizModel />
         </div>
       )}
 
