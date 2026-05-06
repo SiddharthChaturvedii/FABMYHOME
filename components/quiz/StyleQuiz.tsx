@@ -108,7 +108,7 @@ export default function StyleQuiz() {
                       }
                       flex items-center 
                       ${currentStep !== 1 
-                        ? 'p-3 md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px] md:rounded-none' 
+                        ? 'p-3 md:flex-col md:items-start md:p-0 md:h-[220px] lg:h-[280px] md:rounded-none' 
                         : 'p-1 h-11 md:p-2 md:h-16'
                       }
                     `}
