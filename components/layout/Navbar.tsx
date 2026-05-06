@@ -219,7 +219,7 @@ export default function Navbar() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
             onMouseLeave={handleMouseLeave}
-            className="absolute top-full left-0 w-full z-[1000] bg-transparent pt-2 -mt-2 overflow-visible"
+            className="absolute top-full left-0 w-full z-[1000] bg-transparent pt-6 -mt-6 overflow-visible"
           >
             <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
               <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
