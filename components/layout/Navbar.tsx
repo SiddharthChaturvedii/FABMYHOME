@@ -75,6 +75,7 @@ export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [menuTimeout, setMenuTimeout] = useState<NodeJS.Timeout | null>(null);
   const [menuOffset, setMenuOffset] = useState(0);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLElement>, title: string) => {
     if (menuTimeout) clearTimeout(menuTimeout);
@@ -164,28 +165,41 @@ export default function Navbar() {
             </motion.button>
           ))}
 
-          {/* Profile Hover Card */}
-          <HoverCard openDelay={0} closeDelay={100}>
-            <HoverCardTrigger asChild>
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer"
-              >
-                <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
-              </motion.button>
-            </HoverCardTrigger>
-            <HoverCardContent align="end" className="w-48 p-0 bg-white border-none shadow-2xl rounded-none overflow-hidden z-[1002]">
-              <div className="flex flex-col">
-                <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors">
-                  Sign In
-                </Link>
-                <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
-                  Sign Up
-                </Link>
-              </div>
-            </HoverCardContent>
-          </HoverCard>
+          {/* Profile Dropdown */}
+          <div 
+            className="relative"
+            onMouseEnter={() => setIsProfileOpen(true)}
+            onMouseLeave={() => setIsProfileOpen(false)}
+          >
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+              className="w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-none bg-transparent transition-colors relative group cursor-pointer"
+            >
+              <User className="h-4 w-4 md:h-[18px] md:w-[18px] stroke-[1.5]" />
+            </motion.button>
+
+            <AnimatePresence>
+              {isProfileOpen && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                  className="absolute top-full right-0 w-48 bg-white border border-black/5 shadow-2xl overflow-hidden z-[1002]"
+                >
+                  <div className="flex flex-col">
+                    <Link href="#signin" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors">
+                      Sign In
+                    </Link>
+                    <Link href="#signup" className="px-6 py-4 text-[12px] font-bold uppercase tracking-widest text-black/50 hover:bg-[var(--color-alabaster)] transition-colors border-t border-black/5">
+                      Sign Up
+                    </Link>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
 
           {/* Hamburger Button */}
           <button 
