@@ -32,7 +32,6 @@ export default function HeroVideo() {
         muted
         loop={false}
         playsInline
-        webkitPlaysInline={true}
         preload="auto"
         controls={false}
         disablePictureInPicture
