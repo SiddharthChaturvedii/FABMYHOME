@@ -345,7 +345,7 @@ export default function Navbar() {
                               key={link.label} 
                               href={link.href}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="text-white/70 text-lg font-sans font-light tracking-wide hover:text-[var(--color-terracotta)] transition-colors"
+                              className="text-white/70 text-lg font-sans font-light tracking-wide hover:text-[#ff6b00] transition-colors"
                             >
                               {link.label}
                             </Link>
