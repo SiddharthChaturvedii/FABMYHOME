@@ -101,6 +101,7 @@ export default function StyleQuiz() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 }}
                     onClick={() => handleOptionSelect(option.label)}
+                    className={`group cursor-pointer transition-all duration-300 border
                       ${selectedOptions[currentStep] === option.label 
                         ? 'border-black shadow-lg scale-[1.01]' 
                         : 'border-black/5 bg-white hover:border-black/20 hover:shadow-md'
