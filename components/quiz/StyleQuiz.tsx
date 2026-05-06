@@ -111,7 +111,7 @@ export default function StyleQuiz() {
                     `}
                   >
                     <div className="w-14 h-14 md:w-full md:h-2/3 overflow-hidden shrink-0">
-                      {option.image ? (
+                      {'image' in option ? (
                         <img 
                           src={option.image} 
                           alt={option.label} 
@@ -120,7 +120,7 @@ export default function StyleQuiz() {
                       ) : (
                         <div 
                           className="w-full h-full transition-transform duration-700 group-hover:scale-110"
-                          style={{ backgroundColor: option.hex }}
+                          style={{ backgroundColor: (option as any).hex }}
                         />
                       )}
                     </div>
