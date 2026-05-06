@@ -252,7 +252,7 @@ export default function StyleQuiz() {
 
         {/* 3D Model - Pinned strictly to the far-right corner */}
         {currentStep < 3 && (
-          <div className="hidden md:block absolute right-[-150px] lg:right-[-250px] bottom-[-50px] w-[250px] lg:w-[350px] h-[250px] lg:h-[350px] pointer-events-none z-0 opacity-80">
+          <div className="hidden md:block absolute right-[-150px] lg:right-[-250px] bottom-[-50px] w-[250px] lg:w-[350px] h-[250px] lg:h-[350px] pointer-events-none z-0 opacity-100">
             <QuizModel />
           </div>
         )}
