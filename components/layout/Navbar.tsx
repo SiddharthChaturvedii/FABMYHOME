@@ -72,6 +72,18 @@ export default function Navbar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [menuTimeout, setMenuTimeout] = useState<NodeJS.Timeout | null>(null);
+
+  const handleMouseEnter = (title: string) => {
+    if (menuTimeout) clearTimeout(menuTimeout);
+    setActiveMenu(title);
+  };
+
+  const handleMouseLeave = () => {
+    const timeout = setTimeout(() => setActiveMenu(null), 100);
+    setMenuTimeout(timeout);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -105,50 +117,17 @@ export default function Navbar() {
         {/* Central Navigation (Desktop) */}
         <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
-            <HoverCard key={item.title} openDelay={0} closeDelay={100}>
-              <HoverCardTrigger asChild>
-                <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white" : "text-white/70 hover:text-white"}`}>
-                  {item.title}
-                  <ChevronDown className="h-3.5 w-3.5 transition-transform duration-300 group-hover:rotate-180 opacity-50" />
-                </div>
-              </HoverCardTrigger>
-
-              <HoverCardContent 
-                align="start" 
-                sideOffset={25}
-                className="w-[85vw] max-w-5xl p-0 bg-white border border-black/5 shadow-2xl rounded-none overflow-hidden z-[1000]"
-              >
-                <div className="py-12 px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-                  {item.sections.map((section) => (
-                    <div key={section.title} className="space-y-6">
-                      <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
-                        {section.title}
-                      </p>
-                      <div className="grid grid-cols-1 gap-4">
-                        {section.links.map((link) => (
-                          <Link
-                            key={link.label}
-                            href={link.href}
-                            className="group flex items-center gap-4 transition-all"
-                          >
-                            <div className="w-16 h-16 overflow-hidden rounded-none bg-gray-100 shrink-0">
-                              <img 
-                                src={link.image} 
-                                alt={link.label} 
-                                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                              />
-                            </div>
-                            <span className="text-[14px] font-medium text-black hover:text-black/60 transition-colors">
-                              {link.label}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </HoverCardContent>
-            </HoverCard>
+            <div 
+              key={item.title}
+              onMouseEnter={() => handleMouseEnter(item.title)}
+              onMouseLeave={handleMouseLeave}
+              className="relative py-4"
+            >
+              <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white" : "text-white/70 hover:text-white"}`}>
+                {item.title}
+                <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
+              </div>
+            </div>
           ))}
 
           {topLinks.map((link) => (
@@ -214,6 +193,53 @@ export default function Navbar() {
           </button>
         </div>
       </div>
+
+      {/* Mega Menu Dropdown (Full Width) */}
+      <AnimatePresence>
+        {activeMenu && (
+          <motion.div
+            key="mega-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
+            onMouseLeave={handleMouseLeave}
+            className="absolute top-full left-0 w-full z-[1000] bg-white border-t border-black/5 shadow-2xl overflow-hidden"
+          >
+            <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
+                <div key={section.title} className="space-y-6">
+                  <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
+                    {section.title}
+                  </p>
+                  <div className="grid grid-cols-1 gap-4">
+                    {section.links.map((link) => (
+                      <Link
+                        key={link.label}
+                        href={link.href}
+                        onClick={() => setActiveMenu(null)}
+                        className="group flex items-center gap-4 transition-all"
+                      >
+                        <div className="w-16 h-16 overflow-hidden rounded-none bg-gray-100 shrink-0">
+                          <img 
+                            src={link.image} 
+                            alt={link.label} 
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          />
+                        </div>
+                        <span className="text-[14px] font-medium text-black hover:text-black/60 transition-colors">
+                          {link.label}
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Search Dropdown (Under Navbar) */}
       <AnimatePresence>
