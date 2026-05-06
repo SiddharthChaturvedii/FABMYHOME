@@ -126,7 +126,11 @@ export default function Navbar() {
               onMouseLeave={handleMouseLeave}
               className="relative py-4"
             >
-              <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-colors ${scrolled ? "text-white hover:text-[#ff6b00]" : "text-white/70 hover:text-[#ff6b00]"}`}>
+              <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-none ${
+                activeMenu === item.title 
+                  ? "text-[#ff6b00]" 
+                  : (scrolled ? "text-white" : "text-white/70 hover:text-[#ff6b00]")
+              }`}>
                 {item.title}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
               </div>
@@ -213,7 +217,7 @@ export default function Navbar() {
       <AnimatePresence>
         {activeMenu && (
           <motion.div
-            key="mega-menu"
+            key={activeMenu}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
