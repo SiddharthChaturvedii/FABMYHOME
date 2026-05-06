@@ -252,9 +252,10 @@ export default function Navbar() {
                 </div>
               ))}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
 
       {/* Search Dropdown (Under Navbar) */}
       <AnimatePresence>
