@@ -6,7 +6,7 @@ import RoomMockupStrip from "@/components/rooms/RoomMockupStrip";
 import CompleteTheLook from "@/components/complete-look/CompleteTheLook";
 import VisualSearch from "@/components/visual-search/VisualSearch";
 import Testimonials from "@/components/trust/Testimonials";
-import FinalCTA from "@/components/final-cta/FinalCTA";
+
 
 export default function Home() {
   return (
@@ -22,7 +22,7 @@ export default function Home() {
         <CompleteTheLook />
         <VisualSearch />
         <Testimonials />
-        <FinalCTA />
+
       </div>
 
       <Footer />
