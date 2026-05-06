@@ -82,7 +82,7 @@ export default function Navbar() {
   };
 
   const handleMouseLeave = () => {
-    const timeout = setTimeout(() => setActiveMenu(null), 100);
+    const timeout = setTimeout(() => setActiveMenu(null), 300);
     setMenuTimeout(timeout);
   };
 
@@ -219,9 +219,10 @@ export default function Navbar() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
             onMouseLeave={handleMouseLeave}
-            className="absolute top-full left-0 w-full z-[1000] bg-white border-t border-black/5 shadow-2xl overflow-hidden"
+            className="absolute top-full left-0 w-full z-[1000] bg-transparent pt-2 -mt-2 overflow-visible"
           >
-            <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
+            <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
+              <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
               {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
                 <div key={section.title} className="space-y-6 min-w-[200px]">
                   <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
@@ -296,19 +297,19 @@ export default function Navbar() {
                 <p className="text-[10px] font-black uppercase tracking-[0.3em] text-black/30">Suggestions</p>
                 <div className="flex flex-col gap-3">
                   {["Living Room Sets", "Velvet Sofas", "Minimalist Bedroom", "Calm Luxury Mood"].map(s => (
-                    <button key={s} className="text-left text-black/60 hover:text-[var(--color-terracotta)] transition-colors text-sm font-medium cursor-pointer">
+                    <button key={s} className="text-left text-black/60 hover:text-[#ff6b00] transition-colors text-sm font-medium cursor-pointer">
                       {s}
                     </button>
                   ))}
                 </div>
               </div>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                <div className="flex flex-wrap gap-x-12 gap-y-6 items-center justify-start">
                   {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
                     <button 
                       key={cat}
-                      className="flex items-center justify-center aspect-square md:aspect-video p-4 text-[10px] font-black uppercase tracking-[0.25em] text-black/40 hover:text-black transition-all duration-300 border border-black/5 hover:border-black hover:bg-black/5 group"
+                      className="text-[11px] font-black uppercase tracking-[0.3em] text-black/40 hover:text-[#ff6b00] transition-all duration-300 group"
                     >
-                      <span className="group-hover:scale-110 transition-transform">{cat}</span>
+                      <span className="group-hover:translate-x-1 inline-block transition-transform">{cat}</span>
                     </button>
                   ))}
                 </div>
