@@ -77,12 +77,20 @@ export default function Navbar() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   const handleMouseEnter = (title: string) => {
-    if (menuTimeout) clearTimeout(menuTimeout);
+    console.log(`[Navbar] Mouse ENTER link: ${title}`);
+    if (menuTimeout) {
+      console.log(`[Navbar] Clearing existing timeout for ${activeMenu}`);
+      clearTimeout(menuTimeout);
+    }
     setActiveMenu(title);
   };
 
   const handleMouseLeave = () => {
-    const timeout = setTimeout(() => setActiveMenu(null), 300);
+    console.log(`[Navbar] Mouse LEAVE area. Starting 300ms timeout for ${activeMenu}`);
+    const timeout = setTimeout(() => {
+      console.log(`[Navbar] TIMEOUT EXPIRED for ${activeMenu}. Closing menu.`);
+      setActiveMenu(null);
+    }, 300);
     setMenuTimeout(timeout);
   };
 
@@ -215,7 +223,10 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
+            onMouseEnter={() => {
+              console.log(`[Navbar] Mouse ENTERED mega menu: ${activeMenu}. Clearing timeout.`);
+              if (menuTimeout) clearTimeout(menuTimeout);
+            }}
             onMouseLeave={handleMouseLeave}
             className="absolute top-full left-0 w-full z-[1000] bg-transparent pt-6 -mt-6 overflow-visible"
           >
