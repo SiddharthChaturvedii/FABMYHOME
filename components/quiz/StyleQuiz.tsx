@@ -49,9 +49,9 @@ export default function StyleQuiz() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "0px" }}
         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-        className="text-center mb-8 max-w-3xl flex flex-col items-center"
+        className="text-center mb-6 max-w-3xl flex flex-col items-center"
       >
-        <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-4 font-medium italic">
+        <h2 className="font-serif text-5xl md:text-7xl text-[var(--color-midnight)] mb-2 font-medium italic">
           {headline}
         </h2>
         <p className="font-sans text-[var(--color-graphite)]/80 text-xl md:text-2xl font-light">
@@ -64,7 +64,7 @@ export default function StyleQuiz() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ delay: 0.3, duration: 0.8 }}
-        className="flex gap-4 mb-10"
+        className="flex gap-4 mb-8"
       >
         {[0, 1, 2].map((step) => (
           <div 
