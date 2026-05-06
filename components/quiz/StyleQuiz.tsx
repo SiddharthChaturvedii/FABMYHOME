@@ -89,9 +89,9 @@ export default function StyleQuiz() {
             </motion.h3>
 
             <div className="w-full max-w-5xl">
-              <div className={`grid gap-4 md:gap-6 ${
+              <div className={`grid gap-2 md:gap-4 ${
                 currentStep === 1 
-                  ? "grid-cols-1 md:grid-cols-2 lg:grid-cols-4" 
+                  ? "grid-cols-1 md:grid-cols-2 max-w-4xl mx-auto" 
                   : "grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
               }`}>
                 {questions[currentStep].options.map((option, index) => (
@@ -103,24 +103,21 @@ export default function StyleQuiz() {
                     onClick={() => handleOptionSelect(option.label)}
                     className={`group cursor-pointer transition-all duration-300 border
                       ${selectedOptions[currentStep] === option.label 
-                        ? 'border-black shadow-xl scale-[1.02]' 
-                        : 'border-black/5 bg-white hover:border-black/20 hover:shadow-lg'
+                        ? 'border-black shadow-lg scale-[1.01]' 
+                        : 'border-black/5 bg-white hover:border-black/20 hover:shadow-md'
                       }
-                      /* Mobile: The Perfect Baseline */
-                      flex items-center p-3 
-                      /* Desktop Enhancement */
-                      md:h-auto
+                      flex items-center p-2 
                       ${currentStep !== 1 
-                        ? 'md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px]' 
-                        : 'md:h-24'
+                        ? 'md:flex-col md:items-start md:p-0 md:h-[300px] lg:h-[400px] md:rounded-none' 
+                        : 'h-14 md:h-16'
                       }
                     `}
                   >
                     <div className={`overflow-hidden shrink-0 transition-all duration-500
                       /* Mobile */
-                      w-14 h-14 
+                      w-10 h-10 md:w-12 md:h-12
                       /* Desktop */
-                      ${currentStep !== 1 ? 'md:w-full md:h-2/3' : 'md:w-16 md:h-16 md:ml-2'}
+                      ${currentStep !== 1 ? 'md:w-full md:h-2/3' : 'md:ml-2'}
                     `}>
                       {'image' in option ? (
                         <img 
