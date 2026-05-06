@@ -44,6 +44,16 @@ export default function StyleQuiz() {
 
   return (
     <section id="quiz" className="py-10 bg-white flex flex-col items-center px-6 overflow-hidden border-t border-black/5 relative">
+      {/* Side Note: AI Engine */}
+      <div className="hidden lg:block absolute left-12 top-1/2 -translate-y-1/2 h-[400px] pointer-events-none">
+        <div className="flex items-center gap-6 rotate-[-90deg] origin-left translate-y-[200px]">
+          <span className="text-[10px] font-black uppercase tracking-[0.5em] text-black/10 whitespace-nowrap">
+            Institutional AI-Powered Style Engine
+          </span>
+          <div className="w-24 h-[1px] bg-black/10" />
+        </div>
+      </div>
+
       <motion.div 
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
