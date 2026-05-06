@@ -82,9 +82,10 @@ export default function Navbar() {
   };
 
   const handleMouseLeave = () => {
+    // 100ms is now enough because the menu is a child of the hover zone
     const timeout = setTimeout(() => {
       setActiveMenu(null);
-    }, 500);
+    }, 100);
     setMenuTimeout(timeout);
   };
 
@@ -106,7 +107,7 @@ export default function Navbar() {
   return (
     <>
       <nav 
-      className={`fixed top-0 left-0 w-full z-[7000] transition-all duration-500 px-6 md:px-12 py-2 ${
+      className={`fixed top-0 left-0 w-full z-[7000] transition-[background-color,backdrop-filter,border-color] duration-500 px-6 md:px-12 py-2 ${
         isMobileMenuOpen || scrolled ? "bg-[#B6D0D2] backdrop-blur-2xl border-b border-black/10" : "bg-transparent"
       }`}
     >
@@ -134,6 +135,53 @@ export default function Navbar() {
                 {item.title}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
               </div>
+
+              {/* Nested Mega Menu - Part of the same hover zone */}
+              <AnimatePresence>
+                {activeMenu === item.title && (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: -8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.2 }}
+                    className="absolute top-full left-1/2 -translate-x-1/2 w-screen z-[1000] pt-4 pointer-events-auto"
+                  >
+                    <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
+                      <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
+                      {item.sections.map((section) => (
+                        <div key={section.title} className="space-y-6 min-w-[200px]">
+                          <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
+                            {section.title}
+                          </p>
+                          <div className="grid grid-cols-1 gap-4">
+                            {section.links.map((link) => (
+                              <Link
+                                key={link.label}
+                                href={link.href}
+                                onClick={() => setActiveMenu(null)}
+                                className="group flex items-center gap-4 transition-all"
+                              >
+                                <div className="w-16 h-16 overflow-hidden rounded-none bg-gray-100 shrink-0">
+                                  <img 
+                                    src={link.image} 
+                                    alt={link.label} 
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                  />
+                                </div>
+                                <span className="text-[14px] font-medium text-black hover:text-[#ff6b00] transition-colors">
+                                  {link.label}
+                                </span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
             </div>
           ))}
 
@@ -148,7 +196,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right Action Icons & Hamburger */}
+        {/* Right Action Icons */}
         <div className={`flex items-center gap-3 md:gap-4 z-[1001] ${scrolled ? "text-white" : "text-white/90"}`}>
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(!isSearchOpen) },
@@ -214,53 +262,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {activeMenu && (
-          <motion.div
-            key={activeMenu}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onMouseEnter={() => { if (menuTimeout) clearTimeout(menuTimeout); }}
-            onMouseLeave={handleMouseLeave}
-            className="absolute top-full left-0 w-full z-[1000] bg-white/[0.001] pt-12 -mt-12 overflow-visible pointer-events-auto"
-          >
-            <div className="bg-white border-t border-black/5 shadow-2xl overflow-hidden">
-              <div className="max-w-7xl mx-auto py-12 px-6 md:px-12 flex flex-wrap justify-center gap-12 md:gap-24 lg:gap-32">
-              {navItems.find(n => n.title === activeMenu)?.sections.map((section) => (
-                <div key={section.title} className="space-y-6 min-w-[200px]">
-                  <p className="text-[11px] font-black uppercase tracking-[0.3em] text-black/30 border-b border-black/5 pb-2">
-                    {section.title}
-                  </p>
-                  <div className="grid grid-cols-1 gap-4">
-                    {section.links.map((link) => (
-                      <Link
-                        key={link.label}
-                        href={link.href}
-                        onClick={() => setActiveMenu(null)}
-                        className="group flex items-center gap-4 transition-all"
-                      >
-                        <div className="w-16 h-16 overflow-hidden rounded-none bg-gray-100 shrink-0">
-                          <img 
-                            src={link.image} 
-                            alt={link.label} 
-                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                          />
-                        </div>
-                        <span className="text-[14px] font-medium text-black hover:text-[#ff6b00] transition-colors">
-                          {link.label}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-
       {/* Search Dropdown */}
       <AnimatePresence>
         {isSearchOpen && (
@@ -307,23 +308,23 @@ export default function Navbar() {
                   ))}
                 </div>
               </div>
-                <div className="flex flex-wrap gap-x-12 gap-y-6 items-center justify-start">
-                  {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
-                    <button 
-                      key={cat}
-                      className="text-[11px] font-black uppercase tracking-[0.3em] text-black/40 hover:text-[#ff6b00] transition-all duration-300 group"
-                    >
-                      <span className="group-hover:translate-x-1 inline-block transition-transform">{cat}</span>
-                    </button>
-                  ))}
-                </div>
+              <div className="flex flex-wrap gap-x-12 gap-y-6 items-center justify-start">
+                {["Curtains", "Bedding", "Furniture", "Wallpaper", "Rugs", "Decor", "Lighting", "Art"].map((cat) => (
+                  <button 
+                    key={cat}
+                    className="text-[11px] font-black uppercase tracking-[0.3em] text-black/40 hover:text-[#ff6b00] transition-all duration-300 group"
+                  >
+                    <span className="group-hover:translate-x-1 inline-block transition-transform">{cat}</span>
+                  </button>
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
       </nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
