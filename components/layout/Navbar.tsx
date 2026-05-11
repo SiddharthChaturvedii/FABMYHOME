@@ -130,7 +130,7 @@ export default function Navbar() {
               <div className={`group flex items-center gap-1.5 text-[12px] font-semibold uppercase tracking-[0.2em] cursor-pointer transition-none ${
                 activeMenu === item.title 
                   ? "text-[var(--color-terracotta)]" 
-                  : (scrolled ? "text-white" : "text-white/70 hover:text-[var(--color-terracotta)]")
+                  : "text-black hover:text-[var(--color-terracotta)]"
               }`}>
                 {item.title}
                 <ChevronDown className={`h-3.5 w-3.5 transition-transform duration-300 opacity-50 ${activeMenu === item.title ? "rotate-180" : ""}`} />
@@ -189,7 +189,7 @@ export default function Navbar() {
             <Link
               key={link.label}
               href={link.href}
-              className={`text-[11px] font-bold uppercase tracking-[0.2em] transition-colors ${scrolled ? "text-white/80 hover:text-[var(--color-terracotta)]" : "text-white/60 hover:text-[var(--color-terracotta)]"}`}
+              className="text-[11px] font-bold uppercase tracking-[0.2em] transition-colors text-black/60 hover:text-[var(--color-terracotta)]"
             >
               {link.label}
             </Link>
@@ -197,7 +197,7 @@ export default function Navbar() {
         </div>
 
         {/* Right Action Icons */}
-        <div className={`flex items-center gap-3 md:gap-4 z-[1001] ${scrolled ? "text-white" : "text-white/90"}`}>
+        <div className="flex items-center gap-3 md:gap-4 z-[1001] text-black">
           {[
             { icon: Search, label: "Search", onClick: () => setIsSearchOpen(!isSearchOpen) },
             { icon: ShoppingBag, label: "Cart", onClick: () => setIsCartOpen(true) }
@@ -263,7 +263,7 @@ export default function Navbar() {
           {/* Hamburger Button */}
           <button 
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-white hover:text-[var(--color-terracotta)]"
+            className="lg:hidden w-10 h-10 flex items-center justify-center rounded-none transition-all duration-300 bg-transparent text-black hover:text-[var(--color-terracotta)]"
           >
             {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
