@@ -55,7 +55,7 @@ export default function HeroSection() {
 
       {/* 4. Text & Interaction Layer */}
       <div className="relative z-10 flex-1 flex flex-col justify-center px-6 md:px-12 lg:px-24">
-        <div className="max-w-5xl w-full">
+        <div className="w-full md:w-1/2 max-w-2xl">
           <motion.div
             initial={{ opacity: 0 }}
             animate={introStage >= 1 ? { opacity: 1 } : { opacity: 0 }}
@@ -94,13 +94,15 @@ export default function HeroSection() {
                 delay: isLandscape ? 11.8 : 0.6, 
                 duration: 1 
               }}
-              className="flex flex-col sm:flex-row items-center justify-start gap-6 w-full"
+              className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 w-full"
             >
               {siteContent.hero.ctas.map((cta, index) => {
-                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-4 md:px-7 py-4 text-[10px] md:text-xs transition-all duration-500 rounded-none text-center ";
+                let classes = "font-sans font-bold uppercase tracking-[0.2em] px-4 md:px-7 py-4 text-[10px] md:text-xs transition-all duration-500 rounded-none text-center w-full flex items-center justify-center ";
                 if (cta.variant === "terracotta") classes += "bg-[var(--color-terracotta)] text-white hover:scale-105 shadow-2xl";
                 else if (cta.variant === "teal-outline") classes += "border-2 border-[var(--color-cyan)] text-[var(--color-cyan)] hover:bg-[var(--color-cyan)] hover:text-white backdrop-blur-md";
                 else classes += "bg-white/10 text-white hover:bg-white/20 backdrop-blur-sm border border-white/10";
+                
+                if (index === 0) classes += " md:col-span-2";
 
                 return <button key={index} className={classes}>{cta.label}</button>;
               })}
