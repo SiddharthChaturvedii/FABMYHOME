@@ -344,20 +344,20 @@ export default function Navbar() {
             <div className="flex flex-col gap-12">
               {navItems.map((item) => (
                 <div key={item.title} className="space-y-6">
-                  <p className="text-white/40 text-[12px] uppercase tracking-[0.5em] font-black border-b border-white/5 pb-3">
+                  <p className="text-black/40 text-[12px] uppercase tracking-[0.5em] font-black border-b border-black/5 pb-3">
                     {item.title}
                   </p>
                   <div className="grid grid-cols-1 gap-8">
                     {item.sections.map((section) => (
                       <div key={section.title} className="space-y-6">
-                        <p className="text-white text-lg font-display font-bold tracking-tight">{section.title}</p>
+                        <p className="text-black text-lg font-display font-bold tracking-tight">{section.title}</p>
                         <div className="flex flex-col gap-4">
                           {section.links.map((link) => (
                             <Link 
                               key={link.label} 
                               href={link.href}
                               onClick={() => setIsMobileMenuOpen(false)}
-                              className="text-white/70 text-lg font-sans font-light tracking-wide hover:text-[var(--color-terracotta)] transition-colors"
+                              className="text-black/70 text-lg font-sans font-light tracking-wide hover:text-[var(--color-terracotta)] transition-colors"
                             >
                               {link.label}
                             </Link>
