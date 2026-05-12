@@ -155,11 +155,7 @@ export default function StyleQuiz() {
                       `}>
                         {option.label}
                       </span>
-                      {currentStep !== 1 && (
-                        <span className="hidden md:block text-[10px] text-black/40 mt-2 font-medium tracking-widest group-hover:text-black/60 transition-colors uppercase md:px-6">
-                          Select This Look
-                        </span>
-                      )}
+
                     </div>
 
                     {selectedOptions[currentStep] === option.label && (
