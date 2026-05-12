@@ -96,12 +96,8 @@ export default function RoomMockupStrip() {
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {presetRooms.map((room) => (
-          <motion.div 
+          <div 
             key={room.id}
-            initial={{ opacity: 0, y: 100 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: false, amount: 0.2 }}
-            transition={{ type: "spring", stiffness: 50, damping: 20 }}
             className="relative flex-none w-[90vw] md:w-[85vw] lg:w-[35vw] h-[60vh] md:h-[75vh] snap-center group rounded-[2.5rem] overflow-hidden bg-[var(--color-graphite)] shadow-2xl shadow-black/10 transition-all duration-700 hover:shadow-black/20"
           >
             {/* Image rendered underneath gradient */}
@@ -126,7 +122,7 @@ export default function RoomMockupStrip() {
                 Shop This Look
               </button>
             </div>
-          </motion.div>
+          </div>
         ))}
       </motion.div>
     </section>
