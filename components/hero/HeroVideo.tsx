@@ -5,7 +5,7 @@ import { useUIStore } from "@/store/uiStore";
 
 export default function HeroVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { introStage } = useUIStore();
+  const { introStage, setIntroStage } = useUIStore();
   const [isLandscape, setIsLandscape] = useState(true);
 
   useEffect(() => {
@@ -32,11 +32,18 @@ export default function HeroVideo() {
     }
   }, [introStage, isLandscape]);
 
+  const revealCopy = () => {
+    if (introStage < 2) {
+      setIntroStage(2);
+    }
+  };
+
   const handleTimeUpdate = () => {
     if (videoRef.current) {
       // Pause right before the end to prevent the iOS play button from appearing
       if (videoRef.current.currentTime > 0 && videoRef.current.currentTime >= videoRef.current.duration - 0.1) {
         videoRef.current.pause();
+        revealCopy();
       }
     }
   };
@@ -54,6 +61,7 @@ export default function HeroVideo() {
         disablePictureInPicture
         disableRemotePlayback
         onTimeUpdate={handleTimeUpdate}
+        onEnded={revealCopy}
         className={`absolute inset-0 z-10 w-full h-full object-cover transition-opacity duration-1000 ${
           introStage >= 1 ? "opacity-100" : "opacity-0"
         }`}

@@ -1,5 +1,4 @@
 import Footer from "@/components/layout/Footer";
-import LoadingCurtain from "@/components/hero/LoadingCurtain";
 import HeroSection from "@/components/hero/HeroSection";
 import StyleQuiz from "@/components/quiz/StyleQuiz";
 import RoomMockupStrip from "@/components/rooms/RoomMockupStrip";
@@ -11,8 +10,6 @@ import FinalCTA from "@/components/final-cta/FinalCTA";
 export default function Home() {
   return (
     <main className="relative min-h-screen bg-black">
-      <LoadingCurtain />
-      
       {/* Hero Section handles its own Navbar placement */}
       <HeroSection />
       
