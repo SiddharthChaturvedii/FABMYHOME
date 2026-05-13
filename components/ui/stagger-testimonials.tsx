@@ -172,7 +172,7 @@ export const StaggerTestimonials: React.FC = () => {
           onClick={() => handleMove(-1)}
           className={cn(
             "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-white border-2 border-black/10 hover:bg-black hover:text-white hover:border-black",
+            "bg-white border-2 border-black text-black hover:bg-black hover:text-white",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
           )}
           aria-label="Previous testimonial"
@@ -183,7 +183,7 @@ export const StaggerTestimonials: React.FC = () => {
           onClick={() => handleMove(1)}
           className={cn(
             "flex h-14 w-14 items-center justify-center text-2xl transition-colors",
-            "bg-white border-2 border-black/10 hover:bg-black hover:text-white hover:border-black",
+            "bg-white border-2 border-black text-black hover:bg-black hover:text-white",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2"
           )}
           aria-label="Next testimonial"
